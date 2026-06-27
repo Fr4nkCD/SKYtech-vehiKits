@@ -36,17 +36,3 @@ You can import any kit from this repository directly into your Roblox Studio wor
 1.  Navigate to the directory of the kit you need.
 2.  Download the `.rbxmx` file.
 3.  **Drag and drop** the file directly from your local file explorer into your Roblox Studio **Explorer** window (or right-click an empty space in the Explorer, select **Insert from File...**, and open the asset).
-
----
-
-## 💻 Contribution Workflow
-
-When updating modules or adjusting physics behavior within Roblox Studio, follow this sequence to overwrite and commit changes safely:
-
-1. Overwrite the updated file via Studio using **Save to File...** and choosing the `.rbxmx` format.
-2. Open your terminal in the repository root and run:
-
-```bash
-git add .
-git commit -m "Detail your physics, tuning, or script modifications here"
-git push
