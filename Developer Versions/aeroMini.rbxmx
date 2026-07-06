@@ -16117,7 +16117,7 @@ script:Destroy()]]></ProtectedString>
 					<int64 name="SourceAssetId">-1</int64>
 					<SharedString name="Tags">7sgKIKVzlXTlM8o6N+gu0w==</SharedString>
 				</Properties>
-				<Item class="Folder" referent="RBXED9C5825B6814C368B5338E0E5E36215">
+				<Item class="Folder" referent="RBX18404C485E6A464C9DBDD26396D8F6BB">
 					<Properties>
 						<BinaryString name="AttributesSerialize"></BinaryString>
 						<SecurityCapabilities name="Capabilities">17996771963439872</SecurityCapabilities>
@@ -16126,7 +16126,7 @@ script:Destroy()]]></ProtectedString>
 						<int64 name="SourceAssetId">-1</int64>
 						<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 					</Properties>
-					<Item class="Folder" referent="RBX75B45BF3221F4467B7120D04B57C1E08">
+					<Item class="Folder" referent="RBXDBF0F51D9BEC42D29316F4EE461AEC27">
 						<Properties>
 							<BinaryString name="AttributesSerialize"></BinaryString>
 							<SecurityCapabilities name="Capabilities">17996771963439872</SecurityCapabilities>
@@ -16135,7 +16135,7 @@ script:Destroy()]]></ProtectedString>
 							<int64 name="SourceAssetId">-1</int64>
 							<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 						</Properties>
-						<Item class="ModuleScript" referent="RBXFD50468D91E345C6A86F6CCB70702BF4">
+						<Item class="ModuleScript" referent="RBX29F9CA5AC5524409937190DE1893DA7F">
 							<Properties>
 								<Content name="LinkedSource"><null></null></Content>
 								<ProtectedString name="Source"><![CDATA[-- Vehicle Utilities
@@ -16251,7 +16251,7 @@ function Utils.SyncLegacyValues(Settings, ConnectionsTable)
 end
 
 return Utils]]></ProtectedString>
-								<string name="ScriptGuid">{CB3BBCE7-D7F2-43D7-8D1A-BB4129C5FA0F}</string>
+								<string name="ScriptGuid">{53C67BB5-E789-43C4-9E1A-ABF968D0D3F9}</string>
 								<BinaryString name="AttributesSerialize"></BinaryString>
 								<SecurityCapabilities name="Capabilities">17996771963439872</SecurityCapabilities>
 								<bool name="DefinesCapabilities">true</bool>
@@ -16260,7 +16260,7 @@ return Utils]]></ProtectedString>
 								<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 							</Properties>
 						</Item>
-						<Item class="ModuleScript" referent="RBXE43F731F498643BB9E10D4081FE8976D">
+						<Item class="ModuleScript" referent="RBX73C65875AAE24F1CADBC4D50CFA42E67">
 							<Properties>
 								<Content name="LinkedSource"><null></null></Content>
 								<ProtectedString name="Source"><![CDATA[-- aeroMini Flight Physics
@@ -16431,7 +16431,7 @@ function aeroMini:Cleanup(aircraft)
 end
 
 return aeroMini]]></ProtectedString>
-								<string name="ScriptGuid">{E8235174-28E7-4574-9B7E-658AA6801ABC}</string>
+								<string name="ScriptGuid">{E346DA67-B11A-4492-91A5-DD335E953178}</string>
 								<BinaryString name="AttributesSerialize"></BinaryString>
 								<SecurityCapabilities name="Capabilities">17996771963439872</SecurityCapabilities>
 								<bool name="DefinesCapabilities">true</bool>
@@ -16439,7 +16439,7 @@ return aeroMini]]></ProtectedString>
 								<int64 name="SourceAssetId">-1</int64>
 								<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 							</Properties>
-							<Item class="ModuleScript" referent="RBX87B768233D944A1EAA9391CB269F20B4">
+							<Item class="ModuleScript" referent="RBX82DE862A6DF54E8891FCB357A3983685">
 								<Properties>
 									<Content name="LinkedSource"><null></null></Content>
 									<ProtectedString name="Source"><![CDATA[-- EnvironmentProcessor Module
@@ -16464,7 +16464,8 @@ function EnvironmentProcessor.Update(dt, state)
 
 	local _lowestPoint = Settings.Advanced.LowestPoint or "Auto"
 	local _restingAngle = Settings.AircraftStatistics.RestingAngle
-	local trueSpeed = Utils.Abs(System.Speed + mainCFrame:VectorToObjectSpace(workspace.GlobalWind).Z)
+	local globalWind = workspace.GlobalWind
+	local trueSpeed = Utils.Abs(System.Speed + mainCFrame:VectorToObjectSpace(globalWind).Z)
 
 	local lowestPoint = 0
 	local hasCollision = false
@@ -16526,7 +16527,7 @@ function EnvironmentProcessor.Update(dt, state)
 end
 
 return EnvironmentProcessor]]></ProtectedString>
-									<string name="ScriptGuid">{B11C558C-5CB2-4CAA-8473-AD9C15265319}</string>
+									<string name="ScriptGuid">{3B78D2E2-7054-48C1-9AAD-96C4237255FF}</string>
 									<BinaryString name="AttributesSerialize"></BinaryString>
 									<SecurityCapabilities name="Capabilities">17996771963439872</SecurityCapabilities>
 									<bool name="DefinesCapabilities">true</bool>
@@ -16535,7 +16536,7 @@ return EnvironmentProcessor]]></ProtectedString>
 									<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 								</Properties>
 							</Item>
-							<Item class="ModuleScript" referent="RBX6047018B7F68403DBEA5BCE37D03EF6F">
+							<Item class="ModuleScript" referent="RBXA94A34F554BD4B6D882F6F75A6E4A407">
 								<Properties>
 									<Content name="LinkedSource"><null></null></Content>
 									<ProtectedString name="Source"><![CDATA[-- ThrustProcessor Module
@@ -16578,7 +16579,7 @@ function ThrustProcessor.Update(dt, state)
 end
 
 return ThrustProcessor]]></ProtectedString>
-									<string name="ScriptGuid">{C7C7891C-196C-416D-8701-371B0062D40F}</string>
+									<string name="ScriptGuid">{AF4E279C-1CDF-42D0-B494-7E311F47C8C6}</string>
 									<BinaryString name="AttributesSerialize"></BinaryString>
 									<SecurityCapabilities name="Capabilities">17996771963439872</SecurityCapabilities>
 									<bool name="DefinesCapabilities">true</bool>
@@ -16587,7 +16588,7 @@ return ThrustProcessor]]></ProtectedString>
 									<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 								</Properties>
 							</Item>
-							<Item class="ModuleScript" referent="RBX585542BABD47492891C6577F3A2DD5D1">
+							<Item class="ModuleScript" referent="RBX25E9BC5EB8484EC4BF944BD9D0A7220F">
 								<Properties>
 									<Content name="LinkedSource"><null></null></Content>
 									<ProtectedString name="Source"><![CDATA[-- FlightKinematics Module
@@ -16646,7 +16647,7 @@ function FlightKinematics.Update(dt, state)
 	local totalLiftForce = Utils.Clamp(liftAlpha + stalling, 0, 1)
 
 	local liftThreshold = if _noseLiftFactor > 0 then _stallSpeed * Utils.Clamp(1 - _noseLiftFactor - 0.1, 0, 1) else _stallSpeed * 0.95
-	local totalLiftTorque = Utils.Clamp((trueSpeed - liftThreshold) / (_stallSpeed - liftThreshold), 0, 1)
+	local totalLiftTorque = Utils.Clamp((trueSpeed - liftThreshold) / (_stallSpeed - liftThreshold) + stalling, 0, 1)
 	if Env.HasCollision and trueSpeed >= liftThreshold then
 		totalLiftTorque = Utils.Max(totalLiftTorque, 0.5) -- Ensure pilot can override nose attitude on runway
 	end
@@ -16788,7 +16789,7 @@ function FlightKinematics.Update(dt, state)
 end
 
 return FlightKinematics]]></ProtectedString>
-									<string name="ScriptGuid">{66B76F48-D394-48CF-8011-C1D198B3C8DD}</string>
+									<string name="ScriptGuid">{03350C87-46CA-4694-82A9-1084C4345D0D}</string>
 									<BinaryString name="AttributesSerialize"></BinaryString>
 									<SecurityCapabilities name="Capabilities">17996771963439872</SecurityCapabilities>
 									<bool name="DefinesCapabilities">true</bool>
@@ -16799,7 +16800,7 @@ return FlightKinematics]]></ProtectedString>
 							</Item>
 						</Item>
 					</Item>
-					<Item class="Folder" referent="RBX0AD47884AA0941D794B5C0A6CCB9D4A2">
+					<Item class="Folder" referent="RBX058596B7D0A34540A8C7C30943703DD7">
 						<Properties>
 							<BinaryString name="AttributesSerialize"></BinaryString>
 							<SecurityCapabilities name="Capabilities">17996771963439872</SecurityCapabilities>
@@ -16808,7 +16809,7 @@ return FlightKinematics]]></ProtectedString>
 							<int64 name="SourceAssetId">-1</int64>
 							<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 						</Properties>
-						<Item class="Script" referent="RBX5199A87771554467A437A3E046BA23B9">
+						<Item class="Script" referent="RBX7E6A202574A44110A4913DCCE156FACE">
 							<Properties>
 								<ProtectedString name="Source"><![CDATA[-- Handle flight physics locally in case of no pilot seated and the aircraft's network is still owned.
 
@@ -16913,7 +16914,7 @@ end)]]></ProtectedString>
 								<bool name="Disabled">true</bool>
 								<Content name="LinkedSource"><null></null></Content>
 								<token name="RunContext">2</token>
-								<string name="ScriptGuid">{8B587BD3-D9CB-4E26-9C32-6601865CCD09}</string>
+								<string name="ScriptGuid">{31B087E6-70E4-4611-9D00-23CEE606F075}</string>
 								<BinaryString name="AttributesSerialize"></BinaryString>
 								<SecurityCapabilities name="Capabilities">17996771963439872</SecurityCapabilities>
 								<bool name="DefinesCapabilities">true</bool>
@@ -16924,7 +16925,7 @@ end)]]></ProtectedString>
 						</Item>
 					</Item>
 				</Item>
-				<Item class="Folder" referent="RBXB889CB7B4D5B44B0845F602DE13A86A4">
+				<Item class="Folder" referent="RBXB6204AA54B664A54B22B38E68499E31D">
 					<Properties>
 						<BinaryString name="AttributesSerialize"></BinaryString>
 						<SecurityCapabilities name="Capabilities">17996771963439872</SecurityCapabilities>
@@ -16933,7 +16934,7 @@ end)]]></ProtectedString>
 						<int64 name="SourceAssetId">-1</int64>
 						<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 					</Properties>
-					<Item class="Folder" referent="RBX4464CC5338094F51B8E0C3BAB511A710">
+					<Item class="Folder" referent="RBXCDB130447CC34BDA8C293ECE2F4493A8">
 						<Properties>
 							<BinaryString name="AttributesSerialize"></BinaryString>
 							<SecurityCapabilities name="Capabilities">17996771963439872</SecurityCapabilities>
@@ -16942,7 +16943,7 @@ end)]]></ProtectedString>
 							<int64 name="SourceAssetId">-1</int64>
 							<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 						</Properties>
-						<Item class="ModuleScript" referent="RBXE5CCE0155AD345E0AF276D943BEBE703">
+						<Item class="ModuleScript" referent="RBX5690D93D7444499BB0148F4F4151C155">
 							<Properties>
 								<Content name="LinkedSource"><null></null></Content>
 								<ProtectedString name="Source"><![CDATA[local LegacySyncing = {}
@@ -17000,7 +17001,7 @@ function LegacySyncing.SyncSettings(Settings, ConnectionsTable)
 end
 
 return LegacySyncing]]></ProtectedString>
-								<string name="ScriptGuid">{8A93EFCC-B47B-46A0-9AC9-51ADC90C498C}</string>
+								<string name="ScriptGuid">{D13149B4-E31C-4B52-AE74-6C5FC41812CE}</string>
 								<BinaryString name="AttributesSerialize"></BinaryString>
 								<SecurityCapabilities name="Capabilities">17996771963439872</SecurityCapabilities>
 								<bool name="DefinesCapabilities">true</bool>
@@ -17009,7 +17010,7 @@ return LegacySyncing]]></ProtectedString>
 								<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 							</Properties>
 						</Item>
-						<Item class="ModuleScript" referent="RBX29EE8A2B553E4FE6814319B5FBB71763">
+						<Item class="ModuleScript" referent="RBXA94B11C9BDAE4D48ACEC9DED05E07160">
 							<Properties>
 								<Content name="LinkedSource"><null></null></Content>
 								<ProtectedString name="Source"><![CDATA[local FuelManagement = {}
@@ -17051,7 +17052,7 @@ function FuelManagement.ProcessBurn(
 end
 
 return FuelManagement]]></ProtectedString>
-								<string name="ScriptGuid">{5F9BD906-913B-4DF8-8216-48056C385CF8}</string>
+								<string name="ScriptGuid">{6842079F-30DD-451C-BF6B-4051A97BD9BE}</string>
 								<BinaryString name="AttributesSerialize"></BinaryString>
 								<SecurityCapabilities name="Capabilities">17996771963439872</SecurityCapabilities>
 								<bool name="DefinesCapabilities">true</bool>
@@ -17060,7 +17061,7 @@ return FuelManagement]]></ProtectedString>
 								<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 							</Properties>
 						</Item>
-						<Item class="ModuleScript" referent="RBX339FCCBF228F4DE998A2635CBD691898">
+						<Item class="ModuleScript" referent="RBXC6DCDDFEC77247EEBC255D85EB599632">
 							<Properties>
 								<Content name="LinkedSource"><null></null></Content>
 								<ProtectedString name="Source"><![CDATA[local Welder = {}
@@ -17126,7 +17127,7 @@ function Welder.Weld(model, primaryPart)
 end
 
 return Welder]]></ProtectedString>
-								<string name="ScriptGuid">{322820FC-5948-46F4-AE3B-5AD019B65388}</string>
+								<string name="ScriptGuid">{7679ADBC-089B-4B63-A6C1-AFB00393DEC6}</string>
 								<BinaryString name="AttributesSerialize"></BinaryString>
 								<SecurityCapabilities name="Capabilities">17996771963439872</SecurityCapabilities>
 								<bool name="DefinesCapabilities">true</bool>
@@ -17135,7 +17136,7 @@ return Welder]]></ProtectedString>
 								<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 							</Properties>
 						</Item>
-						<Item class="ModuleScript" referent="RBX2768D65D5E8D417F9C4E59EBD4DD9A13">
+						<Item class="ModuleScript" referent="RBX660C2F2C388B409D814AE130472D96C3">
 							<Properties>
 								<Content name="LinkedSource"><null></null></Content>
 								<ProtectedString name="Source"><![CDATA[local NetworkManager = {}
@@ -17206,7 +17207,7 @@ function NetworkManager.UpdateNetworkOwner(
 end
 
 return NetworkManager]]></ProtectedString>
-								<string name="ScriptGuid">{0D07C83C-581F-471E-BD04-55132FE51E67}</string>
+								<string name="ScriptGuid">{C6652DCC-71FC-4EF9-9EFA-E32A6C767078}</string>
 								<BinaryString name="AttributesSerialize"></BinaryString>
 								<SecurityCapabilities name="Capabilities">17996771963439872</SecurityCapabilities>
 								<bool name="DefinesCapabilities">true</bool>
@@ -17216,7 +17217,7 @@ return NetworkManager]]></ProtectedString>
 							</Properties>
 						</Item>
 					</Item>
-					<Item class="Folder" referent="RBX6BE8F9D0F8A9430B9C8425D26396BBA9">
+					<Item class="Folder" referent="RBXD8B73E1CE58945668FD684A863563FE4">
 						<Properties>
 							<BinaryString name="AttributesSerialize"></BinaryString>
 							<SecurityCapabilities name="Capabilities">17996771963439872</SecurityCapabilities>
@@ -17225,7 +17226,7 @@ return NetworkManager]]></ProtectedString>
 							<int64 name="SourceAssetId">-1</int64>
 							<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 						</Properties>
-						<Item class="Script" referent="RBX937D40AD0E584581BC4A0EB598B8221E">
+						<Item class="Script" referent="RBX14826BEA2BE14B618E8D5950DEFE5400">
 							<Properties>
 								<ProtectedString name="Source"><![CDATA[-- Default landing gear script for all aircraft kits.
 
@@ -17432,7 +17433,7 @@ CollectionService:GetInstanceAddedSignal(tagName):Connect(setupLandingGear)]]></
 								<bool name="Disabled">true</bool>
 								<Content name="LinkedSource"><null></null></Content>
 								<token name="RunContext">0</token>
-								<string name="ScriptGuid">{A59E6A0B-AFDA-4E36-8C98-103EC90FD88B}</string>
+								<string name="ScriptGuid">{A28F73BA-F232-409A-918D-CFA88BA2B8C7}</string>
 								<BinaryString name="AttributesSerialize"></BinaryString>
 								<SecurityCapabilities name="Capabilities">17996771963439872</SecurityCapabilities>
 								<bool name="DefinesCapabilities">true</bool>
@@ -17441,7 +17442,7 @@ CollectionService:GetInstanceAddedSignal(tagName):Connect(setupLandingGear)]]></
 								<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 							</Properties>
 						</Item>
-						<Item class="Script" referent="RBXA04B750BB7094E51A634DBB20D464484">
+						<Item class="Script" referent="RBXC3032CDAC787440FA0FA680FE29ED37A">
 							<Properties>
 								<ProtectedString name="Source"><![CDATA[-- Protect SKYtech vehiKits from being hidden by SteamingEnabled which breaks the systems.
 
@@ -17490,7 +17491,7 @@ end)]]></ProtectedString>
 								<bool name="Disabled">true</bool>
 								<Content name="LinkedSource"><null></null></Content>
 								<token name="RunContext">0</token>
-								<string name="ScriptGuid">{025541EA-5707-4520-B415-C7E9A8232BEE}</string>
+								<string name="ScriptGuid">{A6197C0E-D04B-42AD-8670-0823BA786C91}</string>
 								<BinaryString name="AttributesSerialize"></BinaryString>
 								<SecurityCapabilities name="Capabilities">17996771963439872</SecurityCapabilities>
 								<bool name="DefinesCapabilities">true</bool>
@@ -17500,7 +17501,7 @@ end)]]></ProtectedString>
 							</Properties>
 						</Item>
 					</Item>
-					<Item class="Folder" referent="RBXA735C9A44F584D30A7C283DFEF56B09D">
+					<Item class="Folder" referent="RBX016FDB6912AC486E89227372C5C67722">
 						<Properties>
 							<BinaryString name="AttributesSerialize"></BinaryString>
 							<SecurityCapabilities name="Capabilities">17996771963439872</SecurityCapabilities>
@@ -17509,7 +17510,7 @@ end)]]></ProtectedString>
 							<int64 name="SourceAssetId">-1</int64>
 							<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 						</Properties>
-						<Item class="Script" referent="RBXA63F182BFC4047E88E0E35220E606262">
+						<Item class="Script" referent="RBX9035856CC959461C916134161BFB848E">
 							<Properties>
 								<ProtectedString name="Source"><![CDATA[-- Server Master
 
@@ -17590,7 +17591,7 @@ function setupAircraft(aircraft)
 			local accumulated = 0
 			local clockSpeed = 1 / 10 -- Hz
 			table.insert(connections, RunService.Heartbeat:Connect(function(dt)
-				dt = math.min(dt, 0.05)
+				dt = math.min(dt, clockSpeed * 2)
 				accumulated += dt
 				if accumulated >= clockSpeed then		
 					local activePilot = pilotValue.Value
@@ -17599,6 +17600,7 @@ function setupAircraft(aircraft)
 					local ClientControlled = Settings:GetAttribute("Advanced/ClientControlled") == true
 					if kitSystem:GetAttribute("Client_Controlled") ~= ClientControlled then
 						kitSystem:SetAttribute("Client_Controlled", ClientControlled)
+						kitCore:Reset(aircraft)
 					end
 
 					-- Network ownership
@@ -17712,7 +17714,7 @@ CollectionService:GetInstanceAddedSignal("SKYtech "..kitName):Connect(setupAircr
 								<bool name="Disabled">true</bool>
 								<Content name="LinkedSource"><null></null></Content>
 								<token name="RunContext">0</token>
-								<string name="ScriptGuid">{A1E62397-24F6-4116-B76D-45FD82C58280}</string>
+								<string name="ScriptGuid">{29E4CDAF-9116-4082-9A1C-BA3D0EBFEC14}</string>
 								<BinaryString name="AttributesSerialize"></BinaryString>
 								<SecurityCapabilities name="Capabilities">17996771963439872</SecurityCapabilities>
 								<bool name="DefinesCapabilities">true</bool>
@@ -17720,7 +17722,7 @@ CollectionService:GetInstanceAddedSignal("SKYtech "..kitName):Connect(setupAircr
 								<int64 name="SourceAssetId">-1</int64>
 								<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 							</Properties>
-							<Item class="Folder" referent="RBX03AE8C24DA9D4875831F5B3DEA6CEFAD">
+							<Item class="Folder" referent="RBXBB794CA7D9CB4DD4A52A8845006F8F83">
 								<Properties>
 									<BinaryString name="AttributesSerialize"></BinaryString>
 									<SecurityCapabilities name="Capabilities">17996771963439872</SecurityCapabilities>
@@ -17729,7 +17731,7 @@ CollectionService:GetInstanceAddedSignal("SKYtech "..kitName):Connect(setupAircr
 									<int64 name="SourceAssetId">-1</int64>
 									<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 								</Properties>
-								<Item class="ModuleScript" referent="RBX6E3E68B6BE014F07BB1BD6DFAB2D6E9F">
+								<Item class="ModuleScript" referent="RBX99903F54B9F740EF8E37F3660349056F">
 									<Properties>
 										<Content name="LinkedSource"><null></null></Content>
 										<ProtectedString name="Source"><![CDATA[-- State Wrapper
@@ -17827,7 +17829,7 @@ setmetatable(SystemProxy, {
 })
 
 return SystemProxy]]></ProtectedString>
-										<string name="ScriptGuid">{1FF11978-61CC-437E-889E-B9CD4CBAD404}</string>
+										<string name="ScriptGuid">{AC5FF534-CDD3-4130-868F-D5A394816A0E}</string>
 										<BinaryString name="AttributesSerialize"><![CDATA[BAAAABEAAABDbGllbnRfQ29udHJvbGxlZAMBBgAAAEZseWluZwMACAAAAFN0YWxsaW5nAwAH
 AAAAVGF4aWluZwMA]]></BinaryString>
 										<SecurityCapabilities name="Capabilities">17996771963439872</SecurityCapabilities>
@@ -17836,7 +17838,7 @@ AAAAVGF4aWluZwMA]]></BinaryString>
 										<int64 name="SourceAssetId">-1</int64>
 										<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 									</Properties>
-									<Item class="Folder" referent="RBX38A2AC8FCC6F4D0CA3F5BBAD2E878434">
+									<Item class="Folder" referent="RBXA96E0A29E5DC4477BC77510E4EAFAAA9">
 										<Properties>
 											<BinaryString name="AttributesSerialize"></BinaryString>
 											<SecurityCapabilities name="Capabilities">17996771963439872</SecurityCapabilities>
@@ -17845,7 +17847,7 @@ AAAAVGF4aWluZwMA]]></BinaryString>
 											<int64 name="SourceAssetId">-1</int64>
 											<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 										</Properties>
-										<Item class="ObjectValue" referent="RBX3C6D0E57E5014E5C98F96F1500DE7B39">
+										<Item class="ObjectValue" referent="RBXAD6303322D9641AFB1CAE387DB923D3D">
 											<Properties>
 												<Ref name="Value">null</Ref>
 												<BinaryString name="AttributesSerialize"></BinaryString>
@@ -17856,7 +17858,7 @@ AAAAVGF4aWluZwMA]]></BinaryString>
 												<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 											</Properties>
 										</Item>
-										<Item class="ObjectValue" referent="RBX08F81FAC033C4200A33A199240D692E8">
+										<Item class="ObjectValue" referent="RBX2F9C292C1A494B1AB31CA10E5F403067">
 											<Properties>
 												<Ref name="Value">null</Ref>
 												<BinaryString name="AttributesSerialize"></BinaryString>
@@ -17867,7 +17869,7 @@ AAAAVGF4aWluZwMA]]></BinaryString>
 												<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 											</Properties>
 										</Item>
-										<Item class="ForceField" referent="RBX83285EF44A3841E5A9B04715ADEDDE2A">
+										<Item class="ForceField" referent="RBX866A33937C224B9EB9A5FCB1874527B1">
 											<Properties>
 												<bool name="Visible">false</bool>
 												<BinaryString name="AttributesSerialize"></BinaryString>
@@ -17879,7 +17881,7 @@ AAAAVGF4aWluZwMA]]></BinaryString>
 											</Properties>
 										</Item>
 									</Item>
-									<Item class="RemoteEvent" referent="RBX71CDA5281567444DA845B56657EBC07E">
+									<Item class="RemoteEvent" referent="RBX656AA61840134864ADCDC45E78B9F2F0">
 										<Properties>
 											<BinaryString name="AttributesSerialize"></BinaryString>
 											<SecurityCapabilities name="Capabilities">17996771963439872</SecurityCapabilities>
@@ -17890,7 +17892,7 @@ AAAAVGF4aWluZwMA]]></BinaryString>
 										</Properties>
 									</Item>
 								</Item>
-								<Item class="Frame" referent="RBX2FC99260C5094BC39CF9F791C9E397F9">
+								<Item class="Frame" referent="RBXBF0AA6DAA50448D4AFC9F05FF20D3675">
 									<Properties>
 										<token name="Style">0</token>
 										<bool name="Active">false</bool>
@@ -17954,7 +17956,7 @@ AAAAVGF4aWluZwMA]]></BinaryString>
 										<int64 name="SourceAssetId">-1</int64>
 										<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 									</Properties>
-									<Item class="Frame" referent="RBXD124B2FAE5304002AB3CBEBA64AFDBB2">
+									<Item class="Frame" referent="RBXE5B2A64E026D4BFCBB3C73AB16261B7D">
 										<Properties>
 											<token name="Style">0</token>
 											<bool name="Active">false</bool>
@@ -18019,7 +18021,7 @@ AAAAVGF4aWluZwMA]]></BinaryString>
 											<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 										</Properties>
 									</Item>
-									<Item class="Frame" referent="RBX52846B70012B44D3881A6FD875C0EC44">
+									<Item class="Frame" referent="RBX2411F1C40FC04EC0ADC50DB6A365CDCD">
 										<Properties>
 											<token name="Style">0</token>
 											<bool name="Active">false</bool>
@@ -18084,7 +18086,7 @@ AAAAVGF4aWluZwMA]]></BinaryString>
 											<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 										</Properties>
 									</Item>
-									<Item class="Frame" referent="RBXB617342A7C1445248FBD6C36A9D2743B">
+									<Item class="Frame" referent="RBX34517E30E32B467EA03CE87BCEBC88B3">
 										<Properties>
 											<token name="Style">0</token>
 											<bool name="Active">false</bool>
@@ -18149,7 +18151,7 @@ AAAAVGF4aWluZwMA]]></BinaryString>
 											<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 										</Properties>
 									</Item>
-									<Item class="Frame" referent="RBX4AC9558A1214407898E0CAFCADDE0ABB">
+									<Item class="Frame" referent="RBXB8DAA0089EA94915B13BFDF3BA3D766F">
 										<Properties>
 											<token name="Style">0</token>
 											<bool name="Active">false</bool>
@@ -18214,7 +18216,7 @@ AAAAVGF4aWluZwMA]]></BinaryString>
 											<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 										</Properties>
 									</Item>
-									<Item class="Frame" referent="RBX10F4F5FEE71C49A0857778CDB7ECB1B6">
+									<Item class="Frame" referent="RBXD0E93742594A4005A1B6044D2B8AA87C">
 										<Properties>
 											<token name="Style">0</token>
 											<bool name="Active">false</bool>
@@ -18278,7 +18280,7 @@ AAAAVGF4aWluZwMA]]></BinaryString>
 											<int64 name="SourceAssetId">-1</int64>
 											<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 										</Properties>
-										<Item class="Frame" referent="RBXE88B3BA9685E45D0B6B2C18796E319F0">
+										<Item class="Frame" referent="RBX88ABA13192F94E9DBB7EB8E00022CDF3">
 											<Properties>
 												<token name="Style">0</token>
 												<bool name="Active">false</bool>
@@ -18343,7 +18345,7 @@ AAAAVGF4aWluZwMA]]></BinaryString>
 												<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 											</Properties>
 										</Item>
-										<Item class="Frame" referent="RBX236544147ED54BC68AA73B0F55CF388F">
+										<Item class="Frame" referent="RBX065D6C06E3A34FD4B68019C801096BD9">
 											<Properties>
 												<token name="Style">0</token>
 												<bool name="Active">false</bool>
@@ -18408,7 +18410,7 @@ AAAAVGF4aWluZwMA]]></BinaryString>
 												<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 											</Properties>
 										</Item>
-										<Item class="Frame" referent="RBXC975A9D54A0041138AA18D9366F7765A">
+										<Item class="Frame" referent="RBX86029B6D00884806BFEBFE327682AE00">
 											<Properties>
 												<token name="Style">0</token>
 												<bool name="Active">false</bool>
@@ -18473,7 +18475,7 @@ AAAAVGF4aWluZwMA]]></BinaryString>
 												<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 											</Properties>
 										</Item>
-										<Item class="Frame" referent="RBX38899FCC1E344583B2D7A4D4A9B525C1">
+										<Item class="Frame" referent="RBXDC38940775864B1F870CA19FC906C0DA">
 											<Properties>
 												<token name="Style">0</token>
 												<bool name="Active">false</bool>
@@ -18539,7 +18541,7 @@ AAAAVGF4aWluZwMA]]></BinaryString>
 											</Properties>
 										</Item>
 									</Item>
-									<Item class="TextButton" referent="RBX78A46059A1434F58A5421C0F83DAF3B7">
+									<Item class="TextButton" referent="RBX3337E02CAB27471DAD64EA5F7DCEF07D">
 										<Properties>
 											<Font name="FontFace">
 												<Family><url>rbxasset://fonts/families/SourceSansPro.json</url></Family>
@@ -18642,12 +18644,12 @@ AAAAVGF4aWluZwMA]]></BinaryString>
 										</Properties>
 									</Item>
 								</Item>
-								<Item class="LocalScript" referent="RBX5356A2CFD1AC4138B766AD1079A174DE">
+								<Item class="LocalScript" referent="RBX23083F84EFA04F79B31E338EEC0BB3C4">
 									<Properties>
 										<ProtectedString name="Source"><![CDATA[-- Client Control --
 
 local kitName = "aeroMini" -- Change here
-local core = require(game:GetService("ReplicatedStorage"):WaitForChild("SKYtech Systems"):WaitForChild("Modules"):WaitForChild(kitName))
+local kitCore = require(game:GetService("ReplicatedStorage"):WaitForChild("SKYtech Systems"):WaitForChild("Modules"):WaitForChild(kitName))
 
 local StarterGui	= game:GetService("StarterGui")
 local StarterPlayer	= game:GetService("StarterPlayer")
@@ -18679,8 +18681,8 @@ local Mods = main.Mods
 local landingGear = Mods:FindFirstChild("LandingGear")
 local gearRemote = if landingGear then landingGear:FindFirstChild("Remote") else nil
 
-core:Initialize(aircraft)
-local aircraftState = core:GetState(aircraft)
+kitCore:Initialize(aircraft)
+local aircraftState = kitCore:GetState(aircraft)
 
 local stateWrapper = aircraft.System
 local updateEvent = stateWrapper.Update
@@ -18920,7 +18922,7 @@ end)
 
 function disconnect()
 	connection:Disconnect()
-	core:Cleanup(aircraft)
+	kitCore:Cleanup(aircraft)
 	StarterGui:SetCoreGuiEnabled(Enum.CoreGuiType.Backpack, defaultBackpackEnabled)
 	UserInputService.MouseIcon = "" -- Return to Roblox default cursor
 	camera.CameraType = Enum.CameraType.Custom
@@ -18960,11 +18962,12 @@ script:SetAttribute("Custom_Control", #script:GetChildren() > 0) -- Check if the
 
 stateWrapper:GetAttributeChangedSignal("Client_Controlled"):Connect(function()
 	isClientControlled = stateWrapper:GetAttribute("Client_Controlled") == true
+	kitCore:Reset(aircraft)
 end)]]></ProtectedString>
 										<bool name="Disabled">true</bool>
 										<Content name="LinkedSource"><null></null></Content>
 										<token name="RunContext">0</token>
-										<string name="ScriptGuid">{33C94D70-5C42-4E58-B808-8E6B2FC2E6A6}</string>
+										<string name="ScriptGuid">{4C3C8470-E535-47D2-BDB2-37A4AE72509A}</string>
 										<BinaryString name="AttributesSerialize"><![CDATA[BgAAAA4AAABDdXN0b21fQ29udHJvbAMABQAAAFBpdGNoBQAAAAAEAAAAUm9sbAUAAAAADgAA
 AFNLWXRlY2hfU3lzdGVtAwEIAAAAVGhyb3R0bGUGAAAAAAAAAAADAAAAWWF3BgAAAAAAAAAA
 ]]></BinaryString>
@@ -18975,7 +18978,7 @@ AFNLWXRlY2hfU3lzdGVtAwEIAAAAVGhyb3R0bGUGAAAAAAAAAAADAAAAWWF3BgAAAAAAAAAA
 										<SharedString name="Tags">MEAPekSJQmjYC+BmYiRYig==</SharedString>
 									</Properties>
 								</Item>
-								<Item class="RemoteEvent" referent="RBX7211C9EF232E4EF5B7085E5321402202">
+								<Item class="RemoteEvent" referent="RBX299CC00675AB44278991F9742D85C3BC">
 									<Properties>
 										<BinaryString name="AttributesSerialize"></BinaryString>
 										<SecurityCapabilities name="Capabilities">17996771963439872</SecurityCapabilities>
@@ -18984,7 +18987,7 @@ AFNLWXRlY2hfU3lzdGVtAwEIAAAAVGhyb3R0bGUGAAAAAAAAAAADAAAAWWF3BgAAAAAAAAAA
 										<int64 name="SourceAssetId">-1</int64>
 										<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 									</Properties>
-									<Item class="Script" referent="RBXF0B7DAD847404288B966F239DB14A918">
+									<Item class="Script" referent="RBX82ACFD7E5F8640B8B4CF82548BAA5BFB">
 										<Properties>
 											<ProtectedString name="Source"><![CDATA[local active = script.Parent.Parent
 local Stats_ = active.Parent
@@ -18997,7 +19000,7 @@ end)]]></ProtectedString>
 											<bool name="Disabled">true</bool>
 											<Content name="LinkedSource"><null></null></Content>
 											<token name="RunContext">0</token>
-											<string name="ScriptGuid">{E04F51E7-4B89-4601-91BC-6B375C072842}</string>
+											<string name="ScriptGuid">{BCE30666-DFB2-4B16-9CCA-0E7FB4B1D5C3}</string>
 											<BinaryString name="AttributesSerialize"></BinaryString>
 											<SecurityCapabilities name="Capabilities">17996771963439872</SecurityCapabilities>
 											<bool name="DefinesCapabilities">true</bool>
@@ -19007,7 +19010,7 @@ end)]]></ProtectedString>
 										</Properties>
 									</Item>
 								</Item>
-								<Item class="ObjectValue" referent="RBX6DCFEFFF18FE4745B9BAA28ACD372A71">
+								<Item class="ObjectValue" referent="RBXFF96576B3C854109963F74EDEAC535CC">
 									<Properties>
 										<Ref name="Value">null</Ref>
 										<BinaryString name="AttributesSerialize"></BinaryString>
@@ -19018,7 +19021,7 @@ end)]]></ProtectedString>
 										<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 									</Properties>
 								</Item>
-								<Item class="Folder" referent="RBX66BCA1E60F584D9E87A98D798CF3B3DD">
+								<Item class="Folder" referent="RBX23CCB028A26641599907EDF715D2F0DB">
 									<Properties>
 										<BinaryString name="AttributesSerialize"></BinaryString>
 										<SecurityCapabilities name="Capabilities">17996771963439872</SecurityCapabilities>
@@ -19027,7 +19030,7 @@ end)]]></ProtectedString>
 										<int64 name="SourceAssetId">-1</int64>
 										<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 									</Properties>
-									<Item class="VectorForce" referent="RBX071DC578C5884E5696E161D7EBE8E07B">
+									<Item class="VectorForce" referent="RBX12A488D99B76431CA4B604F69E3E440D">
 										<Properties>
 											<bool name="ApplyAtCenterOfMass">true</bool>
 											<Vector3 name="Force">
@@ -19049,7 +19052,7 @@ end)]]></ProtectedString>
 											<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 										</Properties>
 									</Item>
-									<Item class="LinearVelocity" referent="RBX003C14FA01904CC3B8892D6A2D25EFF3">
+									<Item class="LinearVelocity" referent="RBX399B356D798C43C28A0C6EA6521CB3C5">
 										<Properties>
 											<token name="ForceLimitMode">1</token>
 											<bool name="ForceLimitsEnabled">true</bool>
@@ -19104,7 +19107,7 @@ end)]]></ProtectedString>
 											<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 										</Properties>
 									</Item>
-									<Item class="BodyGyro" referent="RBX8003B963C30B45028D6EAC9EACF549D5">
+									<Item class="BodyGyro" referent="RBX43870A54EF304A708C6E618A5D77B911">
 										<Properties>
 											<CoordinateFrame name="CFrame">
 												<X>0</X>
@@ -19136,7 +19139,7 @@ end)]]></ProtectedString>
 										</Properties>
 									</Item>
 								</Item>
-								<Item class="Attachment" referent="RBX6E01F0455CB84292918F623B24BD536B">
+								<Item class="Attachment" referent="RBXB65D65F1B9A64BA8B461E736F1901301">
 									<Properties>
 										<CoordinateFrame name="CFrame">
 											<X>0</X>
@@ -19162,7 +19165,7 @@ end)]]></ProtectedString>
 									</Properties>
 								</Item>
 							</Item>
-							<Item class="Folder" referent="RBXBBEB303D6FCF43C69AC705C6E52E28A0">
+							<Item class="Folder" referent="RBX28A15E7C7AE14598B906543F0FF05D02">
 								<Properties>
 									<BinaryString name="AttributesSerialize"></BinaryString>
 									<SecurityCapabilities name="Capabilities">17996771963439872</SecurityCapabilities>
@@ -19171,7 +19174,7 @@ end)]]></ProtectedString>
 									<int64 name="SourceAssetId">-1</int64>
 									<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 								</Properties>
-								<Item class="ModuleScript" referent="RBXBEE7726F64274957B8EF560602FA46F2">
+								<Item class="ModuleScript" referent="RBX9B95F921BFE34858A4CD34F35079B9E6">
 									<Properties>
 										<Content name="LinkedSource"><null></null></Content>
 										<ProtectedString name="Source"><![CDATA[local Presets = {
@@ -19217,7 +19220,7 @@ end)]]></ProtectedString>
 }
 
 return Presets]]></ProtectedString>
-										<string name="ScriptGuid">{29FC7409-2844-4C0B-B28D-A6AE04AE9038}</string>
+										<string name="ScriptGuid">{3391BE46-6131-4166-A4CB-98CC07B23EF7}</string>
 										<BinaryString name="AttributesSerialize"></BinaryString>
 										<SecurityCapabilities name="Capabilities">17996771963439872</SecurityCapabilities>
 										<bool name="DefinesCapabilities">true</bool>
@@ -19226,7 +19229,7 @@ return Presets]]></ProtectedString>
 										<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 									</Properties>
 								</Item>
-								<Item class="ModuleScript" referent="RBXD1A2157318544CB9A3FE2EC57C1E49CD">
+								<Item class="ModuleScript" referent="RBX7D082042E1B74F8B8636466FFCA110E3">
 									<Properties>
 										<Content name="LinkedSource"><null></null></Content>
 										<ProtectedString name="Source"><![CDATA[local Master = {}
@@ -19399,7 +19402,7 @@ end
 function Master.HandlePilotSeat(
 	licenseName,
 	aircraft,
-	core,
+	kitCore,
 	Settings,
 	mainPart,
 	pilotValue,
@@ -19434,7 +19437,6 @@ function Master.HandlePilotSeat(
 			if license.Value then license.Value:Destroy() end
 			pilotGui = nil
 			license.Value = nil
-			core:Reset(aircraft)
 		end
 
 		local isGrounded = mainPart:IsGrounded()
@@ -19443,6 +19445,10 @@ function Master.HandlePilotSeat(
 		elseif not player and Settings:GetAttribute("Advanced/ResetNetwork") == true then
 			NetworkManager.SetNetworkOwner(nil, mainPart, aircraft)
 		end
+	end))
+	
+	table.insert(connections, pilotValue:GetPropertyChangedSignal("Value"):Connect(function()
+		kitCore:Reset(aircraft)
 	end))
 end
 
@@ -19488,7 +19494,7 @@ function Master.UpdateStats(
 end
 
 return Master]]></ProtectedString>
-										<string name="ScriptGuid">{3F5FE265-F59D-4859-B020-B4F6CD1D0E98}</string>
+										<string name="ScriptGuid">{9E81A83C-0959-4DEE-B888-B00BE5DB2CF2}</string>
 										<BinaryString name="AttributesSerialize"></BinaryString>
 										<SecurityCapabilities name="Capabilities">17996771963439872</SecurityCapabilities>
 										<bool name="DefinesCapabilities">true</bool>
@@ -19939,7 +19945,8 @@ function EnvironmentProcessor.Update(dt, state)
 
 	local _lowestPoint = Settings.Advanced.LowestPoint or "Auto"
 	local _restingAngle = Settings.AircraftStatistics.RestingAngle
-	local trueSpeed = Utils.Abs(System.Speed + mainCFrame:VectorToObjectSpace(workspace.GlobalWind).Z)
+	local globalWind = workspace.GlobalWind
+	local trueSpeed = Utils.Abs(System.Speed + mainCFrame:VectorToObjectSpace(globalWind).Z)
 
 	local lowestPoint = 0
 	local hasCollision = false
@@ -20121,7 +20128,7 @@ function FlightKinematics.Update(dt, state)
 	local totalLiftForce = Utils.Clamp(liftAlpha + stalling, 0, 1)
 
 	local liftThreshold = if _noseLiftFactor > 0 then _stallSpeed * Utils.Clamp(1 - _noseLiftFactor - 0.1, 0, 1) else _stallSpeed * 0.95
-	local totalLiftTorque = Utils.Clamp((trueSpeed - liftThreshold) / (_stallSpeed - liftThreshold), 0, 1)
+	local totalLiftTorque = Utils.Clamp((trueSpeed - liftThreshold) / (_stallSpeed - liftThreshold) + stalling, 0, 1)
 	if Env.HasCollision and trueSpeed >= liftThreshold then
 		totalLiftTorque = Utils.Max(totalLiftTorque, 0.5) -- Ensure pilot can override nose attitude on runway
 	end
@@ -21065,7 +21072,7 @@ function setupAircraft(aircraft)
 			local accumulated = 0
 			local clockSpeed = 1 / 10 -- Hz
 			table.insert(connections, RunService.Heartbeat:Connect(function(dt)
-				dt = math.min(dt, 0.05)
+				dt = math.min(dt, clockSpeed * 2)
 				accumulated += dt
 				if accumulated >= clockSpeed then		
 					local activePilot = pilotValue.Value
@@ -21074,6 +21081,7 @@ function setupAircraft(aircraft)
 					local ClientControlled = Settings:GetAttribute("Advanced/ClientControlled") == true
 					if kitSystem:GetAttribute("Client_Controlled") ~= ClientControlled then
 						kitSystem:SetAttribute("Client_Controlled", ClientControlled)
+						kitCore:Reset(aircraft)
 					end
 
 					-- Network ownership
@@ -22122,7 +22130,7 @@ AAAAVGF4aWluZwMA]]></BinaryString>
 									<ProtectedString name="Source"><![CDATA[-- Client Control --
 
 local kitName = "aeroMini" -- Change here
-local core = require(game:GetService("ReplicatedStorage"):WaitForChild("SKYtech Systems"):WaitForChild("Modules"):WaitForChild(kitName))
+local kitCore = require(game:GetService("ReplicatedStorage"):WaitForChild("SKYtech Systems"):WaitForChild("Modules"):WaitForChild(kitName))
 
 local StarterGui	= game:GetService("StarterGui")
 local StarterPlayer	= game:GetService("StarterPlayer")
@@ -22154,8 +22162,8 @@ local Mods = main.Mods
 local landingGear = Mods:FindFirstChild("LandingGear")
 local gearRemote = if landingGear then landingGear:FindFirstChild("Remote") else nil
 
-core:Initialize(aircraft)
-local aircraftState = core:GetState(aircraft)
+kitCore:Initialize(aircraft)
+local aircraftState = kitCore:GetState(aircraft)
 
 local stateWrapper = aircraft.System
 local updateEvent = stateWrapper.Update
@@ -22395,7 +22403,7 @@ end)
 
 function disconnect()
 	connection:Disconnect()
-	core:Cleanup(aircraft)
+	kitCore:Cleanup(aircraft)
 	StarterGui:SetCoreGuiEnabled(Enum.CoreGuiType.Backpack, defaultBackpackEnabled)
 	UserInputService.MouseIcon = "" -- Return to Roblox default cursor
 	camera.CameraType = Enum.CameraType.Custom
@@ -22435,6 +22443,7 @@ script:SetAttribute("Custom_Control", #script:GetChildren() > 0) -- Check if the
 
 stateWrapper:GetAttributeChangedSignal("Client_Controlled"):Connect(function()
 	isClientControlled = stateWrapper:GetAttribute("Client_Controlled") == true
+	kitCore:Reset(aircraft)
 end)]]></ProtectedString>
 									<bool name="Disabled">true</bool>
 									<Content name="LinkedSource"><null></null></Content>
@@ -22874,7 +22883,7 @@ end
 function Master.HandlePilotSeat(
 	licenseName,
 	aircraft,
-	core,
+	kitCore,
 	Settings,
 	mainPart,
 	pilotValue,
@@ -22909,7 +22918,6 @@ function Master.HandlePilotSeat(
 			if license.Value then license.Value:Destroy() end
 			pilotGui = nil
 			license.Value = nil
-			core:Reset(aircraft)
 		end
 
 		local isGrounded = mainPart:IsGrounded()
@@ -22918,6 +22926,10 @@ function Master.HandlePilotSeat(
 		elseif not player and Settings:GetAttribute("Advanced/ResetNetwork") == true then
 			NetworkManager.SetNetworkOwner(nil, mainPart, aircraft)
 		end
+	end))
+	
+	table.insert(connections, pilotValue:GetPropertyChangedSignal("Value"):Connect(function()
+		kitCore:Reset(aircraft)
 	end))
 end
 
@@ -22987,8 +22999,8 @@ script:Destroy()]]></ProtectedString>
 				<token name="RunContext">0</token>
 				<string name="ScriptGuid">{7F0E69C3-FEA6-4A4A-B45B-939E953FB01E}</string>
 				<BinaryString name="AttributesSerialize"></BinaryString>
-				<SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
-				<bool name="DefinesCapabilities">false</bool>
+				<SecurityCapabilities name="Capabilities">18014364149549824</SecurityCapabilities>
+				<bool name="DefinesCapabilities">true</bool>
 				<string name="Name">LOADER</string>
 				<int64 name="SourceAssetId">-1</int64>
 				<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
