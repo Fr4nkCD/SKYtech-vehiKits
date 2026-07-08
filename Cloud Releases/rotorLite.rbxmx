@@ -2,7 +2,7 @@
 	<Meta name="ExplicitAutoJoints">true</Meta>
 	<External>null</External>
 	<External>nil</External>
-	<Item class="Model" referent="RBXB066A2EF61FB48B88F1BBE56453E6366">
+	<Item class="Model" referent="RBXAF0BF03224A84DE9BEBB5896E63FE54E">
 		<Properties>
 			<token name="LevelOfDetail">0</token>
 			<CoordinateFrame name="ModelMeshCFrame">
@@ -51,9 +51,9 @@
 			<bool name="DefinesCapabilities">true</bool>
 			<string name="Name">SKYtech rotorLite</string>
 			<int64 name="SourceAssetId">-1</int64>
-			<BinaryString name="Tags"></BinaryString>
+			<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 		</Properties>
-		<Item class="Part" referent="RBXD043E5B5F50B47A996A3FD70843C3E4E">
+		<Item class="Part" referent="RBXDC49980BC22942F6ADD5F7D199C60E4F">
 			<Properties>
 				<token name="shape">1</token>
 				<token name="formFactorRaw">1</token>
@@ -149,10 +149,11 @@
 				<bool name="DefinesCapabilities">false</bool>
 				<string name="Name">Thumbnail</string>
 				<int64 name="SourceAssetId">-1</int64>
-				<BinaryString name="Tags"></BinaryString>
+				<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 			</Properties>
-			<Item class="Decal" referent="RBXC9EBDACB484D446591192E9C844FB021">
+			<Item class="Decal" referent="RBXA136E1A65F1E4F5981EE4F5552306218">
 				<Properties>
+					<bool name="AutoLocalize">true</bool>
 					<Color3 name="Color3">
 						<R>1</R>
 						<G>1</G>
@@ -181,10 +182,10 @@
 					<bool name="DefinesCapabilities">false</bool>
 					<string name="Name">Decal</string>
 					<int64 name="SourceAssetId">-1</int64>
-					<BinaryString name="Tags"></BinaryString>
+					<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 				</Properties>
 			</Item>
-			<Item class="WeldConstraint" referent="RBX24194D2EFF9D44008A8547CEECCF0193">
+			<Item class="WeldConstraint" referent="RBX15D4F92AFBB946068D27D74BBD88D4AF">
 				<Properties>
 					<CoordinateFrame name="CFrame0">
 						<X>0</X>
@@ -208,11 +209,11 @@
 					<bool name="DefinesCapabilities">false</bool>
 					<string name="Name">IgnoreWeld</string>
 					<int64 name="SourceAssetId">-1</int64>
-					<BinaryString name="Tags"></BinaryString>
+					<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 				</Properties>
 			</Item>
 		</Item>
-		<Item class="Model" referent="RBXCB10468D46E946828D5344A2F73ED35B">
+		<Item class="Model" referent="RBXF2FD060100364356B20406C685E1D190">
 			<Properties>
 				<token name="LevelOfDetail">0</token>
 				<CoordinateFrame name="ModelMeshCFrame">
@@ -261,16 +262,16 @@
 				<bool name="DefinesCapabilities">true</bool>
 				<string name="Name">rotorLite</string>
 				<int64 name="SourceAssetId">-1</int64>
-				<BinaryString name="Tags">U0tZdGVjaCByb3RvckxpdGU=</BinaryString>
+				<SharedString name="Tags">38LNAHE1nG5PFR8GD6tUYg==</SharedString>
 			</Properties>
-			<Item class="Script" referent="RBX0FA538AB02194CE79ABEBE39D0509260">
+			<Item class="Script" referent="RBXDB068EB614D54E71BEC7D47E237E40F8">
 				<Properties>
 					<ProtectedString name="Source"><![CDATA[--[ SKYtech rotorLite ]--
 
 local Settings = {
 
 	AircraftStatistics = {
-		Stability = 0.7, -- How stable a forward flight is (less = more drift)
+		Stability = 0.6, -- How stable a forward flight is (less = more drift)
 		Sensitivity = 0.5, -- How fast a helicopter changes the direction (0-1)
 		RateOfClimb = 35,
 		Acceleration = 0.1,
@@ -360,16 +361,16 @@ require(12918838841) -- Load the source module from cloud.]]></ProtectedString>
 					<bool name="Disabled">false</bool>
 					<Content name="LinkedSource"><null></null></Content>
 					<token name="RunContext">0</token>
-					<string name="ScriptGuid">{D563D446-4421-4AB1-A83E-30C6C1AE5AD0}</string>
+					<string name="ScriptGuid">{F5B2FD5A-4F99-4CA7-B60D-64515D087FCE}</string>
 					<BinaryString name="AttributesSerialize"></BinaryString>
 					<SecurityCapabilities name="Capabilities">18014364149549824</SecurityCapabilities>
 					<bool name="DefinesCapabilities">true</bool>
 					<string name="Name">Settings/Loader</string>
 					<int64 name="SourceAssetId">-1</int64>
-					<BinaryString name="Tags"></BinaryString>
+					<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 				</Properties>
 			</Item>
-			<Item class="Model" referent="RBX908965241DB347B98833923C9CF7E7C2">
+			<Item class="Model" referent="RBXF5D0BE6B81B4400698B9B50309F80C6C">
 				<Properties>
 					<token name="LevelOfDetail">0</token>
 					<CoordinateFrame name="ModelMeshCFrame">
@@ -418,9 +419,9 @@ require(12918838841) -- Load the source module from cloud.]]></ProtectedString>
 					<bool name="DefinesCapabilities">true</bool>
 					<string name="Name">Main</string>
 					<int64 name="SourceAssetId">-1</int64>
-					<BinaryString name="Tags"></BinaryString>
+					<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 				</Properties>
-				<Item class="Seat" referent="RBX5062CC9AA48C43AC8475BF059735D4B1">
+				<Item class="Seat" referent="RBXE9EEC811440842B2AF53C12F0F48C5D9">
 					<Properties>
 						<bool name="Disabled">false</bool>
 						<token name="shape">1</token>
@@ -517,9 +518,9 @@ require(12918838841) -- Load the source module from cloud.]]></ProtectedString>
 						<bool name="DefinesCapabilities">false</bool>
 						<string name="Name">PilotSeat</string>
 						<int64 name="SourceAssetId">-1</int64>
-						<BinaryString name="Tags"></BinaryString>
+						<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 					</Properties>
-					<Item class="ScreenGui" referent="RBX053DA2A4226C4DC380678EB6CB4D7B7A">
+					<Item class="ScreenGui" referent="RBX8C1E2DAEA1884545AE2EB7B012157DB1">
 						<Properties>
 							<bool name="ClipToDeviceSafeArea">true</bool>
 							<int name="DisplayOrder">0</int>
@@ -540,9 +541,9 @@ require(12918838841) -- Load the source module from cloud.]]></ProtectedString>
 							<bool name="DefinesCapabilities">false</bool>
 							<string name="Name">rotorLite_System</string>
 							<int64 name="SourceAssetId">-1</int64>
-							<BinaryString name="Tags"></BinaryString>
+							<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 						</Properties>
-						<Item class="UIScale" referent="RBXED9225B36F4D48B2AB416E6B008738C8">
+						<Item class="UIScale" referent="RBX0C543DA2DDEF4532A24906A68870BC2D">
 							<Properties>
 								<float name="Scale">1</float>
 								<BinaryString name="AttributesSerialize"></BinaryString>
@@ -550,9 +551,9 @@ require(12918838841) -- Load the source module from cloud.]]></ProtectedString>
 								<bool name="DefinesCapabilities">false</bool>
 								<string name="Name">UIScale</string>
 								<int64 name="SourceAssetId">-1</int64>
-								<BinaryString name="Tags"></BinaryString>
+								<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 							</Properties>
-							<Item class="LocalScript" referent="RBXB3014F21260F4BDCBE26BF7A7BD9796F">
+							<Item class="LocalScript" referent="RBXF564A331BB3543AF80C7D48EF1A5EA7C">
 								<Properties>
 									<ProtectedString name="Source"><![CDATA[local BASE_WIDTH = 1280
 local MIN_SCALE, MAX_SCALE = 0.7, 1.5
@@ -568,17 +569,17 @@ end)]]></ProtectedString>
 									<bool name="Disabled">false</bool>
 									<Content name="LinkedSource"><null></null></Content>
 									<token name="RunContext">0</token>
-									<string name="ScriptGuid">{1AA9D770-66E7-4CF9-B8ED-7EB311507638}</string>
+									<string name="ScriptGuid">{8C74C78C-CAE2-4913-9FB4-A385CFCD415F}</string>
 									<BinaryString name="AttributesSerialize"></BinaryString>
 									<SecurityCapabilities name="Capabilities">17996771963439872</SecurityCapabilities>
 									<bool name="DefinesCapabilities">true</bool>
 									<string name="Name">Adjustment</string>
 									<int64 name="SourceAssetId">-1</int64>
-									<BinaryString name="Tags"></BinaryString>
+									<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 								</Properties>
 							</Item>
 						</Item>
-						<Item class="Frame" referent="RBXC7E56146AFAA42F5A81E8040EE1161EE">
+						<Item class="Frame" referent="RBX00981F3884324EC8B61A63ED329A23C0">
 							<Properties>
 								<token name="Style">0</token>
 								<bool name="Active">false</bool>
@@ -640,9 +641,9 @@ end)]]></ProtectedString>
 								<bool name="DefinesCapabilities">false</bool>
 								<string name="Name">Control_Guide</string>
 								<int64 name="SourceAssetId">-1</int64>
-								<BinaryString name="Tags">U0tZdGVjaF9TeXN0ZW0=</BinaryString>
+								<SharedString name="Tags">MEAPekSJQmjYC+BmYiRYig==</SharedString>
 							</Properties>
-							<Item class="Frame" referent="RBXDFA534283D8A495898D8260F209221E6">
+							<Item class="Frame" referent="RBXC260F3C6C2744BAFA207835F641129F3">
 								<Properties>
 									<token name="Style">0</token>
 									<bool name="Active">false</bool>
@@ -704,9 +705,9 @@ end)]]></ProtectedString>
 									<bool name="DefinesCapabilities">false</bool>
 									<string name="Name">Panel</string>
 									<int64 name="SourceAssetId">-1</int64>
-									<BinaryString name="Tags"></BinaryString>
+									<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 								</Properties>
-								<Item class="UIListLayout" referent="RBXB4F9BCB9889842EABD996A3C9C2B67F7">
+								<Item class="UIListLayout" referent="RBX7252EC0C1A2442D49F315B46B3BDD1D8">
 									<Properties>
 										<token name="HorizontalFlex">0</token>
 										<token name="ItemLineAlignment">0</token>
@@ -725,10 +726,10 @@ end)]]></ProtectedString>
 										<bool name="DefinesCapabilities">false</bool>
 										<string name="Name">UIListLayout</string>
 										<int64 name="SourceAssetId">-1</int64>
-										<BinaryString name="Tags"></BinaryString>
+										<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 									</Properties>
 								</Item>
-								<Item class="Frame" referent="RBXCCE0DC7186004E23B4A24E5BC0698367">
+								<Item class="Frame" referent="RBX0FD28986ED2D44D99EBF329A37AB0E01">
 									<Properties>
 										<token name="Style">0</token>
 										<bool name="Active">false</bool>
@@ -790,9 +791,9 @@ end)]]></ProtectedString>
 										<bool name="DefinesCapabilities">false</bool>
 										<string name="Name">C0</string>
 										<int64 name="SourceAssetId">-1</int64>
-										<BinaryString name="Tags"></BinaryString>
+										<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 									</Properties>
-									<Item class="TextLabel" referent="RBX5DB29383A31244B5BAD814B93BDE5BBE">
+									<Item class="TextLabel" referent="RBX632B349518E74DDD851ABE259F2F1D51">
 										<Properties>
 											<Font name="FontFace">
 												<Family><url>rbxasset://fonts/families/SourceSansPro.json</url></Family>
@@ -884,9 +885,9 @@ end)]]></ProtectedString>
 											<bool name="DefinesCapabilities">false</bool>
 											<string name="Name">Key</string>
 											<int64 name="SourceAssetId">-1</int64>
-											<BinaryString name="Tags"></BinaryString>
+											<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 										</Properties>
-										<Item class="UICorner" referent="RBX1544C79585C042CEB5FA46BFA4B06D18">
+										<Item class="UICorner" referent="RBXB020691E8E7A419AA9A6C17CEFCA7899">
 											<Properties>
 												<UDim name="BottomLeftRadius">
 													<S>0.400000006</S>
@@ -909,11 +910,11 @@ end)]]></ProtectedString>
 												<bool name="DefinesCapabilities">false</bool>
 												<string name="Name">UICorner</string>
 												<int64 name="SourceAssetId">-1</int64>
-												<BinaryString name="Tags"></BinaryString>
+												<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 											</Properties>
 										</Item>
 									</Item>
-									<Item class="Frame" referent="RBX078BCE9A2B7C4A9F90835773CD9D08D0">
+									<Item class="Frame" referent="RBX5943B2A444EF4B8382951AE26084F47F">
 										<Properties>
 											<token name="Style">0</token>
 											<bool name="Active">false</bool>
@@ -975,9 +976,9 @@ end)]]></ProtectedString>
 											<bool name="DefinesCapabilities">false</bool>
 											<string name="Name">Description</string>
 											<int64 name="SourceAssetId">-1</int64>
-											<BinaryString name="Tags"></BinaryString>
+											<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 										</Properties>
-										<Item class="TextLabel" referent="RBX038252DAB79F469AA24E52257B82729C">
+										<Item class="TextLabel" referent="RBX39557FA4BBEE4D63A6D219E85F9A432C">
 											<Properties>
 												<Font name="FontFace">
 													<Family><url>rbxasset://fonts/families/SourceSansPro.json</url></Family>
@@ -1069,11 +1070,11 @@ end)]]></ProtectedString>
 												<bool name="DefinesCapabilities">false</bool>
 												<string name="Name">Value</string>
 												<int64 name="SourceAssetId">-1</int64>
-												<BinaryString name="Tags"></BinaryString>
+												<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 											</Properties>
 										</Item>
 									</Item>
-									<Item class="UICorner" referent="RBX795F18EE61634DCE957E53FD91F0AFD8">
+									<Item class="UICorner" referent="RBX9BA80D998E304AC4A6A2CC3D9F472A6E">
 										<Properties>
 											<UDim name="BottomLeftRadius">
 												<S>0.400000006</S>
@@ -1096,10 +1097,10 @@ end)]]></ProtectedString>
 											<bool name="DefinesCapabilities">false</bool>
 											<string name="Name">UICorner</string>
 											<int64 name="SourceAssetId">-1</int64>
-											<BinaryString name="Tags"></BinaryString>
+											<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 										</Properties>
 									</Item>
-									<Item class="UIGradient" referent="RBX5884B5479974498E97398A3F18E5F694">
+									<Item class="UIGradient" referent="RBX46AE38AE5E1B4477A12FFBAF476D40E5">
 										<Properties>
 											<ColorSequence name="Color">0 1 1 1 0 1 0.898039 0.898039 0.898039 0 </ColorSequence>
 											<bool name="Enabled">true</bool>
@@ -1117,10 +1118,10 @@ end)]]></ProtectedString>
 											<bool name="DefinesCapabilities">false</bool>
 											<string name="Name">UIGradient</string>
 											<int64 name="SourceAssetId">-1</int64>
-											<BinaryString name="Tags"></BinaryString>
+											<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 										</Properties>
 									</Item>
-									<Item class="UIStroke" referent="RBX48BED8CD46C9480CBF1B927758340D1C">
+									<Item class="UIStroke" referent="RBX4F39240EAAB24B1DBEE4DD71CBED571D">
 										<Properties>
 											<token name="ApplyStrokeMode">1</token>
 											<UDim name="BorderOffset">
@@ -1144,12 +1145,12 @@ end)]]></ProtectedString>
 											<bool name="DefinesCapabilities">false</bool>
 											<string name="Name">UIStroke</string>
 											<int64 name="SourceAssetId">-1</int64>
-											<BinaryString name="Tags"></BinaryString>
+											<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 										</Properties>
 									</Item>
 								</Item>
 							</Item>
-							<Item class="TextButton" referent="RBXF75A823FA2C242B9AF5BA22F589272C5">
+							<Item class="TextButton" referent="RBXDF110727CEBA4727884F8D99C8C2C09F">
 								<Properties>
 									<Font name="FontFace">
 										<Family><url>rbxasset://fonts/families/Arial.json</url></Family>
@@ -1247,9 +1248,9 @@ end)]]></ProtectedString>
 									<bool name="DefinesCapabilities">false</bool>
 									<string name="Name">Toggle</string>
 									<int64 name="SourceAssetId">-1</int64>
-									<BinaryString name="Tags"></BinaryString>
+									<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 								</Properties>
-								<Item class="UICorner" referent="RBX14E34B49DFCE46D2BD6997773AFBB937">
+								<Item class="UICorner" referent="RBX6955BC1410F14FA58078E2281A807DFB">
 									<Properties>
 										<UDim name="BottomLeftRadius">
 											<S>0.400000006</S>
@@ -1272,10 +1273,10 @@ end)]]></ProtectedString>
 										<bool name="DefinesCapabilities">false</bool>
 										<string name="Name">UICorner</string>
 										<int64 name="SourceAssetId">-1</int64>
-										<BinaryString name="Tags"></BinaryString>
+										<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 									</Properties>
 								</Item>
-								<Item class="UIStroke" referent="RBXF88862F92E5C469BA75EE5B453BE31BA">
+								<Item class="UIStroke" referent="RBX835CE0E6143E449080F706BCB62CE30E">
 									<Properties>
 										<token name="ApplyStrokeMode">1</token>
 										<UDim name="BorderOffset">
@@ -1299,10 +1300,10 @@ end)]]></ProtectedString>
 										<bool name="DefinesCapabilities">false</bool>
 										<string name="Name">UIStroke</string>
 										<int64 name="SourceAssetId">-1</int64>
-										<BinaryString name="Tags"></BinaryString>
+										<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 									</Properties>
 								</Item>
-								<Item class="UIGradient" referent="RBXBB226DA5318646188E02C941850306DD">
+								<Item class="UIGradient" referent="RBX1E5AF501F05A4C0BAD7F73151A813DD4">
 									<Properties>
 										<ColorSequence name="Color">0 1 1 1 0 1 0.898039 0.898039 0.898039 0 </ColorSequence>
 										<bool name="Enabled">true</bool>
@@ -1320,11 +1321,11 @@ end)]]></ProtectedString>
 										<bool name="DefinesCapabilities">false</bool>
 										<string name="Name">UIGradient</string>
 										<int64 name="SourceAssetId">-1</int64>
-										<BinaryString name="Tags"></BinaryString>
+										<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 									</Properties>
 								</Item>
 							</Item>
-							<Item class="LocalScript" referent="RBXF61FAC88A9184663961555C3FBB6AC9F">
+							<Item class="LocalScript" referent="RBX59B99F793CF8449DBB88E287D69A2916">
 								<Properties>
 									<ProtectedString name="Source"><![CDATA[-- Imagine writing a very complicated script just to make instructions. --
 
@@ -1381,17 +1382,17 @@ end]]></ProtectedString>
 									<bool name="Disabled">false</bool>
 									<Content name="LinkedSource"><null></null></Content>
 									<token name="RunContext">0</token>
-									<string name="ScriptGuid">{71350FC8-CDD5-4996-BF08-882BF5C126A4}</string>
+									<string name="ScriptGuid">{780D8609-179C-45D9-8EEC-7A3914375962}</string>
 									<BinaryString name="AttributesSerialize"></BinaryString>
 									<SecurityCapabilities name="Capabilities">17996771963439872</SecurityCapabilities>
 									<bool name="DefinesCapabilities">true</bool>
 									<string name="Name">Setup</string>
 									<int64 name="SourceAssetId">-1</int64>
-									<BinaryString name="Tags"></BinaryString>
+									<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 								</Properties>
 							</Item>
 						</Item>
-						<Item class="Frame" referent="RBX1EAF3C7F2A284E06A2C461BE80720974">
+						<Item class="Frame" referent="RBXA2BB35F5976548D6BCDD4AC53DDDB21B">
 							<Properties>
 								<token name="Style">0</token>
 								<bool name="Active">false</bool>
@@ -1453,9 +1454,9 @@ end]]></ProtectedString>
 								<bool name="DefinesCapabilities">false</bool>
 								<string name="Name">Flight_Instruments</string>
 								<int64 name="SourceAssetId">-1</int64>
-								<BinaryString name="Tags"></BinaryString>
+								<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 							</Properties>
-							<Item class="Frame" referent="RBX1C7FB9BCEA024C9682F59771ED5FC0E6">
+							<Item class="Frame" referent="RBX7AD42D251E9149FF810701671BDD5542">
 								<Properties>
 									<token name="Style">0</token>
 									<bool name="Active">false</bool>
@@ -1517,9 +1518,9 @@ end]]></ProtectedString>
 									<bool name="DefinesCapabilities">false</bool>
 									<string name="Name">Altitude</string>
 									<int64 name="SourceAssetId">-1</int64>
-									<BinaryString name="Tags"></BinaryString>
+									<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 								</Properties>
-								<Item class="TextLabel" referent="RBX97C589FD78774D789B4B1DC17C014A79">
+								<Item class="TextLabel" referent="RBXD17636E2505140C88407E6C653C116EC">
 									<Properties>
 										<Font name="FontFace">
 											<Family><url>rbxasset://fonts/families/SourceSansPro.json</url></Family>
@@ -1611,10 +1612,10 @@ end]]></ProtectedString>
 										<bool name="DefinesCapabilities">false</bool>
 										<string name="Name">Title</string>
 										<int64 name="SourceAssetId">-1</int64>
-										<BinaryString name="Tags"></BinaryString>
+										<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 									</Properties>
 								</Item>
-								<Item class="TextLabel" referent="RBX908D79ABAA1247209FCCDE112B883972">
+								<Item class="TextLabel" referent="RBX1A109E40467E488FB67343B98990FE87">
 									<Properties>
 										<Font name="FontFace">
 											<Family><url>rbxasset://fonts/families/Zekton.json</url></Family>
@@ -1707,10 +1708,10 @@ end]]></ProtectedString>
 										<bool name="DefinesCapabilities">false</bool>
 										<string name="Name">Value</string>
 										<int64 name="SourceAssetId">-1</int64>
-										<BinaryString name="Tags"></BinaryString>
+										<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 									</Properties>
 								</Item>
-								<Item class="TextLabel" referent="RBX60362E53CFF842EC99888964CC4F8A35">
+								<Item class="TextLabel" referent="RBX56DA078676824DBA90343C14DBB4F08E">
 									<Properties>
 										<Font name="FontFace">
 											<Family><url>rbxasset://fonts/families/SourceSansPro.json</url></Family>
@@ -1802,10 +1803,10 @@ end]]></ProtectedString>
 										<bool name="DefinesCapabilities">false</bool>
 										<string name="Name">Unit</string>
 										<int64 name="SourceAssetId">-1</int64>
-										<BinaryString name="Tags"></BinaryString>
+										<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 									</Properties>
 								</Item>
-								<Item class="Frame" referent="RBXC61E0EC8E4AA4EDCB5565002A2AC9B45">
+								<Item class="Frame" referent="RBX64CC1A49B9514C8ABA379D5F0D8DE6E2">
 									<Properties>
 										<token name="Style">0</token>
 										<bool name="Active">false</bool>
@@ -1867,9 +1868,9 @@ end]]></ProtectedString>
 										<bool name="DefinesCapabilities">false</bool>
 										<string name="Name">VerticalSpeed</string>
 										<int64 name="SourceAssetId">-1</int64>
-										<BinaryString name="Tags"></BinaryString>
+										<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 									</Properties>
-									<Item class="Frame" referent="RBX41E7CA212AA24F79B2ED09C1AAD7FDA3">
+									<Item class="Frame" referent="RBX6CACA7FB06C7430BB46AED6ED9DE1054">
 										<Properties>
 											<token name="Style">0</token>
 											<bool name="Active">false</bool>
@@ -1931,9 +1932,9 @@ end]]></ProtectedString>
 											<bool name="DefinesCapabilities">false</bool>
 											<string name="Name">Frame</string>
 											<int64 name="SourceAssetId">-1</int64>
-											<BinaryString name="Tags"></BinaryString>
+											<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 										</Properties>
-										<Item class="UIStroke" referent="RBXC73EFEE8217F4986BA9C22833F87C648">
+										<Item class="UIStroke" referent="RBX585550100CDC40F99A8CC8AE4A7E4F59">
 											<Properties>
 												<token name="ApplyStrokeMode">1</token>
 												<UDim name="BorderOffset">
@@ -1957,11 +1958,11 @@ end]]></ProtectedString>
 												<bool name="DefinesCapabilities">false</bool>
 												<string name="Name">UIStroke</string>
 												<int64 name="SourceAssetId">-1</int64>
-												<BinaryString name="Tags"></BinaryString>
+												<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 											</Properties>
 										</Item>
 									</Item>
-									<Item class="Frame" referent="RBX028C90F150FB42D1AF0B859D04D6471F">
+									<Item class="Frame" referent="RBX37EA5A57EFB44F8AA598524CFF1617C5">
 										<Properties>
 											<token name="Style">0</token>
 											<bool name="Active">false</bool>
@@ -2023,9 +2024,9 @@ end]]></ProtectedString>
 											<bool name="DefinesCapabilities">false</bool>
 											<string name="Name">Frame</string>
 											<int64 name="SourceAssetId">-1</int64>
-											<BinaryString name="Tags"></BinaryString>
+											<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 										</Properties>
-										<Item class="UIStroke" referent="RBX0E26E0BE32B04CBBB4DE4D7CA554AC18">
+										<Item class="UIStroke" referent="RBXBE6484CFCD9D4CAEA74B46DF62AB6B91">
 											<Properties>
 												<token name="ApplyStrokeMode">1</token>
 												<UDim name="BorderOffset">
@@ -2049,11 +2050,11 @@ end]]></ProtectedString>
 												<bool name="DefinesCapabilities">false</bool>
 												<string name="Name">UIStroke</string>
 												<int64 name="SourceAssetId">-1</int64>
-												<BinaryString name="Tags"></BinaryString>
+												<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 											</Properties>
 										</Item>
 									</Item>
-									<Item class="Frame" referent="RBXA51836F5E6264E55BB81AA60C48C74F5">
+									<Item class="Frame" referent="RBX7E90D11839524D238460064B78BD128D">
 										<Properties>
 											<token name="Style">0</token>
 											<bool name="Active">false</bool>
@@ -2115,9 +2116,9 @@ end]]></ProtectedString>
 											<bool name="DefinesCapabilities">false</bool>
 											<string name="Name">Frame</string>
 											<int64 name="SourceAssetId">-1</int64>
-											<BinaryString name="Tags"></BinaryString>
+											<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 										</Properties>
-										<Item class="UIStroke" referent="RBXA6E0E6CCE1DF4BD598501E25D94A3BFA">
+										<Item class="UIStroke" referent="RBX288A93DB550243FE83DFCF8D8A8F754A">
 											<Properties>
 												<token name="ApplyStrokeMode">1</token>
 												<UDim name="BorderOffset">
@@ -2141,11 +2142,11 @@ end]]></ProtectedString>
 												<bool name="DefinesCapabilities">false</bool>
 												<string name="Name">UIStroke</string>
 												<int64 name="SourceAssetId">-1</int64>
-												<BinaryString name="Tags"></BinaryString>
+												<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 											</Properties>
 										</Item>
 									</Item>
-									<Item class="Frame" referent="RBX591B72F4FEE6439FABC83941014E0418">
+									<Item class="Frame" referent="RBX136464A42CBE4D96A75FCC21A7EC91F0">
 										<Properties>
 											<token name="Style">0</token>
 											<bool name="Active">false</bool>
@@ -2207,9 +2208,9 @@ end]]></ProtectedString>
 											<bool name="DefinesCapabilities">false</bool>
 											<string name="Name">Frame</string>
 											<int64 name="SourceAssetId">-1</int64>
-											<BinaryString name="Tags"></BinaryString>
+											<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 										</Properties>
-										<Item class="UIStroke" referent="RBX294B7DDF8251475D9E86D996B3B90A88">
+										<Item class="UIStroke" referent="RBXA8B21166F8064ABCB5D2E2E1A264985D">
 											<Properties>
 												<token name="ApplyStrokeMode">1</token>
 												<UDim name="BorderOffset">
@@ -2233,11 +2234,11 @@ end]]></ProtectedString>
 												<bool name="DefinesCapabilities">false</bool>
 												<string name="Name">UIStroke</string>
 												<int64 name="SourceAssetId">-1</int64>
-												<BinaryString name="Tags"></BinaryString>
+												<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 											</Properties>
 										</Item>
 									</Item>
-									<Item class="Frame" referent="RBX5B6781225314465ABF9FD9759C66B76A">
+									<Item class="Frame" referent="RBX4AA516E1D8DB4FAB962F26BB9B97F131">
 										<Properties>
 											<token name="Style">0</token>
 											<bool name="Active">false</bool>
@@ -2299,9 +2300,9 @@ end]]></ProtectedString>
 											<bool name="DefinesCapabilities">false</bool>
 											<string name="Name">Frame</string>
 											<int64 name="SourceAssetId">-1</int64>
-											<BinaryString name="Tags"></BinaryString>
+											<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 										</Properties>
-										<Item class="UIStroke" referent="RBX0918E6A211D8486F890854774A979971">
+										<Item class="UIStroke" referent="RBX7AFA7920BB3E48BC9A969ED50CC3558A">
 											<Properties>
 												<token name="ApplyStrokeMode">1</token>
 												<UDim name="BorderOffset">
@@ -2325,11 +2326,11 @@ end]]></ProtectedString>
 												<bool name="DefinesCapabilities">false</bool>
 												<string name="Name">UIStroke</string>
 												<int64 name="SourceAssetId">-1</int64>
-												<BinaryString name="Tags"></BinaryString>
+												<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 											</Properties>
 										</Item>
 									</Item>
-									<Item class="Frame" referent="RBXF3B5A4F53A6C4FD89A2DB4120F6EE8BA">
+									<Item class="Frame" referent="RBXD95675278B6141CC91A4A0C0BCC6D943">
 										<Properties>
 											<token name="Style">0</token>
 											<bool name="Active">false</bool>
@@ -2391,9 +2392,9 @@ end]]></ProtectedString>
 											<bool name="DefinesCapabilities">false</bool>
 											<string name="Name">Frame</string>
 											<int64 name="SourceAssetId">-1</int64>
-											<BinaryString name="Tags"></BinaryString>
+											<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 										</Properties>
-										<Item class="UIStroke" referent="RBX1DEB7F817DAD46028E4D290AE9DDBB80">
+										<Item class="UIStroke" referent="RBX74F69C3AFD274A4F87865FD649B5E7FE">
 											<Properties>
 												<token name="ApplyStrokeMode">1</token>
 												<UDim name="BorderOffset">
@@ -2417,11 +2418,11 @@ end]]></ProtectedString>
 												<bool name="DefinesCapabilities">false</bool>
 												<string name="Name">UIStroke</string>
 												<int64 name="SourceAssetId">-1</int64>
-												<BinaryString name="Tags"></BinaryString>
+												<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 											</Properties>
 										</Item>
 									</Item>
-									<Item class="Frame" referent="RBX23F4BBD6A3D14CEB98BD40907F6358FA">
+									<Item class="Frame" referent="RBX8ABA80B4E37E4A6B919D5F28442172E1">
 										<Properties>
 											<token name="Style">0</token>
 											<bool name="Active">false</bool>
@@ -2483,9 +2484,9 @@ end]]></ProtectedString>
 											<bool name="DefinesCapabilities">false</bool>
 											<string name="Name">Frame</string>
 											<int64 name="SourceAssetId">-1</int64>
-											<BinaryString name="Tags"></BinaryString>
+											<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 										</Properties>
-										<Item class="UIStroke" referent="RBXF016D76B0FA541BA9B785DB07EBF29E1">
+										<Item class="UIStroke" referent="RBX47F1B36F53A548AEBA473144493EE927">
 											<Properties>
 												<token name="ApplyStrokeMode">1</token>
 												<UDim name="BorderOffset">
@@ -2509,11 +2510,11 @@ end]]></ProtectedString>
 												<bool name="DefinesCapabilities">false</bool>
 												<string name="Name">UIStroke</string>
 												<int64 name="SourceAssetId">-1</int64>
-												<BinaryString name="Tags"></BinaryString>
+												<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 											</Properties>
 										</Item>
 									</Item>
-									<Item class="Frame" referent="RBX5B79E3CCAC6C4D2588056BDED95BC4A9">
+									<Item class="Frame" referent="RBX38BE868FE3D341388FA139C320972EFF">
 										<Properties>
 											<token name="Style">0</token>
 											<bool name="Active">false</bool>
@@ -2575,9 +2576,9 @@ end]]></ProtectedString>
 											<bool name="DefinesCapabilities">false</bool>
 											<string name="Name">Frame</string>
 											<int64 name="SourceAssetId">-1</int64>
-											<BinaryString name="Tags"></BinaryString>
+											<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 										</Properties>
-										<Item class="UIStroke" referent="RBX0F4FBC54FA914098B400600D18836322">
+										<Item class="UIStroke" referent="RBX741A5B19F357422281557FF9C209A201">
 											<Properties>
 												<token name="ApplyStrokeMode">1</token>
 												<UDim name="BorderOffset">
@@ -2601,11 +2602,11 @@ end]]></ProtectedString>
 												<bool name="DefinesCapabilities">false</bool>
 												<string name="Name">UIStroke</string>
 												<int64 name="SourceAssetId">-1</int64>
-												<BinaryString name="Tags"></BinaryString>
+												<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 											</Properties>
 										</Item>
 									</Item>
-									<Item class="Frame" referent="RBX187304A4A75B4F3E82978A1B5EDAA309">
+									<Item class="Frame" referent="RBX8180C67C23D546D7A143BE5E25BC8987">
 										<Properties>
 											<token name="Style">0</token>
 											<bool name="Active">false</bool>
@@ -2667,9 +2668,9 @@ end]]></ProtectedString>
 											<bool name="DefinesCapabilities">false</bool>
 											<string name="Name">Frame</string>
 											<int64 name="SourceAssetId">-1</int64>
-											<BinaryString name="Tags"></BinaryString>
+											<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 										</Properties>
-										<Item class="UIStroke" referent="RBXEABAC0459134462CB67CA85AECEAE302">
+										<Item class="UIStroke" referent="RBX060E3841A9A04A83A2CC6B699079B8D9">
 											<Properties>
 												<token name="ApplyStrokeMode">1</token>
 												<UDim name="BorderOffset">
@@ -2693,11 +2694,11 @@ end]]></ProtectedString>
 												<bool name="DefinesCapabilities">false</bool>
 												<string name="Name">UIStroke</string>
 												<int64 name="SourceAssetId">-1</int64>
-												<BinaryString name="Tags"></BinaryString>
+												<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 											</Properties>
 										</Item>
 									</Item>
-									<Item class="ImageLabel" referent="RBX5414B867027A442784C1D11AED123DC7">
+									<Item class="ImageLabel" referent="RBX2B25225605A8415198F038633DF52EB5">
 										<Properties>
 											<Content name="Image"><url>http://www.roblox.com/asset/?id=109752636067551</url></Content>
 											<Color3 name="ImageColor3">
@@ -2792,9 +2793,9 @@ end]]></ProtectedString>
 											<bool name="DefinesCapabilities">false</bool>
 											<string name="Name">Arrow</string>
 											<int64 name="SourceAssetId">-1</int64>
-											<BinaryString name="Tags"></BinaryString>
+											<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 										</Properties>
-										<Item class="TextLabel" referent="RBXFBBF1763F641400DA8FA9038B03D7CEE">
+										<Item class="TextLabel" referent="RBX03C0A5562EB84250B586E0CF5EF73422">
 											<Properties>
 												<Font name="FontFace">
 													<Family><url>rbxasset://fonts/families/SourceSansPro.json</url></Family>
@@ -2886,10 +2887,10 @@ end]]></ProtectedString>
 												<bool name="DefinesCapabilities">false</bool>
 												<string name="Name">Value</string>
 												<int64 name="SourceAssetId">-1</int64>
-												<BinaryString name="Tags"></BinaryString>
+												<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 											</Properties>
 										</Item>
-										<Item class="ImageLabel" referent="RBXBBBF1C73A3C04CB8B3C3E7477C26DE7E">
+										<Item class="ImageLabel" referent="RBXBDE3C52BD08B42B5832C07A1AC87A351">
 											<Properties>
 												<Content name="Image"><url>http://www.roblox.com/asset/?id=109752636067551</url></Content>
 												<Color3 name="ImageColor3">
@@ -2984,12 +2985,12 @@ end]]></ProtectedString>
 												<bool name="DefinesCapabilities">false</bool>
 												<string name="Name">Body</string>
 												<int64 name="SourceAssetId">-1</int64>
-												<BinaryString name="Tags"></BinaryString>
+												<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 											</Properties>
 										</Item>
 									</Item>
 								</Item>
-								<Item class="UICorner" referent="RBX9B221514707E4F8AAC5A56A84B26868F">
+								<Item class="UICorner" referent="RBX9FD4E344FD1A46519090BF9B705BBD42">
 									<Properties>
 										<UDim name="BottomLeftRadius">
 											<S>0.400000006</S>
@@ -3012,10 +3013,10 @@ end]]></ProtectedString>
 										<bool name="DefinesCapabilities">false</bool>
 										<string name="Name">UICorner</string>
 										<int64 name="SourceAssetId">-1</int64>
-										<BinaryString name="Tags"></BinaryString>
+										<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 									</Properties>
 								</Item>
-								<Item class="UIGradient" referent="RBX759A3A2DB38540DBB69C0CD1A7E0BE2E">
+								<Item class="UIGradient" referent="RBX6ADFECB8306E42BB8E0650CCE40692B2">
 									<Properties>
 										<ColorSequence name="Color">0 1 1 1 0 1 0.792157 0.792157 0.792157 0 </ColorSequence>
 										<bool name="Enabled">true</bool>
@@ -3033,10 +3034,10 @@ end]]></ProtectedString>
 										<bool name="DefinesCapabilities">false</bool>
 										<string name="Name">UIGradient</string>
 										<int64 name="SourceAssetId">-1</int64>
-										<BinaryString name="Tags"></BinaryString>
+										<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 									</Properties>
 								</Item>
-								<Item class="UIStroke" referent="RBX6D2903F3F56E4F4589F2A623129542DB">
+								<Item class="UIStroke" referent="RBXC45766DE70A94624B720A1F37137B893">
 									<Properties>
 										<token name="ApplyStrokeMode">1</token>
 										<UDim name="BorderOffset">
@@ -3060,11 +3061,11 @@ end]]></ProtectedString>
 										<bool name="DefinesCapabilities">false</bool>
 										<string name="Name">UIStroke</string>
 										<int64 name="SourceAssetId">-1</int64>
-										<BinaryString name="Tags"></BinaryString>
+										<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 									</Properties>
 								</Item>
 							</Item>
-							<Item class="Frame" referent="RBX67778EB33F0E45B0B20283B9D7DE9955">
+							<Item class="Frame" referent="RBX167B348974204B2C814D5BF1BDA212D3">
 								<Properties>
 									<token name="Style">0</token>
 									<bool name="Active">false</bool>
@@ -3126,9 +3127,9 @@ end]]></ProtectedString>
 									<bool name="DefinesCapabilities">false</bool>
 									<string name="Name">Heading</string>
 									<int64 name="SourceAssetId">-1</int64>
-									<BinaryString name="Tags"></BinaryString>
+									<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 								</Properties>
-								<Item class="TextLabel" referent="RBX12A1FD74FC46442E9506B5512F448C6A">
+								<Item class="TextLabel" referent="RBXE6AD5118308A44498469C1733233499E">
 									<Properties>
 										<Font name="FontFace">
 											<Family><url>rbxasset://fonts/families/Zekton.json</url></Family>
@@ -3221,10 +3222,10 @@ end]]></ProtectedString>
 										<bool name="DefinesCapabilities">false</bool>
 										<string name="Name">Value</string>
 										<int64 name="SourceAssetId">-1</int64>
-										<BinaryString name="Tags"></BinaryString>
+										<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 									</Properties>
 								</Item>
-								<Item class="TextLabel" referent="RBXF629E384E3FE4404BB3F1B6F287EAC88">
+								<Item class="TextLabel" referent="RBX16075738D7E24FA0B599EC0032AE8EFC">
 									<Properties>
 										<Font name="FontFace">
 											<Family><url>rbxasset://fonts/families/SourceSansPro.json</url></Family>
@@ -3316,10 +3317,10 @@ end]]></ProtectedString>
 										<bool name="DefinesCapabilities">false</bool>
 										<string name="Name">Title</string>
 										<int64 name="SourceAssetId">-1</int64>
-										<BinaryString name="Tags"></BinaryString>
+										<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 									</Properties>
 								</Item>
-								<Item class="UICorner" referent="RBX63A03272EF934FA0BB40B5CE55C7E0E3">
+								<Item class="UICorner" referent="RBX3AFE13CDC27D428792A556A7A14B81C4">
 									<Properties>
 										<UDim name="BottomLeftRadius">
 											<S>0.400000006</S>
@@ -3342,10 +3343,10 @@ end]]></ProtectedString>
 										<bool name="DefinesCapabilities">false</bool>
 										<string name="Name">UICorner</string>
 										<int64 name="SourceAssetId">-1</int64>
-										<BinaryString name="Tags"></BinaryString>
+										<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 									</Properties>
 								</Item>
-								<Item class="UIGradient" referent="RBX562659FB20FE40D39B97EE1BD266DC5E">
+								<Item class="UIGradient" referent="RBXFB7C6DA99B1548BAB0D1538A7FF46465">
 									<Properties>
 										<ColorSequence name="Color">0 1 1 1 0 1 0.792157 0.792157 0.792157 0 </ColorSequence>
 										<bool name="Enabled">true</bool>
@@ -3363,10 +3364,10 @@ end]]></ProtectedString>
 										<bool name="DefinesCapabilities">false</bool>
 										<string name="Name">UIGradient</string>
 										<int64 name="SourceAssetId">-1</int64>
-										<BinaryString name="Tags"></BinaryString>
+										<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 									</Properties>
 								</Item>
-								<Item class="UIStroke" referent="RBX0737B9FA2ADF40E0AF84CCC4B74C492F">
+								<Item class="UIStroke" referent="RBX8A9E708642134B8A98700602BCE6733C">
 									<Properties>
 										<token name="ApplyStrokeMode">1</token>
 										<UDim name="BorderOffset">
@@ -3390,11 +3391,11 @@ end]]></ProtectedString>
 										<bool name="DefinesCapabilities">false</bool>
 										<string name="Name">UIStroke</string>
 										<int64 name="SourceAssetId">-1</int64>
-										<BinaryString name="Tags"></BinaryString>
+										<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 									</Properties>
 								</Item>
 							</Item>
-							<Item class="Frame" referent="RBX24AED36AC9854D788DFE17F4C1FA3DB2">
+							<Item class="Frame" referent="RBXCF5AAC7474DF4DA5BC49C776ADF2C5BE">
 								<Properties>
 									<token name="Style">0</token>
 									<bool name="Active">false</bool>
@@ -3456,9 +3457,9 @@ end]]></ProtectedString>
 									<bool name="DefinesCapabilities">false</bool>
 									<string name="Name">Speed</string>
 									<int64 name="SourceAssetId">-1</int64>
-									<BinaryString name="Tags"></BinaryString>
+									<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 								</Properties>
-								<Item class="TextLabel" referent="RBXB68516FCDADC4FBA81B17771BF2BFD05">
+								<Item class="TextLabel" referent="RBX01452299BFE54E2E939E750FBFCEAC3A">
 									<Properties>
 										<Font name="FontFace">
 											<Family><url>rbxasset://fonts/families/Zekton.json</url></Family>
@@ -3551,10 +3552,10 @@ end]]></ProtectedString>
 										<bool name="DefinesCapabilities">false</bool>
 										<string name="Name">Value</string>
 										<int64 name="SourceAssetId">-1</int64>
-										<BinaryString name="Tags"></BinaryString>
+										<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 									</Properties>
 								</Item>
-								<Item class="TextLabel" referent="RBX54B5A8DF91A14B2692AD299660E3B992">
+								<Item class="TextLabel" referent="RBXB3DD46796E894315AED4959BD198C6FD">
 									<Properties>
 										<Font name="FontFace">
 											<Family><url>rbxasset://fonts/families/SourceSansPro.json</url></Family>
@@ -3646,10 +3647,10 @@ end]]></ProtectedString>
 										<bool name="DefinesCapabilities">false</bool>
 										<string name="Name">Title</string>
 										<int64 name="SourceAssetId">-1</int64>
-										<BinaryString name="Tags"></BinaryString>
+										<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 									</Properties>
 								</Item>
-								<Item class="TextLabel" referent="RBX88185293E3174D0D8B2351CEE33F90D6">
+								<Item class="TextLabel" referent="RBXD6E509F0332A452F83255D2A3DB7CE84">
 									<Properties>
 										<Font name="FontFace">
 											<Family><url>rbxasset://fonts/families/SourceSansPro.json</url></Family>
@@ -3741,10 +3742,10 @@ end]]></ProtectedString>
 										<bool name="DefinesCapabilities">false</bool>
 										<string name="Name">Unit</string>
 										<int64 name="SourceAssetId">-1</int64>
-										<BinaryString name="Tags"></BinaryString>
+										<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 									</Properties>
 								</Item>
-								<Item class="UICorner" referent="RBX49D429597455489986E2DDCC5DAD6898">
+								<Item class="UICorner" referent="RBX1877C8FBE74142ECB1230974B2EBD9CA">
 									<Properties>
 										<UDim name="BottomLeftRadius">
 											<S>0.400000006</S>
@@ -3767,10 +3768,10 @@ end]]></ProtectedString>
 										<bool name="DefinesCapabilities">false</bool>
 										<string name="Name">UICorner</string>
 										<int64 name="SourceAssetId">-1</int64>
-										<BinaryString name="Tags"></BinaryString>
+										<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 									</Properties>
 								</Item>
-								<Item class="UIStroke" referent="RBX037C1A577C6D49528EAC4CB7643E0FBC">
+								<Item class="UIStroke" referent="RBXA4153765446D4735A4F15EB3EEE7EB84">
 									<Properties>
 										<token name="ApplyStrokeMode">1</token>
 										<UDim name="BorderOffset">
@@ -3794,10 +3795,10 @@ end]]></ProtectedString>
 										<bool name="DefinesCapabilities">false</bool>
 										<string name="Name">UIStroke</string>
 										<int64 name="SourceAssetId">-1</int64>
-										<BinaryString name="Tags"></BinaryString>
+										<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 									</Properties>
 								</Item>
-								<Item class="UIGradient" referent="RBX0B99BD97C0534F55815CA4140EBC2877">
+								<Item class="UIGradient" referent="RBX3F672108F31447DA90173E02B8ABE303">
 									<Properties>
 										<ColorSequence name="Color">0 1 1 1 0 1 0.792157 0.792157 0.792157 0 </ColorSequence>
 										<bool name="Enabled">true</bool>
@@ -3815,11 +3816,11 @@ end]]></ProtectedString>
 										<bool name="DefinesCapabilities">false</bool>
 										<string name="Name">UIGradient</string>
 										<int64 name="SourceAssetId">-1</int64>
-										<BinaryString name="Tags"></BinaryString>
+										<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 									</Properties>
 								</Item>
 							</Item>
-							<Item class="Frame" referent="RBX1AEC7223E9D24C6BB85199738FCC8C08">
+							<Item class="Frame" referent="RBXA309E2BB80C249AB9F9CA582EBC6A57A">
 								<Properties>
 									<token name="Style">0</token>
 									<bool name="Active">false</bool>
@@ -3881,9 +3882,9 @@ end]]></ProtectedString>
 									<bool name="DefinesCapabilities">false</bool>
 									<string name="Name">Collective</string>
 									<int64 name="SourceAssetId">-1</int64>
-									<BinaryString name="Tags">U0tZdGVjaF9TeXN0ZW0=</BinaryString>
+									<SharedString name="Tags">MEAPekSJQmjYC+BmYiRYig==</SharedString>
 								</Properties>
-								<Item class="Frame" referent="RBX3DB9A152691F4DEBBDCB0C11EF4F599D">
+								<Item class="Frame" referent="RBXB71F8DCC3FEE4C05B287B985052B9B00">
 									<Properties>
 										<token name="Style">0</token>
 										<bool name="Active">false</bool>
@@ -3945,9 +3946,9 @@ end]]></ProtectedString>
 										<bool name="DefinesCapabilities">false</bool>
 										<string name="Name">Bar</string>
 										<int64 name="SourceAssetId">-1</int64>
-										<BinaryString name="Tags"></BinaryString>
+										<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 									</Properties>
-									<Item class="Frame" referent="RBX823C1044587449A1850C48CA54DFC748">
+									<Item class="Frame" referent="RBX2BEBE51559A5466987C22DC645FC4406">
 										<Properties>
 											<token name="Style">0</token>
 											<bool name="Active">false</bool>
@@ -4009,9 +4010,9 @@ end]]></ProtectedString>
 											<bool name="DefinesCapabilities">false</bool>
 											<string name="Name">Percent</string>
 											<int64 name="SourceAssetId">-1</int64>
-											<BinaryString name="Tags"></BinaryString>
+											<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 										</Properties>
-										<Item class="UIGradient" referent="RBX531BF3D1BD8244B59767CE97CA7D15EB">
+										<Item class="UIGradient" referent="RBX677B256F5EFB46C0BB71EFBD6B1FA14B">
 											<Properties>
 												<ColorSequence name="Color">0 0.882353 0.882353 0.882353 0 0.4 1 1 1 0 0.6 1 1 1 0 1 0.882353 0.882353 0.882353 0 </ColorSequence>
 												<bool name="Enabled">true</bool>
@@ -4029,10 +4030,10 @@ end]]></ProtectedString>
 												<bool name="DefinesCapabilities">false</bool>
 												<string name="Name">UIGradient</string>
 												<int64 name="SourceAssetId">-1</int64>
-												<BinaryString name="Tags"></BinaryString>
+												<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 											</Properties>
 										</Item>
-										<Item class="UICorner" referent="RBX0D98B59EEB8442C4AA703C06B5A80558">
+										<Item class="UICorner" referent="RBXB934CB630224465182CB95B9C2C5E7BD">
 											<Properties>
 												<UDim name="BottomLeftRadius">
 													<S>0.400000006</S>
@@ -4055,11 +4056,11 @@ end]]></ProtectedString>
 												<bool name="DefinesCapabilities">false</bool>
 												<string name="Name">UICorner</string>
 												<int64 name="SourceAssetId">-1</int64>
-												<BinaryString name="Tags"></BinaryString>
+												<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 											</Properties>
 										</Item>
 									</Item>
-									<Item class="UICorner" referent="RBX7916E00317CC432F9296556241A6E6D3">
+									<Item class="UICorner" referent="RBX2CC7FA4757F84BF5AF6C1C1D6E7396A2">
 										<Properties>
 											<UDim name="BottomLeftRadius">
 												<S>0.400000006</S>
@@ -4082,10 +4083,10 @@ end]]></ProtectedString>
 											<bool name="DefinesCapabilities">false</bool>
 											<string name="Name">UICorner</string>
 											<int64 name="SourceAssetId">-1</int64>
-											<BinaryString name="Tags"></BinaryString>
+											<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 										</Properties>
 									</Item>
-									<Item class="Frame" referent="RBX4B7B175BBC9442F0B6AAAFC15DF22B44">
+									<Item class="Frame" referent="RBX5C5B28CA9BCB47C385FEDD6C3EFFEE82">
 										<Properties>
 											<token name="Style">0</token>
 											<bool name="Active">false</bool>
@@ -4147,9 +4148,9 @@ end]]></ProtectedString>
 											<bool name="DefinesCapabilities">false</bool>
 											<string name="Name">HoverLine</string>
 											<int64 name="SourceAssetId">-1</int64>
-											<BinaryString name="Tags"></BinaryString>
+											<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 										</Properties>
-										<Item class="UIGradient" referent="RBXEF84A389D644485E9CD2CAA841D515A7">
+										<Item class="UIGradient" referent="RBX4358308D1E944F1BA8910058C6642E78">
 											<Properties>
 												<ColorSequence name="Color">0 0.882353 0.882353 0.882353 0 0.4 1 1 1 0 0.6 1 1 1 0 1 0.882353 0.882353 0.882353 0 </ColorSequence>
 												<bool name="Enabled">true</bool>
@@ -4167,10 +4168,10 @@ end]]></ProtectedString>
 												<bool name="DefinesCapabilities">false</bool>
 												<string name="Name">UIGradient</string>
 												<int64 name="SourceAssetId">-1</int64>
-												<BinaryString name="Tags"></BinaryString>
+												<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 											</Properties>
 										</Item>
-										<Item class="UICorner" referent="RBX92C8D56C4C7447BBA0F6AE6699DA0C30">
+										<Item class="UICorner" referent="RBXCE0B7035774640109929380D5F066FC3">
 											<Properties>
 												<UDim name="BottomLeftRadius">
 													<S>0</S>
@@ -4193,11 +4194,11 @@ end]]></ProtectedString>
 												<bool name="DefinesCapabilities">false</bool>
 												<string name="Name">UICorner</string>
 												<int64 name="SourceAssetId">-1</int64>
-												<BinaryString name="Tags"></BinaryString>
+												<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 											</Properties>
 										</Item>
 									</Item>
-									<Item class="Frame" referent="RBX985CA60CC8AB4360A2E2A1011CEBDBA0">
+									<Item class="Frame" referent="RBXED48375F8A6D4875B3FADC3928EB2C25">
 										<Properties>
 											<token name="Style">0</token>
 											<bool name="Active">false</bool>
@@ -4259,9 +4260,9 @@ end]]></ProtectedString>
 											<bool name="DefinesCapabilities">false</bool>
 											<string name="Name">IdleLine</string>
 											<int64 name="SourceAssetId">-1</int64>
-											<BinaryString name="Tags"></BinaryString>
+											<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 										</Properties>
-										<Item class="UIGradient" referent="RBXBF5AA70CCC984D408CB2325FD60C3B56">
+										<Item class="UIGradient" referent="RBXE7E106DBC19240E09748AC263152182D">
 											<Properties>
 												<ColorSequence name="Color">0 0.882353 0.882353 0.882353 0 0.4 1 1 1 0 0.6 1 1 1 0 1 0.882353 0.882353 0.882353 0 </ColorSequence>
 												<bool name="Enabled">true</bool>
@@ -4279,10 +4280,10 @@ end]]></ProtectedString>
 												<bool name="DefinesCapabilities">false</bool>
 												<string name="Name">UIGradient</string>
 												<int64 name="SourceAssetId">-1</int64>
-												<BinaryString name="Tags"></BinaryString>
+												<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 											</Properties>
 										</Item>
-										<Item class="UICorner" referent="RBXB332018714074C50ACC181DF4F1C92A3">
+										<Item class="UICorner" referent="RBX527B3B9A5E6E4EEE88E5531D5D76DFBA">
 											<Properties>
 												<UDim name="BottomLeftRadius">
 													<S>0.400000006</S>
@@ -4305,12 +4306,12 @@ end]]></ProtectedString>
 												<bool name="DefinesCapabilities">false</bool>
 												<string name="Name">UICorner</string>
 												<int64 name="SourceAssetId">-1</int64>
-												<BinaryString name="Tags"></BinaryString>
+												<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 											</Properties>
 										</Item>
 									</Item>
 								</Item>
-								<Item class="TextLabel" referent="RBX6B1C25EDCE024647B957D68C04E033DB">
+								<Item class="TextLabel" referent="RBX250B98C64EBE4972B3D615A929833520">
 									<Properties>
 										<Font name="FontFace">
 											<Family><url>rbxasset://fonts/families/Zekton.json</url></Family>
@@ -4403,9 +4404,9 @@ end]]></ProtectedString>
 										<bool name="DefinesCapabilities">false</bool>
 										<string name="Name">Main</string>
 										<int64 name="SourceAssetId">-1</int64>
-										<BinaryString name="Tags"></BinaryString>
+										<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 									</Properties>
-									<Item class="UICorner" referent="RBXA7A2406BDCA2442DA9AC01D6A6E92742">
+									<Item class="UICorner" referent="RBXBCDEB2BC87974FED919697725BAD13B7">
 										<Properties>
 											<UDim name="BottomLeftRadius">
 												<S>0.300000012</S>
@@ -4428,10 +4429,10 @@ end]]></ProtectedString>
 											<bool name="DefinesCapabilities">false</bool>
 											<string name="Name">UICorner</string>
 											<int64 name="SourceAssetId">-1</int64>
-											<BinaryString name="Tags"></BinaryString>
+											<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 										</Properties>
 									</Item>
-									<Item class="UIGradient" referent="RBXA9EF9B1FA58249068134318A3D7887DB">
+									<Item class="UIGradient" referent="RBX3BFCE42FCF7B461AA71A1E1F153FF199">
 										<Properties>
 											<ColorSequence name="Color">0 0.843137 0.843137 0.843137 0 0.4 1 1 1 0 0.6 1 1 1 0 1 0.843137 0.843137 0.843137 0 </ColorSequence>
 											<bool name="Enabled">true</bool>
@@ -4449,11 +4450,11 @@ end]]></ProtectedString>
 											<bool name="DefinesCapabilities">false</bool>
 											<string name="Name">UIGradient</string>
 											<int64 name="SourceAssetId">-1</int64>
-											<BinaryString name="Tags"></BinaryString>
+											<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 										</Properties>
 									</Item>
 								</Item>
-								<Item class="Frame" referent="RBX96B6DB40D0A54C2EAA4FCB17A211A899">
+								<Item class="Frame" referent="RBXEEBE3ADDAFAA48588B3719B0C2C5E101">
 									<Properties>
 										<token name="Style">0</token>
 										<bool name="Active">false</bool>
@@ -4515,9 +4516,9 @@ end]]></ProtectedString>
 										<bool name="DefinesCapabilities">false</bool>
 										<string name="Name">BarBorder</string>
 										<int64 name="SourceAssetId">-1</int64>
-										<BinaryString name="Tags"></BinaryString>
+										<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 									</Properties>
-									<Item class="UICorner" referent="RBX5B0A27ED347B47CF83B6EE4FB78DC650">
+									<Item class="UICorner" referent="RBX9F70C1967478482ABC929E4A9CCE3EA1">
 										<Properties>
 											<UDim name="BottomLeftRadius">
 												<S>0.400000006</S>
@@ -4540,10 +4541,10 @@ end]]></ProtectedString>
 											<bool name="DefinesCapabilities">false</bool>
 											<string name="Name">UICorner</string>
 											<int64 name="SourceAssetId">-1</int64>
-											<BinaryString name="Tags"></BinaryString>
+											<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 										</Properties>
 									</Item>
-									<Item class="UIGradient" referent="RBX90A5DE5708C94C538A956AE3A529C28C">
+									<Item class="UIGradient" referent="RBX236ADC6D3FAB4EC4B72AF33680444332">
 										<Properties>
 											<ColorSequence name="Color">0 1 1 1 0 1 0.792157 0.792157 0.792157 0 </ColorSequence>
 											<bool name="Enabled">true</bool>
@@ -4561,10 +4562,10 @@ end]]></ProtectedString>
 											<bool name="DefinesCapabilities">false</bool>
 											<string name="Name">UIGradient</string>
 											<int64 name="SourceAssetId">-1</int64>
-											<BinaryString name="Tags"></BinaryString>
+											<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 										</Properties>
 									</Item>
-									<Item class="UIStroke" referent="RBX58CF042499AD40E9AB0C9292B6C1534C">
+									<Item class="UIStroke" referent="RBX85395EC4E34742FEA9974505EE5C208E">
 										<Properties>
 											<token name="ApplyStrokeMode">1</token>
 											<UDim name="BorderOffset">
@@ -4588,12 +4589,12 @@ end]]></ProtectedString>
 											<bool name="DefinesCapabilities">false</bool>
 											<string name="Name">UIStroke</string>
 											<int64 name="SourceAssetId">-1</int64>
-											<BinaryString name="Tags"></BinaryString>
+											<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 										</Properties>
 									</Item>
 								</Item>
 							</Item>
-							<Item class="TextLabel" referent="RBX73F9A3A25EEF4F4AA7EAF91E75BC67C3">
+							<Item class="TextLabel" referent="RBXE41989F2CAC34815BDEEE8BAF95E2C26">
 								<Properties>
 									<Font name="FontFace">
 										<Family><url>rbxasset://fonts/families/Arial.json</url></Family>
@@ -4685,9 +4686,9 @@ end]]></ProtectedString>
 									<bool name="DefinesCapabilities">false</bool>
 									<string name="Name">EngineOff</string>
 									<int64 name="SourceAssetId">-1</int64>
-									<BinaryString name="Tags"></BinaryString>
+									<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 								</Properties>
-								<Item class="UICorner" referent="RBXA2244B48DD7F4AC28D033774E674DB9C">
+								<Item class="UICorner" referent="RBX061A8CBA3C8D4155AFE7521148A55A29">
 									<Properties>
 										<UDim name="BottomLeftRadius">
 											<S>0.400000006</S>
@@ -4710,10 +4711,10 @@ end]]></ProtectedString>
 										<bool name="DefinesCapabilities">false</bool>
 										<string name="Name">UICorner</string>
 										<int64 name="SourceAssetId">-1</int64>
-										<BinaryString name="Tags"></BinaryString>
+										<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 									</Properties>
 								</Item>
-								<Item class="UIGradient" referent="RBX8946DB54E30C46DDA8797B9BECB9A7D9">
+								<Item class="UIGradient" referent="RBXCCC733230D4D4EA59504859C3649666A">
 									<Properties>
 										<ColorSequence name="Color">0 1 1 1 0 1 0.835294 0.835294 0.835294 0 </ColorSequence>
 										<bool name="Enabled">true</bool>
@@ -4731,11 +4732,11 @@ end]]></ProtectedString>
 										<bool name="DefinesCapabilities">false</bool>
 										<string name="Name">UIGradient</string>
 										<int64 name="SourceAssetId">-1</int64>
-										<BinaryString name="Tags"></BinaryString>
+										<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 									</Properties>
 								</Item>
 							</Item>
-							<Item class="LocalScript" referent="RBXB277DEA6548B41C9A15BA12A4A264E98">
+							<Item class="LocalScript" referent="RBXAD152EB09AE14E7081F7B5A04D889B8F">
 								<Properties>
 									<ProtectedString name="Source"><![CDATA[local gui = script.Parent.Parent
 local aircraft = gui.Aircraft.Value
@@ -4807,16 +4808,16 @@ end)]]></ProtectedString>
 									<bool name="Disabled">false</bool>
 									<Content name="LinkedSource"><null></null></Content>
 									<token name="RunContext">0</token>
-									<string name="ScriptGuid">{4B80966C-94F3-4780-8121-C905C025A1F5}</string>
+									<string name="ScriptGuid">{814AB6B7-B16E-479A-BDA2-5B2A98994B65}</string>
 									<BinaryString name="AttributesSerialize"></BinaryString>
 									<SecurityCapabilities name="Capabilities">17996771963439872</SecurityCapabilities>
 									<bool name="DefinesCapabilities">true</bool>
 									<string name="Name">System</string>
 									<int64 name="SourceAssetId">-1</int64>
-									<BinaryString name="Tags"></BinaryString>
+									<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 								</Properties>
 							</Item>
-							<Item class="Frame" referent="RBXCD66913DAF15407C99FAEC66FC0203AF">
+							<Item class="Frame" referent="RBX7FA2B0CF96BB4192AC0B3CD8F6A75345">
 								<Properties>
 									<token name="Style">0</token>
 									<bool name="Active">false</bool>
@@ -4878,9 +4879,9 @@ end)]]></ProtectedString>
 									<bool name="DefinesCapabilities">false</bool>
 									<string name="Name">Fuel</string>
 									<int64 name="SourceAssetId">-1</int64>
-									<BinaryString name="Tags"></BinaryString>
+									<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 								</Properties>
-								<Item class="Frame" referent="RBXB65B97DC69A1403CB179D3B43716610A">
+								<Item class="Frame" referent="RBX8EB75F2F7A73416DBF2A09AB3A231D6C">
 									<Properties>
 										<token name="Style">0</token>
 										<bool name="Active">false</bool>
@@ -4942,9 +4943,9 @@ end)]]></ProtectedString>
 										<bool name="DefinesCapabilities">false</bool>
 										<string name="Name">Title</string>
 										<int64 name="SourceAssetId">-1</int64>
-										<BinaryString name="Tags"></BinaryString>
+										<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 									</Properties>
-									<Item class="TextLabel" referent="RBX9E17D1E3417E4006A5E01A0B1383C26D">
+									<Item class="TextLabel" referent="RBXB81FD1E6553549AEA140CE8BAD9D6D7C">
 										<Properties>
 											<Font name="FontFace">
 												<Family><url>rbxasset://fonts/families/SourceSansPro.json</url></Family>
@@ -5036,10 +5037,10 @@ end)]]></ProtectedString>
 											<bool name="DefinesCapabilities">false</bool>
 											<string name="Name">F</string>
 											<int64 name="SourceAssetId">-1</int64>
-											<BinaryString name="Tags"></BinaryString>
+											<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 										</Properties>
 									</Item>
-									<Item class="TextLabel" referent="RBX42D8B0FCC83B438B8AAD3C40AF1049F8">
+									<Item class="TextLabel" referent="RBXBA7ADD14C7814DC1A486034982764A9F">
 										<Properties>
 											<Font name="FontFace">
 												<Family><url>rbxasset://fonts/families/SourceSansPro.json</url></Family>
@@ -5131,10 +5132,10 @@ end)]]></ProtectedString>
 											<bool name="DefinesCapabilities">false</bool>
 											<string name="Name">U</string>
 											<int64 name="SourceAssetId">-1</int64>
-											<BinaryString name="Tags"></BinaryString>
+											<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 										</Properties>
 									</Item>
-									<Item class="TextLabel" referent="RBX8543638E14E04002BF7E620A779BD4C0">
+									<Item class="TextLabel" referent="RBX47B2F0BEFA5042BA8C9EEDD4F7DC9BA6">
 										<Properties>
 											<Font name="FontFace">
 												<Family><url>rbxasset://fonts/families/SourceSansPro.json</url></Family>
@@ -5226,10 +5227,10 @@ end)]]></ProtectedString>
 											<bool name="DefinesCapabilities">false</bool>
 											<string name="Name">E</string>
 											<int64 name="SourceAssetId">-1</int64>
-											<BinaryString name="Tags"></BinaryString>
+											<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 										</Properties>
 									</Item>
-									<Item class="TextLabel" referent="RBXEC113EDDC1AF4F03AAEF8E475C257B3E">
+									<Item class="TextLabel" referent="RBX2506495D918D459F9604AB16CA85A3EC">
 										<Properties>
 											<Font name="FontFace">
 												<Family><url>rbxasset://fonts/families/SourceSansPro.json</url></Family>
@@ -5321,11 +5322,11 @@ end)]]></ProtectedString>
 											<bool name="DefinesCapabilities">false</bool>
 											<string name="Name">L</string>
 											<int64 name="SourceAssetId">-1</int64>
-											<BinaryString name="Tags"></BinaryString>
+											<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 										</Properties>
 									</Item>
 								</Item>
-								<Item class="Frame" referent="RBXA964246DB2D8468DBE381CC1FFEC68B7">
+								<Item class="Frame" referent="RBX74D39D875E00432E9A72DF70605763B9">
 									<Properties>
 										<token name="Style">0</token>
 										<bool name="Active">false</bool>
@@ -5387,9 +5388,9 @@ end)]]></ProtectedString>
 										<bool name="DefinesCapabilities">false</bool>
 										<string name="Name">Amount</string>
 										<int64 name="SourceAssetId">-1</int64>
-										<BinaryString name="Tags"></BinaryString>
+										<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 									</Properties>
-									<Item class="UICorner" referent="RBXBC492146CBEF498B9E7FB03245CBF2E9">
+									<Item class="UICorner" referent="RBX0AD697CB9FE5418EBFEE74AD7DEA0214">
 										<Properties>
 											<UDim name="BottomLeftRadius">
 												<S>0.400000006</S>
@@ -5412,10 +5413,10 @@ end)]]></ProtectedString>
 											<bool name="DefinesCapabilities">false</bool>
 											<string name="Name">UICorner</string>
 											<int64 name="SourceAssetId">-1</int64>
-											<BinaryString name="Tags"></BinaryString>
+											<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 										</Properties>
 									</Item>
-									<Item class="UIGradient" referent="RBX20B8D0645D1B4C0A94216831411C4874">
+									<Item class="UIGradient" referent="RBXB5D909B0297F4B99A723515315DCFAD8">
 										<Properties>
 											<ColorSequence name="Color">0 0.882353 0.882353 0.882353 0 0.4 1 1 1 0 0.6 1 1 1 0 1 0.882353 0.882353 0.882353 0 </ColorSequence>
 											<bool name="Enabled">true</bool>
@@ -5433,11 +5434,11 @@ end)]]></ProtectedString>
 											<bool name="DefinesCapabilities">false</bool>
 											<string name="Name">UIGradient</string>
 											<int64 name="SourceAssetId">-1</int64>
-											<BinaryString name="Tags"></BinaryString>
+											<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 										</Properties>
 									</Item>
 								</Item>
-								<Item class="UICorner" referent="RBX246C2F040C1F4A8689CF7D8AA49A60CB">
+								<Item class="UICorner" referent="RBX0EB3074686E94F009AEB37443DB51D4A">
 									<Properties>
 										<UDim name="BottomLeftRadius">
 											<S>0.400000006</S>
@@ -5460,10 +5461,10 @@ end)]]></ProtectedString>
 										<bool name="DefinesCapabilities">false</bool>
 										<string name="Name">UICorner</string>
 										<int64 name="SourceAssetId">-1</int64>
-										<BinaryString name="Tags"></BinaryString>
+										<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 									</Properties>
 								</Item>
-								<Item class="UIGradient" referent="RBXD87900AC77B6411F8F1B988A503E6930">
+								<Item class="UIGradient" referent="RBX43E9661139AA489BA94A14E47659B595">
 									<Properties>
 										<ColorSequence name="Color">0 1 1 1 0 1 0.792157 0.792157 0.792157 0 </ColorSequence>
 										<bool name="Enabled">true</bool>
@@ -5481,10 +5482,10 @@ end)]]></ProtectedString>
 										<bool name="DefinesCapabilities">false</bool>
 										<string name="Name">UIGradient</string>
 										<int64 name="SourceAssetId">-1</int64>
-										<BinaryString name="Tags"></BinaryString>
+										<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 									</Properties>
 								</Item>
-								<Item class="UIStroke" referent="RBX516E3CC3F40340AE8F53AC4935F2629E">
+								<Item class="UIStroke" referent="RBX755928E0F5BD4BDB86F8CA91A20880D3">
 									<Properties>
 										<token name="ApplyStrokeMode">1</token>
 										<UDim name="BorderOffset">
@@ -5508,12 +5509,12 @@ end)]]></ProtectedString>
 										<bool name="DefinesCapabilities">false</bool>
 										<string name="Name">UIStroke</string>
 										<int64 name="SourceAssetId">-1</int64>
-										<BinaryString name="Tags"></BinaryString>
+										<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 									</Properties>
 								</Item>
 							</Item>
 						</Item>
-						<Item class="Frame" referent="RBXECCF14F7E14A4EB9B1175BAE7787621F">
+						<Item class="Frame" referent="RBXC091D3C87BA34196AA1FF3062283C23A">
 							<Properties>
 								<token name="Style">0</token>
 								<bool name="Active">false</bool>
@@ -5575,9 +5576,9 @@ end)]]></ProtectedString>
 								<bool name="DefinesCapabilities">false</bool>
 								<string name="Name">Mobile_Controls</string>
 								<int64 name="SourceAssetId">-1</int64>
-								<BinaryString name="Tags">U0tZdGVjaF9TeXN0ZW0=</BinaryString>
+								<SharedString name="Tags">MEAPekSJQmjYC+BmYiRYig==</SharedString>
 							</Properties>
-							<Item class="Frame" referent="RBXAC7B141AAF04405B8FF718BA47F052F0">
+							<Item class="Frame" referent="RBXB7E5025379D847A0A66FA10337EAB0A0">
 								<Properties>
 									<token name="Style">0</token>
 									<bool name="Active">false</bool>
@@ -5639,9 +5640,9 @@ end)]]></ProtectedString>
 									<bool name="DefinesCapabilities">false</bool>
 									<string name="Name">Buttons</string>
 									<int64 name="SourceAssetId">-1</int64>
-									<BinaryString name="Tags"></BinaryString>
+									<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 								</Properties>
-								<Item class="TextButton" referent="RBX46DC253CDF834892B2C31AC42D70CFCC">
+								<Item class="TextButton" referent="RBX11E7E6C4ABAD4BF7B7F253525BD70AEC">
 									<Properties>
 										<Font name="FontFace">
 											<Family><url>rbxasset://fonts/families/SourceSansPro.json</url></Family>
@@ -5739,9 +5740,9 @@ end)]]></ProtectedString>
 										<bool name="DefinesCapabilities">false</bool>
 										<string name="Name">Engine</string>
 										<int64 name="SourceAssetId">-1</int64>
-										<BinaryString name="Tags"></BinaryString>
+										<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 									</Properties>
-									<Item class="UICorner" referent="RBX597528C11C7F49E3B8688CCAF498EF5E">
+									<Item class="UICorner" referent="RBXA620365973B64703960E0872D9F124EF">
 										<Properties>
 											<UDim name="BottomLeftRadius">
 												<S>0.400000006</S>
@@ -5764,10 +5765,10 @@ end)]]></ProtectedString>
 											<bool name="DefinesCapabilities">false</bool>
 											<string name="Name">UICorner</string>
 											<int64 name="SourceAssetId">-1</int64>
-											<BinaryString name="Tags"></BinaryString>
+											<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 										</Properties>
 									</Item>
-									<Item class="UIGradient" referent="RBXFC196436EDE64FDEA776FEE6CF2AE8F2">
+									<Item class="UIGradient" referent="RBX9BFB6629A1C04DE1A6FDB2D715CEAB81">
 										<Properties>
 											<ColorSequence name="Color">0 1 1 1 0 1 0.854902 0.854902 0.854902 0 </ColorSequence>
 											<bool name="Enabled">true</bool>
@@ -5785,11 +5786,11 @@ end)]]></ProtectedString>
 											<bool name="DefinesCapabilities">false</bool>
 											<string name="Name">UIGradient</string>
 											<int64 name="SourceAssetId">-1</int64>
-											<BinaryString name="Tags"></BinaryString>
+											<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 										</Properties>
 									</Item>
 								</Item>
-								<Item class="TextButton" referent="RBX645479DF2B49405DA985E4FE9EA03FCB">
+								<Item class="TextButton" referent="RBXBA13B180C59A463897284F224F95D77C">
 									<Properties>
 										<Font name="FontFace">
 											<Family><url>rbxasset://fonts/families/SourceSansPro.json</url></Family>
@@ -5887,9 +5888,9 @@ end)]]></ProtectedString>
 										<bool name="DefinesCapabilities">false</bool>
 										<string name="Name">Control</string>
 										<int64 name="SourceAssetId">-1</int64>
-										<BinaryString name="Tags"></BinaryString>
+										<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 									</Properties>
-									<Item class="UICorner" referent="RBX23902D7951924F808BA677A93A212C19">
+									<Item class="UICorner" referent="RBXAACA5F5C004E4DDB92D07CCF9EF82D3A">
 										<Properties>
 											<UDim name="BottomLeftRadius">
 												<S>0.400000006</S>
@@ -5912,10 +5913,10 @@ end)]]></ProtectedString>
 											<bool name="DefinesCapabilities">false</bool>
 											<string name="Name">UICorner</string>
 											<int64 name="SourceAssetId">-1</int64>
-											<BinaryString name="Tags"></BinaryString>
+											<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 										</Properties>
 									</Item>
-									<Item class="UIGradient" referent="RBX0FAECECAD5BE42139D68C5361FD67721">
+									<Item class="UIGradient" referent="RBX5940FAA5F1224F8E96283D46B6D39721">
 										<Properties>
 											<ColorSequence name="Color">0 1 1 1 0 1 0.854902 0.854902 0.854902 0 </ColorSequence>
 											<bool name="Enabled">true</bool>
@@ -5933,11 +5934,11 @@ end)]]></ProtectedString>
 											<bool name="DefinesCapabilities">false</bool>
 											<string name="Name">UIGradient</string>
 											<int64 name="SourceAssetId">-1</int64>
-											<BinaryString name="Tags"></BinaryString>
+											<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 										</Properties>
 									</Item>
 								</Item>
-								<Item class="TextButton" referent="RBXF6B92D462D0C4A8AB07DB3DA14211683">
+								<Item class="TextButton" referent="RBX18520BF7FD664CD3BD8ACD7CA9FC1D28">
 									<Properties>
 										<Font name="FontFace">
 											<Family><url>rbxasset://fonts/families/SourceSansPro.json</url></Family>
@@ -6035,9 +6036,9 @@ end)]]></ProtectedString>
 										<bool name="DefinesCapabilities">false</bool>
 										<string name="Name">LandingGear</string>
 										<int64 name="SourceAssetId">-1</int64>
-										<BinaryString name="Tags"></BinaryString>
+										<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 									</Properties>
-									<Item class="UICorner" referent="RBX1E0B11C057274BC2A685D9F0B9137AF6">
+									<Item class="UICorner" referent="RBX80D05BCC62F54AB2916781149CA0129D">
 										<Properties>
 											<UDim name="BottomLeftRadius">
 												<S>0.400000006</S>
@@ -6060,10 +6061,10 @@ end)]]></ProtectedString>
 											<bool name="DefinesCapabilities">false</bool>
 											<string name="Name">UICorner</string>
 											<int64 name="SourceAssetId">-1</int64>
-											<BinaryString name="Tags"></BinaryString>
+											<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 										</Properties>
 									</Item>
-									<Item class="UIGradient" referent="RBX3A8C5E7661534C86BB19B6ED3529F1DA">
+									<Item class="UIGradient" referent="RBXF2E53C35B20C48FE8BE054DE5DD32D36">
 										<Properties>
 											<ColorSequence name="Color">0 1 1 1 0 1 0.854902 0.854902 0.854902 0 </ColorSequence>
 											<bool name="Enabled">true</bool>
@@ -6081,12 +6082,12 @@ end)]]></ProtectedString>
 											<bool name="DefinesCapabilities">false</bool>
 											<string name="Name">UIGradient</string>
 											<int64 name="SourceAssetId">-1</int64>
-											<BinaryString name="Tags"></BinaryString>
+											<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 										</Properties>
 									</Item>
 								</Item>
 							</Item>
-							<Item class="TextButton" referent="RBX3CC9496FB169487DA1A17CFAEDA43863">
+							<Item class="TextButton" referent="RBX790D40B91D7541A983590F66D7117F59">
 								<Properties>
 									<Font name="FontFace">
 										<Family><url>rbxasset://fonts/families/SourceSansPro.json</url></Family>
@@ -6185,9 +6186,9 @@ end)]]></ProtectedString>
 									<bool name="DefinesCapabilities">false</bool>
 									<string name="Name">Thumbstick</string>
 									<int64 name="SourceAssetId">-1</int64>
-									<BinaryString name="Tags"></BinaryString>
+									<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 								</Properties>
-								<Item class="Frame" referent="RBX97DF1B07049C4806A1C9B128D8FD4585">
+								<Item class="Frame" referent="RBX74E04A48ECC64605A0EF503FE769B8C0">
 									<Properties>
 										<token name="Style">0</token>
 										<bool name="Active">false</bool>
@@ -6249,9 +6250,9 @@ end)]]></ProtectedString>
 										<bool name="DefinesCapabilities">false</bool>
 										<string name="Name">Knob</string>
 										<int64 name="SourceAssetId">-1</int64>
-										<BinaryString name="Tags"></BinaryString>
+										<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 									</Properties>
-									<Item class="UICorner" referent="RBXA6FFD8C60A7E473CBB0FAD95B64C88FD">
+									<Item class="UICorner" referent="RBXF14A39F6E17C4A7D985176E3EC0DDB32">
 										<Properties>
 											<UDim name="BottomLeftRadius">
 												<S>1</S>
@@ -6274,10 +6275,10 @@ end)]]></ProtectedString>
 											<bool name="DefinesCapabilities">false</bool>
 											<string name="Name">UICorner</string>
 											<int64 name="SourceAssetId">-1</int64>
-											<BinaryString name="Tags"></BinaryString>
+											<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 										</Properties>
 									</Item>
-									<Item class="UIGradient" referent="RBXBAA08A32FEE64672960991EE4D56E143">
+									<Item class="UIGradient" referent="RBXE80398AFBDF34281854591AA918360A7">
 										<Properties>
 											<ColorSequence name="Color">0 0.843137 0.843137 0.843137 0 0.4 1 1 1 0 0.6 1 1 1 0 1 0.843137 0.843137 0.843137 0 </ColorSequence>
 											<bool name="Enabled">true</bool>
@@ -6295,11 +6296,11 @@ end)]]></ProtectedString>
 											<bool name="DefinesCapabilities">false</bool>
 											<string name="Name">UIGradient</string>
 											<int64 name="SourceAssetId">-1</int64>
-											<BinaryString name="Tags"></BinaryString>
+											<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 										</Properties>
 									</Item>
 								</Item>
-								<Item class="UICorner" referent="RBX10ADDFB504764D18A5813045EBEA6FDD">
+								<Item class="UICorner" referent="RBX0C1BB946122149AB847D1992F58664AF">
 									<Properties>
 										<UDim name="BottomLeftRadius">
 											<S>1</S>
@@ -6322,10 +6323,10 @@ end)]]></ProtectedString>
 										<bool name="DefinesCapabilities">false</bool>
 										<string name="Name">UICorner</string>
 										<int64 name="SourceAssetId">-1</int64>
-										<BinaryString name="Tags"></BinaryString>
+										<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 									</Properties>
 								</Item>
-								<Item class="UIGradient" referent="RBXF980822E2BF745AD81B9058FCAC28B27">
+								<Item class="UIGradient" referent="RBXE99F91625D524FC9B01C6E7A1893EE2C">
 									<Properties>
 										<ColorSequence name="Color">0 1 1 1 0 1 0.792157 0.792157 0.792157 0 </ColorSequence>
 										<bool name="Enabled">true</bool>
@@ -6343,10 +6344,10 @@ end)]]></ProtectedString>
 										<bool name="DefinesCapabilities">false</bool>
 										<string name="Name">UIGradient</string>
 										<int64 name="SourceAssetId">-1</int64>
-										<BinaryString name="Tags"></BinaryString>
+										<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 									</Properties>
 								</Item>
-								<Item class="UIStroke" referent="RBX78283DC1012346228038ED785AE17715">
+								<Item class="UIStroke" referent="RBXF241D308756D4B698AD75E0A287C1A0D">
 									<Properties>
 										<token name="ApplyStrokeMode">1</token>
 										<UDim name="BorderOffset">
@@ -6370,11 +6371,11 @@ end)]]></ProtectedString>
 										<bool name="DefinesCapabilities">false</bool>
 										<string name="Name">UIStroke</string>
 										<int64 name="SourceAssetId">-1</int64>
-										<BinaryString name="Tags"></BinaryString>
+										<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 									</Properties>
 								</Item>
 							</Item>
-							<Item class="TextButton" referent="RBXDD6B61F791184B4987EF2E2180C8E9CC">
+							<Item class="TextButton" referent="RBX360D48C45850486EA616E47473F4765A">
 								<Properties>
 									<Font name="FontFace">
 										<Family><url>rbxasset://fonts/families/SourceSansPro.json</url></Family>
@@ -6473,9 +6474,9 @@ end)]]></ProtectedString>
 									<bool name="DefinesCapabilities">false</bool>
 									<string name="Name">Collective</string>
 									<int64 name="SourceAssetId">-1</int64>
-									<BinaryString name="Tags"></BinaryString>
+									<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 								</Properties>
-								<Item class="Frame" referent="RBX4B0C799F5D98456B8743564B00134F36">
+								<Item class="Frame" referent="RBXDFBA6367DDF2449E82D22AA433264377">
 									<Properties>
 										<token name="Style">0</token>
 										<bool name="Active">false</bool>
@@ -6537,9 +6538,9 @@ end)]]></ProtectedString>
 										<bool name="DefinesCapabilities">false</bool>
 										<string name="Name">Knob</string>
 										<int64 name="SourceAssetId">-1</int64>
-										<BinaryString name="Tags"></BinaryString>
+										<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 									</Properties>
-									<Item class="UICorner" referent="RBX2AF71EBC5946401EAD9F2291CA4A7A60">
+									<Item class="UICorner" referent="RBX8245DF8F83814E1797C32BE89A7E8531">
 										<Properties>
 											<UDim name="BottomLeftRadius">
 												<S>1</S>
@@ -6562,10 +6563,10 @@ end)]]></ProtectedString>
 											<bool name="DefinesCapabilities">false</bool>
 											<string name="Name">UICorner</string>
 											<int64 name="SourceAssetId">-1</int64>
-											<BinaryString name="Tags"></BinaryString>
+											<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 										</Properties>
 									</Item>
-									<Item class="UIGradient" referent="RBXC02D8F850AEA4DB482CC6FAC442B89C6">
+									<Item class="UIGradient" referent="RBX2AF6C6A0C665475AAB0369DCF28AD4BF">
 										<Properties>
 											<ColorSequence name="Color">0 0.843137 0.843137 0.843137 0 0.4 1 1 1 0 0.6 1 1 1 0 1 0.843137 0.843137 0.843137 0 </ColorSequence>
 											<bool name="Enabled">true</bool>
@@ -6583,11 +6584,11 @@ end)]]></ProtectedString>
 											<bool name="DefinesCapabilities">false</bool>
 											<string name="Name">UIGradient</string>
 											<int64 name="SourceAssetId">-1</int64>
-											<BinaryString name="Tags"></BinaryString>
+											<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 										</Properties>
 									</Item>
 								</Item>
-								<Item class="TextLabel" referent="RBXAC3F3A8D799746348C844E8C0DC50737">
+								<Item class="TextLabel" referent="RBXC8276E19413442CA9934E2E297228980">
 									<Properties>
 										<Font name="FontFace">
 											<Family><url>rbxasset://fonts/families/SourceSansPro.json</url></Family>
@@ -6679,11 +6680,11 @@ end)]]></ProtectedString>
 										<bool name="DefinesCapabilities">false</bool>
 										<string name="Name">Note</string>
 										<int64 name="SourceAssetId">-1</int64>
-										<BinaryString name="Tags"></BinaryString>
+										<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 									</Properties>
 								</Item>
 							</Item>
-							<Item class="TextButton" referent="RBX335383C4AA044850A50A783A0F5BE18C">
+							<Item class="TextButton" referent="RBX1A55C7742660447D9283A35B7496ADA0">
 								<Properties>
 									<Font name="FontFace">
 										<Family><url>rbxasset://fonts/families/SourceSansPro.json</url></Family>
@@ -6782,9 +6783,9 @@ end)]]></ProtectedString>
 									<bool name="DefinesCapabilities">false</bool>
 									<string name="Name">Roll</string>
 									<int64 name="SourceAssetId">-1</int64>
-									<BinaryString name="Tags"></BinaryString>
+									<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 								</Properties>
-								<Item class="Frame" referent="RBX8A84A9E2B84A4D668C2924992595EDB1">
+								<Item class="Frame" referent="RBX3994DE2015494F328595DAF4DD3CBFD8">
 									<Properties>
 										<token name="Style">0</token>
 										<bool name="Active">false</bool>
@@ -6846,9 +6847,9 @@ end)]]></ProtectedString>
 										<bool name="DefinesCapabilities">false</bool>
 										<string name="Name">Knob</string>
 										<int64 name="SourceAssetId">-1</int64>
-										<BinaryString name="Tags"></BinaryString>
+										<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 									</Properties>
-									<Item class="UICorner" referent="RBX54D5DF27E81E4076AA9AF98809CF2937">
+									<Item class="UICorner" referent="RBXBE5977F3B20E4F88A0DB15090ED18F54">
 										<Properties>
 											<UDim name="BottomLeftRadius">
 												<S>1</S>
@@ -6871,10 +6872,10 @@ end)]]></ProtectedString>
 											<bool name="DefinesCapabilities">false</bool>
 											<string name="Name">UICorner</string>
 											<int64 name="SourceAssetId">-1</int64>
-											<BinaryString name="Tags"></BinaryString>
+											<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 										</Properties>
 									</Item>
-									<Item class="UIGradient" referent="RBXD44FADE532944D9385E25932D5F51C7C">
+									<Item class="UIGradient" referent="RBX887FC7EBDF32411FBD09EAD6BCBC54D1">
 										<Properties>
 											<ColorSequence name="Color">0 0.843137 0.843137 0.843137 0 0.4 1 1 1 0 0.6 1 1 1 0 1 0.843137 0.843137 0.843137 0 </ColorSequence>
 											<bool name="Enabled">true</bool>
@@ -6892,11 +6893,11 @@ end)]]></ProtectedString>
 											<bool name="DefinesCapabilities">false</bool>
 											<string name="Name">UIGradient</string>
 											<int64 name="SourceAssetId">-1</int64>
-											<BinaryString name="Tags"></BinaryString>
+											<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 										</Properties>
 									</Item>
 								</Item>
-								<Item class="UICorner" referent="RBX07FCDF3EBD0F491898F6E6FF28466169">
+								<Item class="UICorner" referent="RBX61B3EBF6F4FE457C9E6B2EBAA0FAF434">
 									<Properties>
 										<UDim name="BottomLeftRadius">
 											<S>1</S>
@@ -6919,10 +6920,10 @@ end)]]></ProtectedString>
 										<bool name="DefinesCapabilities">false</bool>
 										<string name="Name">UICorner</string>
 										<int64 name="SourceAssetId">-1</int64>
-										<BinaryString name="Tags"></BinaryString>
+										<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 									</Properties>
 								</Item>
-								<Item class="UIGradient" referent="RBX6A23A4D1B8BC40799E940BD15FA19E30">
+								<Item class="UIGradient" referent="RBX4FA196A83A9A4C1799375150B7749179">
 									<Properties>
 										<ColorSequence name="Color">0 1 1 1 0 1 0.792157 0.792157 0.792157 0 </ColorSequence>
 										<bool name="Enabled">true</bool>
@@ -6940,10 +6941,10 @@ end)]]></ProtectedString>
 										<bool name="DefinesCapabilities">false</bool>
 										<string name="Name">UIGradient</string>
 										<int64 name="SourceAssetId">-1</int64>
-										<BinaryString name="Tags"></BinaryString>
+										<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 									</Properties>
 								</Item>
-								<Item class="UIStroke" referent="RBXD9BCAF7122B149C4BE428929680F855F">
+								<Item class="UIStroke" referent="RBX2D82E746A6C34697B5AEDE64E975AC31">
 									<Properties>
 										<token name="ApplyStrokeMode">1</token>
 										<UDim name="BorderOffset">
@@ -6967,11 +6968,11 @@ end)]]></ProtectedString>
 										<bool name="DefinesCapabilities">false</bool>
 										<string name="Name">UIStroke</string>
 										<int64 name="SourceAssetId">-1</int64>
-										<BinaryString name="Tags"></BinaryString>
+										<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 									</Properties>
 								</Item>
 							</Item>
-							<Item class="LocalScript" referent="RBXCCC0861839924BFDB798D2E33F3941B5">
+							<Item class="LocalScript" referent="RBXCF348AFAC8BA4BC3B0B5E3D02C4AEE5B">
 								<Properties>
 									<ProtectedString name="Source"><![CDATA[------------ Mobile Control Module ------------
 local UIS = game:GetService("UserInputService")
@@ -7245,17 +7246,17 @@ end)]]></ProtectedString>
 									<bool name="Disabled">false</bool>
 									<Content name="LinkedSource"><null></null></Content>
 									<token name="RunContext">0</token>
-									<string name="ScriptGuid">{643AEBAC-2CF6-496F-BE53-D6CCFC7FE7E5}</string>
+									<string name="ScriptGuid">{88A7A685-97EF-429D-8E87-084696EEC491}</string>
 									<BinaryString name="AttributesSerialize"></BinaryString>
 									<SecurityCapabilities name="Capabilities">17996771963439872</SecurityCapabilities>
 									<bool name="DefinesCapabilities">true</bool>
 									<string name="Name">Controller</string>
 									<int64 name="SourceAssetId">-1</int64>
-									<BinaryString name="Tags">U0tZdGVjaF9TeXN0ZW0=</BinaryString>
+									<SharedString name="Tags">MEAPekSJQmjYC+BmYiRYig==</SharedString>
 								</Properties>
 							</Item>
 						</Item>
-						<Item class="Frame" referent="RBX431AB825D3214336B887DBF3C65DB47E">
+						<Item class="Frame" referent="RBX758204BF683840A59E3891D568DC6F25">
 							<Properties>
 								<token name="Style">0</token>
 								<bool name="Active">false</bool>
@@ -7317,9 +7318,9 @@ end)]]></ProtectedString>
 								<bool name="DefinesCapabilities">false</bool>
 								<string name="Name">Anti_Jump</string>
 								<int64 name="SourceAssetId">-1</int64>
-								<BinaryString name="Tags"></BinaryString>
+								<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 							</Properties>
-							<Item class="UIGradient" referent="RBX8BA9DE57ADA44EE8B11E9D263A379C28">
+							<Item class="UIGradient" referent="RBX49D7899A52F845299A9AD4BE7BB7891E">
 								<Properties>
 									<ColorSequence name="Color">0 1 1 1 0 1 1 1 1 0 </ColorSequence>
 									<bool name="Enabled">true</bool>
@@ -7337,10 +7338,10 @@ end)]]></ProtectedString>
 									<bool name="DefinesCapabilities">false</bool>
 									<string name="Name">UIGradient</string>
 									<int64 name="SourceAssetId">-1</int64>
-									<BinaryString name="Tags"></BinaryString>
+									<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 								</Properties>
 							</Item>
-							<Item class="TextLabel" referent="RBX5C7C0718B61849938BE5A5B76F88BAFC">
+							<Item class="TextLabel" referent="RBXD7AF5E4A9CB44AE08F8BB4C2ADFCCFC4">
 								<Properties>
 									<Font name="FontFace">
 										<Family><url>rbxasset://fonts/families/Zekton.json</url></Family>
@@ -7433,19 +7434,19 @@ end)]]></ProtectedString>
 									<bool name="DefinesCapabilities">false</bool>
 									<string name="Name">Title</string>
 									<int64 name="SourceAssetId">-1</int64>
-									<BinaryString name="Tags"></BinaryString>
+									<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 								</Properties>
 							</Item>
-							<Item class="Folder" referent="RBX3F7AC196CC2B4EA995A13B8255BFCA98">
+							<Item class="Folder" referent="RBXF65468CB1B1A45F499A2496FC61D90B2">
 								<Properties>
 									<BinaryString name="AttributesSerialize"></BinaryString>
 									<SecurityCapabilities name="Capabilities">17996771963439872</SecurityCapabilities>
 									<bool name="DefinesCapabilities">true</bool>
 									<string name="Name">Scripts</string>
 									<int64 name="SourceAssetId">-1</int64>
-									<BinaryString name="Tags"></BinaryString>
+									<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 								</Properties>
-								<Item class="LocalScript" referent="RBX1C304E7B736D419F8D6BF5B4B8ED826A">
+								<Item class="LocalScript" referent="RBXEAF28880E083404EB735591AC6A049DE">
 									<Properties>
 										<ProtectedString name="Source"><![CDATA[-- Anti-jump --
 local player = game:GetService("Players").LocalPlayer
@@ -7514,16 +7515,16 @@ mobile_Button.MouseLeave:Connect(cancel)]]></ProtectedString>
 										<bool name="Disabled">false</bool>
 										<Content name="LinkedSource"><null></null></Content>
 										<token name="RunContext">0</token>
-										<string name="ScriptGuid">{507C186B-D766-4973-8A1A-5E36BDD3D8CC}</string>
+										<string name="ScriptGuid">{58606F35-47E8-4D69-9147-0A2D4C158A7F}</string>
 										<BinaryString name="AttributesSerialize"></BinaryString>
 										<SecurityCapabilities name="Capabilities">17996771963439872</SecurityCapabilities>
 										<bool name="DefinesCapabilities">true</bool>
 										<string name="Name">Client</string>
 										<int64 name="SourceAssetId">-1</int64>
-										<BinaryString name="Tags"></BinaryString>
+										<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 									</Properties>
 								</Item>
-								<Item class="Script" referent="RBXCBCF4D77DAF744B5943665A0E3C8F547">
+								<Item class="Script" referent="RBX00755423CFC946B5A5067B41CC578122">
 									<Properties>
 										<ProtectedString name="Source"><![CDATA[local defaultJumpHeight, defaultJumpPower = 0, 0
 
@@ -7544,27 +7545,27 @@ end)]]></ProtectedString>
 										<bool name="Disabled">false</bool>
 										<Content name="LinkedSource"><null></null></Content>
 										<token name="RunContext">0</token>
-										<string name="ScriptGuid">{860E868A-C520-49ED-984C-D9C2589A0FE3}</string>
+										<string name="ScriptGuid">{FF5E3377-CCC8-43A8-83CF-49FEE940BE5E}</string>
 										<BinaryString name="AttributesSerialize"></BinaryString>
 										<SecurityCapabilities name="Capabilities">17996771963439872</SecurityCapabilities>
 										<bool name="DefinesCapabilities">true</bool>
 										<string name="Name">Server</string>
 										<int64 name="SourceAssetId">-1</int64>
-										<BinaryString name="Tags"></BinaryString>
+										<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 									</Properties>
 								</Item>
-								<Item class="RemoteEvent" referent="RBX7CD372DA15EF40118AC002A472E8D55B">
+								<Item class="RemoteEvent" referent="RBX340E6DA683F04DD89864A76C6786FA9F">
 									<Properties>
 										<BinaryString name="AttributesSerialize"></BinaryString>
 										<SecurityCapabilities name="Capabilities">17996771963439872</SecurityCapabilities>
 										<bool name="DefinesCapabilities">true</bool>
 										<string name="Name">Remote</string>
 										<int64 name="SourceAssetId">-1</int64>
-										<BinaryString name="Tags"></BinaryString>
+										<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 									</Properties>
 								</Item>
 							</Item>
-							<Item class="TextButton" referent="RBX4434899AE08C49EA820A877A339576D3">
+							<Item class="TextButton" referent="RBX485F43B3F5D5435FBF271ED109C29C74">
 								<Properties>
 									<Font name="FontFace">
 										<Family><url>rbxasset://fonts/families/Zekton.json</url></Family>
@@ -7662,9 +7663,9 @@ end)]]></ProtectedString>
 									<bool name="DefinesCapabilities">false</bool>
 									<string name="Name">Exit_Button</string>
 									<int64 name="SourceAssetId">-1</int64>
-									<BinaryString name="Tags"></BinaryString>
+									<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 								</Properties>
-								<Item class="UICorner" referent="RBX095D0136043A4E51BB6C184E236E1582">
+								<Item class="UICorner" referent="RBXAD24CD5C3BA4476E890E5DD54C19248A">
 									<Properties>
 										<UDim name="BottomLeftRadius">
 											<S>1</S>
@@ -7687,10 +7688,10 @@ end)]]></ProtectedString>
 										<bool name="DefinesCapabilities">false</bool>
 										<string name="Name">UICorner</string>
 										<int64 name="SourceAssetId">-1</int64>
-										<BinaryString name="Tags"></BinaryString>
+										<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 									</Properties>
 								</Item>
-								<Item class="UIStroke" referent="RBX2616AD2B62884D6E948BAF24895E68BA">
+								<Item class="UIStroke" referent="RBXE355E962456E4B54BA17CBE8B32D35F3">
 									<Properties>
 										<token name="ApplyStrokeMode">1</token>
 										<UDim name="BorderOffset">
@@ -7714,10 +7715,10 @@ end)]]></ProtectedString>
 										<bool name="DefinesCapabilities">false</bool>
 										<string name="Name">UIStroke</string>
 										<int64 name="SourceAssetId">-1</int64>
-										<BinaryString name="Tags"></BinaryString>
+										<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 									</Properties>
 								</Item>
-								<Item class="UIGradient" referent="RBXBBCBE119350845A9A8D3AFDD30FE4242">
+								<Item class="UIGradient" referent="RBX3F78A3952EEE467D95C6DBAE99EEF5B2">
 									<Properties>
 										<ColorSequence name="Color">0 1 1 1 0 1 0.792157 0.792157 0.792157 0 </ColorSequence>
 										<bool name="Enabled">true</bool>
@@ -7735,12 +7736,12 @@ end)]]></ProtectedString>
 										<bool name="DefinesCapabilities">false</bool>
 										<string name="Name">UIGradient</string>
 										<int64 name="SourceAssetId">-1</int64>
-										<BinaryString name="Tags"></BinaryString>
+										<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 									</Properties>
 								</Item>
 							</Item>
 						</Item>
-						<Item class="Frame" referent="RBX14AE3F03B633490EAB74DFE58598AFD1">
+						<Item class="Frame" referent="RBXC79D276AFAF44003A54B5039050C05D4">
 							<Properties>
 								<token name="Style">0</token>
 								<bool name="Active">false</bool>
@@ -7802,9 +7803,9 @@ end)]]></ProtectedString>
 								<bool name="DefinesCapabilities">false</bool>
 								<string name="Name">Gamepad_Controls</string>
 								<int64 name="SourceAssetId">-1</int64>
-								<BinaryString name="Tags">U0tZdGVjaF9TeXN0ZW0=</BinaryString>
+								<SharedString name="Tags">MEAPekSJQmjYC+BmYiRYig==</SharedString>
 							</Properties>
-							<Item class="Frame" referent="RBXF6384D8228804DD6ABFEBFD042A8A3D4">
+							<Item class="Frame" referent="RBX099369BD83E54DBFB1866EF532C0F6A7">
 								<Properties>
 									<token name="Style">0</token>
 									<bool name="Active">false</bool>
@@ -7866,9 +7867,9 @@ end)]]></ProtectedString>
 									<bool name="DefinesCapabilities">false</bool>
 									<string name="Name">Guide</string>
 									<int64 name="SourceAssetId">-1</int64>
-									<BinaryString name="Tags"></BinaryString>
+									<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 								</Properties>
-								<Item class="UICorner" referent="RBX885346552E48408CAB689BCBE45ECB1B">
+								<Item class="UICorner" referent="RBX4050A30F08B24495A77DDB43BDB4453B">
 									<Properties>
 										<UDim name="BottomLeftRadius">
 											<S>0</S>
@@ -7891,10 +7892,10 @@ end)]]></ProtectedString>
 										<bool name="DefinesCapabilities">false</bool>
 										<string name="Name">UICorner</string>
 										<int64 name="SourceAssetId">-1</int64>
-										<BinaryString name="Tags"></BinaryString>
+										<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 									</Properties>
 								</Item>
-								<Item class="UIGradient" referent="RBXAF83C79671514A11908CD55832B6C8A1">
+								<Item class="UIGradient" referent="RBX5B5989021D814AE5B98009F9B8A332F2">
 									<Properties>
 										<ColorSequence name="Color">0 1 1 1 0 1 0.898039 0.898039 0.898039 0 </ColorSequence>
 										<bool name="Enabled">true</bool>
@@ -7912,10 +7913,10 @@ end)]]></ProtectedString>
 										<bool name="DefinesCapabilities">false</bool>
 										<string name="Name">UIGradient</string>
 										<int64 name="SourceAssetId">-1</int64>
-										<BinaryString name="Tags"></BinaryString>
+										<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 									</Properties>
 								</Item>
-								<Item class="UIStroke" referent="RBX8105D417563C41C0AF2F352EEEABC7A3">
+								<Item class="UIStroke" referent="RBX209E65A0BE2F4623A21B1BD5D49A63C0">
 									<Properties>
 										<token name="ApplyStrokeMode">1</token>
 										<UDim name="BorderOffset">
@@ -7939,10 +7940,10 @@ end)]]></ProtectedString>
 										<bool name="DefinesCapabilities">false</bool>
 										<string name="Name">UIStroke</string>
 										<int64 name="SourceAssetId">-1</int64>
-										<BinaryString name="Tags"></BinaryString>
+										<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 									</Properties>
 								</Item>
-								<Item class="Frame" referent="RBX48AAD6B29F2B4636800EF7AA13119C24">
+								<Item class="Frame" referent="RBX7C3EF533706943FB9943EC8AD2755BE5">
 									<Properties>
 										<token name="Style">0</token>
 										<bool name="Active">false</bool>
@@ -8004,9 +8005,9 @@ end)]]></ProtectedString>
 										<bool name="DefinesCapabilities">false</bool>
 										<string name="Name">Gamepad</string>
 										<int64 name="SourceAssetId">-1</int64>
-										<BinaryString name="Tags"></BinaryString>
+										<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 									</Properties>
-									<Item class="ImageLabel" referent="RBXD44F26696FAA456692F0419BB8CD7DE8">
+									<Item class="ImageLabel" referent="RBX8F4A482485C04432BF4E2F945B9F6F98">
 										<Properties>
 											<Content name="Image"><url>rbxassetid://87247905699520</url></Content>
 											<Color3 name="ImageColor3">
@@ -8101,10 +8102,10 @@ end)]]></ProtectedString>
 											<bool name="DefinesCapabilities">false</bool>
 											<string name="Name">Controller</string>
 											<int64 name="SourceAssetId">-1</int64>
-											<BinaryString name="Tags"></BinaryString>
+											<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 										</Properties>
 									</Item>
-									<Item class="Frame" referent="RBX0908353C97184DD594A9AEF48C829EFF">
+									<Item class="Frame" referent="RBX272F2838EDE94987A29C13464E356360">
 										<Properties>
 											<token name="Style">0</token>
 											<bool name="Active">false</bool>
@@ -8166,9 +8167,9 @@ end)]]></ProtectedString>
 											<bool name="DefinesCapabilities">false</bool>
 											<string name="Name">Right</string>
 											<int64 name="SourceAssetId">-1</int64>
-											<BinaryString name="Tags"></BinaryString>
+											<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 										</Properties>
-										<Item class="TextLabel" referent="RBX65D43851E6C347AF91F8F509722BA771">
+										<Item class="TextLabel" referent="RBX6DEFECE764764306B8E0A62707036738">
 											<Properties>
 												<Font name="FontFace">
 													<Family><url>rbxasset://fonts/families/SourceSansPro.json</url></Family>
@@ -8261,9 +8262,9 @@ end)]]></ProtectedString>
 												<bool name="DefinesCapabilities">false</bool>
 												<string name="Name">A</string>
 												<int64 name="SourceAssetId">-1</int64>
-												<BinaryString name="Tags"></BinaryString>
+												<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 											</Properties>
-											<Item class="Frame" referent="RBXB1CAD8888D5F40D1B407C8D94FBD497E">
+											<Item class="Frame" referent="RBXCF414FDB293A4D4184229EE8FB04BC37">
 												<Properties>
 													<token name="Style">0</token>
 													<bool name="Active">false</bool>
@@ -8325,11 +8326,11 @@ end)]]></ProtectedString>
 													<bool name="DefinesCapabilities">false</bool>
 													<string name="Name">Line</string>
 													<int64 name="SourceAssetId">-1</int64>
-													<BinaryString name="Tags"></BinaryString>
+													<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 												</Properties>
 											</Item>
 										</Item>
-										<Item class="TextLabel" referent="RBXF37A146211C64E7F931793788D5CA737">
+										<Item class="TextLabel" referent="RBX5E94388D9DB449D99A5A986EC4F4CC37">
 											<Properties>
 												<Font name="FontFace">
 													<Family><url>rbxasset://fonts/families/SourceSansPro.json</url></Family>
@@ -8422,9 +8423,9 @@ end)]]></ProtectedString>
 												<bool name="DefinesCapabilities">false</bool>
 												<string name="Name">X</string>
 												<int64 name="SourceAssetId">-1</int64>
-												<BinaryString name="Tags"></BinaryString>
+												<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 											</Properties>
-											<Item class="Frame" referent="RBX23B00505D58B4BCBBD56AB1EBC77CCE1">
+											<Item class="Frame" referent="RBXE10B0E8EE2234112B9C68CE5543A4E5C">
 												<Properties>
 													<token name="Style">0</token>
 													<bool name="Active">false</bool>
@@ -8486,11 +8487,11 @@ end)]]></ProtectedString>
 													<bool name="DefinesCapabilities">false</bool>
 													<string name="Name">Line</string>
 													<int64 name="SourceAssetId">-1</int64>
-													<BinaryString name="Tags"></BinaryString>
+													<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 												</Properties>
 											</Item>
 										</Item>
-										<Item class="TextLabel" referent="RBX6A2AC0296AC04156AD2A4123D5E5A439">
+										<Item class="TextLabel" referent="RBXC703D96A3D2F4FFC985303AD92E40337">
 											<Properties>
 												<Font name="FontFace">
 													<Family><url>rbxasset://fonts/families/SourceSansPro.json</url></Family>
@@ -8583,9 +8584,9 @@ end)]]></ProtectedString>
 												<bool name="DefinesCapabilities">false</bool>
 												<string name="Name">Y</string>
 												<int64 name="SourceAssetId">-1</int64>
-												<BinaryString name="Tags"></BinaryString>
+												<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 											</Properties>
-											<Item class="Frame" referent="RBX405C61CE34A44773B16CF7C9FEF9D87F">
+											<Item class="Frame" referent="RBX22FF381C44514E9680F91972DC09A3B4">
 												<Properties>
 													<token name="Style">0</token>
 													<bool name="Active">false</bool>
@@ -8647,11 +8648,11 @@ end)]]></ProtectedString>
 													<bool name="DefinesCapabilities">false</bool>
 													<string name="Name">Line</string>
 													<int64 name="SourceAssetId">-1</int64>
-													<BinaryString name="Tags"></BinaryString>
+													<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 												</Properties>
 											</Item>
 										</Item>
-										<Item class="TextLabel" referent="RBX4335CC018BEE47A596937C82CD4E9B12">
+										<Item class="TextLabel" referent="RBXF546E0A309A942EFAA4E5F7812A36CD6">
 											<Properties>
 												<Font name="FontFace">
 													<Family><url>rbxasset://fonts/families/SourceSansPro.json</url></Family>
@@ -8744,9 +8745,9 @@ end)]]></ProtectedString>
 												<bool name="DefinesCapabilities">false</bool>
 												<string name="Name">R1</string>
 												<int64 name="SourceAssetId">-1</int64>
-												<BinaryString name="Tags"></BinaryString>
+												<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 											</Properties>
-											<Item class="Frame" referent="RBX3F5B0AEA291543AAAA7C476E420A37A1">
+											<Item class="Frame" referent="RBX32A6CD95D1A842C7A4A4BBE0EDCD298A">
 												<Properties>
 													<token name="Style">0</token>
 													<bool name="Active">false</bool>
@@ -8808,9 +8809,9 @@ end)]]></ProtectedString>
 													<bool name="DefinesCapabilities">false</bool>
 													<string name="Name">Line</string>
 													<int64 name="SourceAssetId">-1</int64>
-													<BinaryString name="Tags"></BinaryString>
+													<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 												</Properties>
-												<Item class="Frame" referent="RBX3EBAC554FFD24BC5869170A7AD67C1DD">
+												<Item class="Frame" referent="RBXE953DA215FC04740B4115BEB96CBF408">
 													<Properties>
 														<token name="Style">0</token>
 														<bool name="Active">false</bool>
@@ -8872,12 +8873,12 @@ end)]]></ProtectedString>
 														<bool name="DefinesCapabilities">false</bool>
 														<string name="Name">Line</string>
 														<int64 name="SourceAssetId">-1</int64>
-														<BinaryString name="Tags"></BinaryString>
+														<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 													</Properties>
 												</Item>
 											</Item>
 										</Item>
-										<Item class="TextLabel" referent="RBX7DE66EC0284F4CAAAC1EA9298DA42468">
+										<Item class="TextLabel" referent="RBXBC4AD7E966C64390B08BBCD592FEC0CE">
 											<Properties>
 												<Font name="FontFace">
 													<Family><url>rbxasset://fonts/families/SourceSansPro.json</url></Family>
@@ -8970,9 +8971,9 @@ end)]]></ProtectedString>
 												<bool name="DefinesCapabilities">false</bool>
 												<string name="Name">R2</string>
 												<int64 name="SourceAssetId">-1</int64>
-												<BinaryString name="Tags"></BinaryString>
+												<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 											</Properties>
-											<Item class="Frame" referent="RBX626CC74C28D443428CB278EA9D6CB731">
+											<Item class="Frame" referent="RBXA62CB58C5189489791605C91893C2485">
 												<Properties>
 													<token name="Style">0</token>
 													<bool name="Active">false</bool>
@@ -9034,9 +9035,9 @@ end)]]></ProtectedString>
 													<bool name="DefinesCapabilities">false</bool>
 													<string name="Name">Line</string>
 													<int64 name="SourceAssetId">-1</int64>
-													<BinaryString name="Tags"></BinaryString>
+													<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 												</Properties>
-												<Item class="Frame" referent="RBX4E2D7C8B7357479386B3FB74298B9A3F">
+												<Item class="Frame" referent="RBXA0D0B44D2BD34D7AB16A8A8F8CFD225F">
 													<Properties>
 														<token name="Style">0</token>
 														<bool name="Active">false</bool>
@@ -9098,12 +9099,12 @@ end)]]></ProtectedString>
 														<bool name="DefinesCapabilities">false</bool>
 														<string name="Name">Line</string>
 														<int64 name="SourceAssetId">-1</int64>
-														<BinaryString name="Tags"></BinaryString>
+														<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 													</Properties>
 												</Item>
 											</Item>
 										</Item>
-										<Item class="TextLabel" referent="RBXBEF5B41BC93B446286478BCBFC558C10">
+										<Item class="TextLabel" referent="RBXB224BE9515624F45B951F2FFB64BD93D">
 											<Properties>
 												<Font name="FontFace">
 													<Family><url>rbxasset://fonts/families/SourceSansPro.json</url></Family>
@@ -9196,9 +9197,9 @@ end)]]></ProtectedString>
 												<bool name="DefinesCapabilities">false</bool>
 												<string name="Name">R3</string>
 												<int64 name="SourceAssetId">-1</int64>
-												<BinaryString name="Tags"></BinaryString>
+												<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 											</Properties>
-											<Item class="Frame" referent="RBX361665AF101840A99EFF3B543FB248E4">
+											<Item class="Frame" referent="RBXAB9C0B47079E4B32955DC034B8B3BA03">
 												<Properties>
 													<token name="Style">0</token>
 													<bool name="Active">false</bool>
@@ -9260,9 +9261,9 @@ end)]]></ProtectedString>
 													<bool name="DefinesCapabilities">false</bool>
 													<string name="Name">Line</string>
 													<int64 name="SourceAssetId">-1</int64>
-													<BinaryString name="Tags"></BinaryString>
+													<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 												</Properties>
-												<Item class="Frame" referent="RBXCB1427D8B4C6469DB6A24566239473BC">
+												<Item class="Frame" referent="RBX9F61875B69B24A42B8EA1EBA47B322D3">
 													<Properties>
 														<token name="Style">0</token>
 														<bool name="Active">false</bool>
@@ -9324,12 +9325,12 @@ end)]]></ProtectedString>
 														<bool name="DefinesCapabilities">false</bool>
 														<string name="Name">Line</string>
 														<int64 name="SourceAssetId">-1</int64>
-														<BinaryString name="Tags"></BinaryString>
+														<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 													</Properties>
 												</Item>
 											</Item>
 										</Item>
-										<Item class="TextLabel" referent="RBXA3263D0FA7A649C9A65B768A13B67BDC">
+										<Item class="TextLabel" referent="RBX875EF12886D846E5AFE5C0413CD1EB7C">
 											<Properties>
 												<Font name="FontFace">
 													<Family><url>rbxasset://fonts/families/SourceSansPro.json</url></Family>
@@ -9422,9 +9423,9 @@ end)]]></ProtectedString>
 												<bool name="DefinesCapabilities">false</bool>
 												<string name="Name">RS</string>
 												<int64 name="SourceAssetId">-1</int64>
-												<BinaryString name="Tags"></BinaryString>
+												<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 											</Properties>
-											<Item class="Frame" referent="RBX9273316EC11044FA9FC5DBA8355D42E3">
+											<Item class="Frame" referent="RBX4A1E7237A90C416BA0BEEDD7B3F5F9FF">
 												<Properties>
 													<token name="Style">0</token>
 													<bool name="Active">false</bool>
@@ -9486,9 +9487,9 @@ end)]]></ProtectedString>
 													<bool name="DefinesCapabilities">false</bool>
 													<string name="Name">Line</string>
 													<int64 name="SourceAssetId">-1</int64>
-													<BinaryString name="Tags"></BinaryString>
+													<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 												</Properties>
-												<Item class="Frame" referent="RBX64C93426ACE949A686E2ED907575D91A">
+												<Item class="Frame" referent="RBXD9392F08FD594E6386AC1CFFC39F6075">
 													<Properties>
 														<token name="Style">0</token>
 														<bool name="Active">false</bool>
@@ -9550,12 +9551,12 @@ end)]]></ProtectedString>
 														<bool name="DefinesCapabilities">false</bool>
 														<string name="Name">Line</string>
 														<int64 name="SourceAssetId">-1</int64>
-														<BinaryString name="Tags"></BinaryString>
+														<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 													</Properties>
 												</Item>
 											</Item>
 										</Item>
-										<Item class="TextLabel" referent="RBX752AFA306B894530BD98D1C6ACDCD791">
+										<Item class="TextLabel" referent="RBX1A4685618E2640B6B3E674A40DED5D9B">
 											<Properties>
 												<Font name="FontFace">
 													<Family><url>rbxasset://fonts/families/SourceSansPro.json</url></Family>
@@ -9648,9 +9649,9 @@ end)]]></ProtectedString>
 												<bool name="DefinesCapabilities">false</bool>
 												<string name="Name">Start</string>
 												<int64 name="SourceAssetId">-1</int64>
-												<BinaryString name="Tags"></BinaryString>
+												<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 											</Properties>
-											<Item class="Frame" referent="RBXF7BA4D16610F475E969EB44C03C77ED4">
+											<Item class="Frame" referent="RBXA60ACF20B1CB4442A54F58D024D5AB74">
 												<Properties>
 													<token name="Style">0</token>
 													<bool name="Active">false</bool>
@@ -9712,9 +9713,9 @@ end)]]></ProtectedString>
 													<bool name="DefinesCapabilities">false</bool>
 													<string name="Name">Line</string>
 													<int64 name="SourceAssetId">-1</int64>
-													<BinaryString name="Tags"></BinaryString>
+													<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 												</Properties>
-												<Item class="Frame" referent="RBXC3D72DEA41904EADBB4876CB6C7C8BBF">
+												<Item class="Frame" referent="RBXBCF363C204D44B5EA3B10A7E32B1256D">
 													<Properties>
 														<token name="Style">0</token>
 														<bool name="Active">false</bool>
@@ -9776,12 +9777,12 @@ end)]]></ProtectedString>
 														<bool name="DefinesCapabilities">false</bool>
 														<string name="Name">Line</string>
 														<int64 name="SourceAssetId">-1</int64>
-														<BinaryString name="Tags"></BinaryString>
+														<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 													</Properties>
 												</Item>
 											</Item>
 										</Item>
-										<Item class="TextLabel" referent="RBX4AACCF10D245463BA1609F9FF91DB5E9">
+										<Item class="TextLabel" referent="RBX969E9A0E6C75448F8B82DA94E220E88E">
 											<Properties>
 												<Font name="FontFace">
 													<Family><url>rbxasset://fonts/families/SourceSansPro.json</url></Family>
@@ -9874,9 +9875,9 @@ end)]]></ProtectedString>
 												<bool name="DefinesCapabilities">false</bool>
 												<string name="Name">B</string>
 												<int64 name="SourceAssetId">-1</int64>
-												<BinaryString name="Tags"></BinaryString>
+												<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 											</Properties>
-											<Item class="Frame" referent="RBX09D10AB352D74AECA27CB2F880DE4FF2">
+											<Item class="Frame" referent="RBX8298519669DB43F8830207D882BDBF95">
 												<Properties>
 													<token name="Style">0</token>
 													<bool name="Active">false</bool>
@@ -9938,12 +9939,12 @@ end)]]></ProtectedString>
 													<bool name="DefinesCapabilities">false</bool>
 													<string name="Name">Line</string>
 													<int64 name="SourceAssetId">-1</int64>
-													<BinaryString name="Tags"></BinaryString>
+													<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 												</Properties>
 											</Item>
 										</Item>
 									</Item>
-									<Item class="Frame" referent="RBXEB0C8E1680B245E09170193C700CC18C">
+									<Item class="Frame" referent="RBX24B21B565D8D4C53B6484D9B9B00F53E">
 										<Properties>
 											<token name="Style">0</token>
 											<bool name="Active">false</bool>
@@ -10005,9 +10006,9 @@ end)]]></ProtectedString>
 											<bool name="DefinesCapabilities">false</bool>
 											<string name="Name">Left</string>
 											<int64 name="SourceAssetId">-1</int64>
-											<BinaryString name="Tags"></BinaryString>
+											<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 										</Properties>
-										<Item class="TextLabel" referent="RBX45595695452C4A50ADB2B6BCF3537D97">
+										<Item class="TextLabel" referent="RBX52F801D271A94380B76D515E45109FC2">
 											<Properties>
 												<Font name="FontFace">
 													<Family><url>rbxasset://fonts/families/SourceSansPro.json</url></Family>
@@ -10100,9 +10101,9 @@ end)]]></ProtectedString>
 												<bool name="DefinesCapabilities">false</bool>
 												<string name="Name">L1</string>
 												<int64 name="SourceAssetId">-1</int64>
-												<BinaryString name="Tags"></BinaryString>
+												<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 											</Properties>
-											<Item class="Frame" referent="RBX35E325505FFE465796ECAFDCAAB40E3A">
+											<Item class="Frame" referent="RBX31A3862ECEEB4F29A658AC62C9C2A555">
 												<Properties>
 													<token name="Style">0</token>
 													<bool name="Active">false</bool>
@@ -10164,9 +10165,9 @@ end)]]></ProtectedString>
 													<bool name="DefinesCapabilities">false</bool>
 													<string name="Name">Line</string>
 													<int64 name="SourceAssetId">-1</int64>
-													<BinaryString name="Tags"></BinaryString>
+													<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 												</Properties>
-												<Item class="Frame" referent="RBX33F11CBE2B2E48B4B4DE2414241C7817">
+												<Item class="Frame" referent="RBX57D867C2FE244CB6B4CD73FE84939B5E">
 													<Properties>
 														<token name="Style">0</token>
 														<bool name="Active">false</bool>
@@ -10228,12 +10229,12 @@ end)]]></ProtectedString>
 														<bool name="DefinesCapabilities">false</bool>
 														<string name="Name">Line</string>
 														<int64 name="SourceAssetId">-1</int64>
-														<BinaryString name="Tags"></BinaryString>
+														<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 													</Properties>
 												</Item>
 											</Item>
 										</Item>
-										<Item class="TextLabel" referent="RBXD8BA7A6B5DBD42AFB8F3C2B36BA876A8">
+										<Item class="TextLabel" referent="RBX3CCA4DA0F9824C0F806F2E7C962BC065">
 											<Properties>
 												<Font name="FontFace">
 													<Family><url>rbxasset://fonts/families/SourceSansPro.json</url></Family>
@@ -10326,9 +10327,9 @@ end)]]></ProtectedString>
 												<bool name="DefinesCapabilities">false</bool>
 												<string name="Name">L2</string>
 												<int64 name="SourceAssetId">-1</int64>
-												<BinaryString name="Tags"></BinaryString>
+												<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 											</Properties>
-											<Item class="Frame" referent="RBXC30A436B248D4A4D9C4EF77EB4C1DC5A">
+											<Item class="Frame" referent="RBX8387BCEE18544E76961615211F2D3B00">
 												<Properties>
 													<token name="Style">0</token>
 													<bool name="Active">false</bool>
@@ -10390,9 +10391,9 @@ end)]]></ProtectedString>
 													<bool name="DefinesCapabilities">false</bool>
 													<string name="Name">Line</string>
 													<int64 name="SourceAssetId">-1</int64>
-													<BinaryString name="Tags"></BinaryString>
+													<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 												</Properties>
-												<Item class="Frame" referent="RBXC364286622E046749860BAA7D3E243E4">
+												<Item class="Frame" referent="RBXE446BCE77C944932A42E88882474828D">
 													<Properties>
 														<token name="Style">0</token>
 														<bool name="Active">false</bool>
@@ -10454,12 +10455,12 @@ end)]]></ProtectedString>
 														<bool name="DefinesCapabilities">false</bool>
 														<string name="Name">Line</string>
 														<int64 name="SourceAssetId">-1</int64>
-														<BinaryString name="Tags"></BinaryString>
+														<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 													</Properties>
 												</Item>
 											</Item>
 										</Item>
-										<Item class="TextLabel" referent="RBX3D9EEC23E6624112BE273463EFA0D1C3">
+										<Item class="TextLabel" referent="RBX9FAB1A15E97F463BBD349CBE377F9ED5">
 											<Properties>
 												<Font name="FontFace">
 													<Family><url>rbxasset://fonts/families/SourceSansPro.json</url></Family>
@@ -10552,9 +10553,9 @@ end)]]></ProtectedString>
 												<bool name="DefinesCapabilities">false</bool>
 												<string name="Name">Select</string>
 												<int64 name="SourceAssetId">-1</int64>
-												<BinaryString name="Tags"></BinaryString>
+												<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 											</Properties>
-											<Item class="Frame" referent="RBXEF0B9CC6E6A34DD39367B350579E6238">
+											<Item class="Frame" referent="RBXE1CB48BD89624430B8615BC771BD3164">
 												<Properties>
 													<token name="Style">0</token>
 													<bool name="Active">false</bool>
@@ -10616,9 +10617,9 @@ end)]]></ProtectedString>
 													<bool name="DefinesCapabilities">false</bool>
 													<string name="Name">Line</string>
 													<int64 name="SourceAssetId">-1</int64>
-													<BinaryString name="Tags"></BinaryString>
+													<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 												</Properties>
-												<Item class="Frame" referent="RBX11E31EF5B2094CC1AFC5714E7ECBB36C">
+												<Item class="Frame" referent="RBXFBECD82E90EA47EEB7FE07206C8899F2">
 													<Properties>
 														<token name="Style">0</token>
 														<bool name="Active">false</bool>
@@ -10680,12 +10681,12 @@ end)]]></ProtectedString>
 														<bool name="DefinesCapabilities">false</bool>
 														<string name="Name">Line</string>
 														<int64 name="SourceAssetId">-1</int64>
-														<BinaryString name="Tags"></BinaryString>
+														<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 													</Properties>
 												</Item>
 											</Item>
 										</Item>
-										<Item class="TextLabel" referent="RBXC715C7FB27A4476A8116E152FB63483B">
+										<Item class="TextLabel" referent="RBXDB58D342E50A44DB9356CD67CDADFFD4">
 											<Properties>
 												<Font name="FontFace">
 													<Family><url>rbxasset://fonts/families/SourceSansPro.json</url></Family>
@@ -10778,9 +10779,9 @@ end)]]></ProtectedString>
 												<bool name="DefinesCapabilities">false</bool>
 												<string name="Name">LS</string>
 												<int64 name="SourceAssetId">-1</int64>
-												<BinaryString name="Tags"></BinaryString>
+												<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 											</Properties>
-											<Item class="Frame" referent="RBX862FD159AAF44B00B4383129DD73BD6F">
+											<Item class="Frame" referent="RBXC8880BC811294DFC83F56F34E44BE352">
 												<Properties>
 													<token name="Style">0</token>
 													<bool name="Active">false</bool>
@@ -10842,9 +10843,9 @@ end)]]></ProtectedString>
 													<bool name="DefinesCapabilities">false</bool>
 													<string name="Name">Line</string>
 													<int64 name="SourceAssetId">-1</int64>
-													<BinaryString name="Tags"></BinaryString>
+													<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 												</Properties>
-												<Item class="Frame" referent="RBX06DCED3602F044029DF7FD0EEAB85B86">
+												<Item class="Frame" referent="RBX91C886CE92314037BC7EB9F4837D12E7">
 													<Properties>
 														<token name="Style">0</token>
 														<bool name="Active">false</bool>
@@ -10906,12 +10907,12 @@ end)]]></ProtectedString>
 														<bool name="DefinesCapabilities">false</bool>
 														<string name="Name">Line</string>
 														<int64 name="SourceAssetId">-1</int64>
-														<BinaryString name="Tags"></BinaryString>
+														<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 													</Properties>
 												</Item>
 											</Item>
 										</Item>
-										<Item class="TextLabel" referent="RBXA8EDC456E51C4E35B2BB2C8273744F46">
+										<Item class="TextLabel" referent="RBX55692CE89D41469F9B0DBEA912EC99D6">
 											<Properties>
 												<Font name="FontFace">
 													<Family><url>rbxasset://fonts/families/SourceSansPro.json</url></Family>
@@ -11004,9 +11005,9 @@ end)]]></ProtectedString>
 												<bool name="DefinesCapabilities">false</bool>
 												<string name="Name">L3</string>
 												<int64 name="SourceAssetId">-1</int64>
-												<BinaryString name="Tags"></BinaryString>
+												<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 											</Properties>
-											<Item class="Frame" referent="RBX1E7EDEEABA0B47649902D48492AF6EC9">
+											<Item class="Frame" referent="RBX5593D44B15324DDFA80892B48FDCD26D">
 												<Properties>
 													<token name="Style">0</token>
 													<bool name="Active">false</bool>
@@ -11068,9 +11069,9 @@ end)]]></ProtectedString>
 													<bool name="DefinesCapabilities">false</bool>
 													<string name="Name">Line</string>
 													<int64 name="SourceAssetId">-1</int64>
-													<BinaryString name="Tags"></BinaryString>
+													<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 												</Properties>
-												<Item class="Frame" referent="RBX81648A502AE44E2196A88E67FB4A3224">
+												<Item class="Frame" referent="RBXE712BF42B76B44E587EE663282CEE0F1">
 													<Properties>
 														<token name="Style">0</token>
 														<bool name="Active">false</bool>
@@ -11132,12 +11133,12 @@ end)]]></ProtectedString>
 														<bool name="DefinesCapabilities">false</bool>
 														<string name="Name">Line</string>
 														<int64 name="SourceAssetId">-1</int64>
-														<BinaryString name="Tags"></BinaryString>
+														<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 													</Properties>
 												</Item>
 											</Item>
 										</Item>
-										<Item class="Frame" referent="RBX66A816E6FB5F496ABAAE585487E50D86">
+										<Item class="Frame" referent="RBX0137E92F40ED4C3A98A557E0698FE55E">
 											<Properties>
 												<token name="Style">0</token>
 												<bool name="Active">false</bool>
@@ -11199,9 +11200,9 @@ end)]]></ProtectedString>
 												<bool name="DefinesCapabilities">false</bool>
 												<string name="Name">DPads</string>
 												<int64 name="SourceAssetId">-1</int64>
-												<BinaryString name="Tags"></BinaryString>
+												<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 											</Properties>
-											<Item class="TextLabel" referent="RBX437A13EF008248F4951B8D0CA74A3010">
+											<Item class="TextLabel" referent="RBX6B9C56AE8FB1414084BFD8A0865D7B14">
 												<Properties>
 													<Font name="FontFace">
 														<Family><url>rbxasset://fonts/families/SourceSansPro.json</url></Family>
@@ -11294,9 +11295,9 @@ end)]]></ProtectedString>
 													<bool name="DefinesCapabilities">false</bool>
 													<string name="Name">Down</string>
 													<int64 name="SourceAssetId">-1</int64>
-													<BinaryString name="Tags"></BinaryString>
+													<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 												</Properties>
-												<Item class="Frame" referent="RBXE498DF4AEC274A3D87A6527595BDA9EB">
+												<Item class="Frame" referent="RBX1E2265B358994216A9FAFFDF0DF20AC2">
 													<Properties>
 														<token name="Style">0</token>
 														<bool name="Active">false</bool>
@@ -11358,11 +11359,11 @@ end)]]></ProtectedString>
 														<bool name="DefinesCapabilities">false</bool>
 														<string name="Name">Line</string>
 														<int64 name="SourceAssetId">-1</int64>
-														<BinaryString name="Tags"></BinaryString>
+														<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 													</Properties>
 												</Item>
 											</Item>
-											<Item class="TextLabel" referent="RBX00D2D09117984E84862D1F7CEA39FBC7">
+											<Item class="TextLabel" referent="RBX56E85F6F7A1147C494CBDED1378E0226">
 												<Properties>
 													<Font name="FontFace">
 														<Family><url>rbxasset://fonts/families/SourceSansPro.json</url></Family>
@@ -11455,9 +11456,9 @@ end)]]></ProtectedString>
 													<bool name="DefinesCapabilities">false</bool>
 													<string name="Name">Left</string>
 													<int64 name="SourceAssetId">-1</int64>
-													<BinaryString name="Tags"></BinaryString>
+													<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 												</Properties>
-												<Item class="Frame" referent="RBX81B59981D0AC444CAAF0B4F9FB45F42B">
+												<Item class="Frame" referent="RBX096D2DA9393341DA903714EF3103CDE0">
 													<Properties>
 														<token name="Style">0</token>
 														<bool name="Active">false</bool>
@@ -11519,9 +11520,9 @@ end)]]></ProtectedString>
 														<bool name="DefinesCapabilities">false</bool>
 														<string name="Name">Line</string>
 														<int64 name="SourceAssetId">-1</int64>
-														<BinaryString name="Tags"></BinaryString>
+														<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 													</Properties>
-													<Item class="Frame" referent="RBX388A2BAA392A48EB91EAAD39F2109B16">
+													<Item class="Frame" referent="RBX8C46ADFF3B414B4A9247F18262FD0749">
 														<Properties>
 															<token name="Style">0</token>
 															<bool name="Active">false</bool>
@@ -11583,9 +11584,9 @@ end)]]></ProtectedString>
 															<bool name="DefinesCapabilities">false</bool>
 															<string name="Name">Line</string>
 															<int64 name="SourceAssetId">-1</int64>
-															<BinaryString name="Tags"></BinaryString>
+															<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 														</Properties>
-														<Item class="Frame" referent="RBXC8E10C49972C4049A32FB89CAEA8A0AD">
+														<Item class="Frame" referent="RBX632FC5ABD477459DBD1528217A6A2C71">
 															<Properties>
 																<token name="Style">0</token>
 																<bool name="Active">false</bool>
@@ -11647,13 +11648,13 @@ end)]]></ProtectedString>
 																<bool name="DefinesCapabilities">false</bool>
 																<string name="Name">Line</string>
 																<int64 name="SourceAssetId">-1</int64>
-																<BinaryString name="Tags"></BinaryString>
+																<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 															</Properties>
 														</Item>
 													</Item>
 												</Item>
 											</Item>
-											<Item class="TextLabel" referent="RBXB05D36005113416FBAEE76BD347D1A98">
+											<Item class="TextLabel" referent="RBXDAA152F3B9B9448DB60B7AEC48BDDEB6">
 												<Properties>
 													<Font name="FontFace">
 														<Family><url>rbxasset://fonts/families/SourceSansPro.json</url></Family>
@@ -11746,9 +11747,9 @@ end)]]></ProtectedString>
 													<bool name="DefinesCapabilities">false</bool>
 													<string name="Name">Right</string>
 													<int64 name="SourceAssetId">-1</int64>
-													<BinaryString name="Tags"></BinaryString>
+													<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 												</Properties>
-												<Item class="Frame" referent="RBXDACCE05F1D774DC2A14432E4FE044537">
+												<Item class="Frame" referent="RBX4B5E54E00D134C359480ACD2C16CD167">
 													<Properties>
 														<token name="Style">0</token>
 														<bool name="Active">false</bool>
@@ -11810,9 +11811,9 @@ end)]]></ProtectedString>
 														<bool name="DefinesCapabilities">false</bool>
 														<string name="Name">Line</string>
 														<int64 name="SourceAssetId">-1</int64>
-														<BinaryString name="Tags"></BinaryString>
+														<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 													</Properties>
-													<Item class="Frame" referent="RBXA0F504F527D4436FB2A3643AA0F1BE70">
+													<Item class="Frame" referent="RBXEC2315A7A6044BBDAD8A2755B92732F5">
 														<Properties>
 															<token name="Style">0</token>
 															<bool name="Active">false</bool>
@@ -11874,9 +11875,9 @@ end)]]></ProtectedString>
 															<bool name="DefinesCapabilities">false</bool>
 															<string name="Name">Line</string>
 															<int64 name="SourceAssetId">-1</int64>
-															<BinaryString name="Tags"></BinaryString>
+															<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 														</Properties>
-														<Item class="Frame" referent="RBXEF8688C39F8E4AD3B049E120DFBA8BA2">
+														<Item class="Frame" referent="RBX10FB51234A534ADBB25E7A9C7835FB23">
 															<Properties>
 																<token name="Style">0</token>
 																<bool name="Active">false</bool>
@@ -11938,13 +11939,13 @@ end)]]></ProtectedString>
 																<bool name="DefinesCapabilities">false</bool>
 																<string name="Name">Line</string>
 																<int64 name="SourceAssetId">-1</int64>
-																<BinaryString name="Tags"></BinaryString>
+																<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 															</Properties>
 														</Item>
 													</Item>
 												</Item>
 											</Item>
-											<Item class="TextLabel" referent="RBXD59184EC665247B29707D5F01F872F1C">
+											<Item class="TextLabel" referent="RBX4B3ADA5C3C4640DA816BB9E6E37BE33A">
 												<Properties>
 													<Font name="FontFace">
 														<Family><url>rbxasset://fonts/families/SourceSansPro.json</url></Family>
@@ -12037,9 +12038,9 @@ end)]]></ProtectedString>
 													<bool name="DefinesCapabilities">false</bool>
 													<string name="Name">Up</string>
 													<int64 name="SourceAssetId">-1</int64>
-													<BinaryString name="Tags"></BinaryString>
+													<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 												</Properties>
-												<Item class="Frame" referent="RBX51616113D2854B48810E7361305CBF62">
+												<Item class="Frame" referent="RBX0E438536351F455C850C29A97EE139FD">
 													<Properties>
 														<token name="Style">0</token>
 														<bool name="Active">false</bool>
@@ -12101,9 +12102,9 @@ end)]]></ProtectedString>
 														<bool name="DefinesCapabilities">false</bool>
 														<string name="Name">Line</string>
 														<int64 name="SourceAssetId">-1</int64>
-														<BinaryString name="Tags"></BinaryString>
+														<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 													</Properties>
-													<Item class="Frame" referent="RBXE2275B47472A4A05A95287C54C095066">
+													<Item class="Frame" referent="RBX66CC39650F9E46078CF6E83D0254C245">
 														<Properties>
 															<token name="Style">0</token>
 															<bool name="Active">false</bool>
@@ -12165,9 +12166,9 @@ end)]]></ProtectedString>
 															<bool name="DefinesCapabilities">false</bool>
 															<string name="Name">Line</string>
 															<int64 name="SourceAssetId">-1</int64>
-															<BinaryString name="Tags"></BinaryString>
+															<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 														</Properties>
-														<Item class="Frame" referent="RBX6D54359156AF4C81BFA4B1759BCC300D">
+														<Item class="Frame" referent="RBX2FA9622DB0FD450894C8D40B4123734E">
 															<Properties>
 																<token name="Style">0</token>
 																<bool name="Active">false</bool>
@@ -12229,7 +12230,7 @@ end)]]></ProtectedString>
 																<bool name="DefinesCapabilities">false</bool>
 																<string name="Name">Line</string>
 																<int64 name="SourceAssetId">-1</int64>
-																<BinaryString name="Tags"></BinaryString>
+																<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 															</Properties>
 														</Item>
 													</Item>
@@ -12238,7 +12239,7 @@ end)]]></ProtectedString>
 										</Item>
 									</Item>
 								</Item>
-								<Item class="LocalScript" referent="RBXFA5B8C6DAAAA4615A0FE075736E75F30">
+								<Item class="LocalScript" referent="RBXDBAE4FD2C0844DA79EDB7912EECC48C5">
 									<Properties>
 										<ProtectedString name="Source"><![CDATA[local gui = script.Parent.Parent.Parent
 local aircraft = gui.Aircraft.Value
@@ -12396,7 +12397,7 @@ for attrName, keycode in pairs(Settings:GetAttributes()) do
 					current = current[info.path[i]]
 				end
 				local direction = attrName:match(inputInfo)
-				current[info.path[#info.path]] = keyName:gsub("(%l)(%u)", "%1 %2")..(direction and " "..direction or "")
+				current[info.path[#info.path]] = keyName:gsub("(%l)(%u)", "%1 %2")..(if direction then " "..direction else "")
 			end
 		end
 	end
@@ -12448,17 +12449,17 @@ end]]></ProtectedString>
 										<bool name="Disabled">true</bool>
 										<Content name="LinkedSource"><null></null></Content>
 										<token name="RunContext">0</token>
-										<string name="ScriptGuid">{CFACE5D9-863B-492E-9FEE-979FD35A6AB7}</string>
+										<string name="ScriptGuid">{76BF9689-66E3-4465-B64B-D957A8F7DCD9}</string>
 										<BinaryString name="AttributesSerialize"></BinaryString>
 										<SecurityCapabilities name="Capabilities">17996771963439872</SecurityCapabilities>
 										<bool name="DefinesCapabilities">true</bool>
 										<string name="Name">Setup</string>
 										<int64 name="SourceAssetId">-1</int64>
-										<BinaryString name="Tags"></BinaryString>
+										<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 									</Properties>
 								</Item>
 							</Item>
-							<Item class="TextButton" referent="RBX7E8D7FE8031F41E8B73871212777D270">
+							<Item class="TextButton" referent="RBX9C8A15E6FC6A4C35A6DD555FF49E69DB">
 								<Properties>
 									<Font name="FontFace">
 										<Family><url>rbxasset://fonts/families/Arial.json</url></Family>
@@ -12556,9 +12557,9 @@ end]]></ProtectedString>
 									<bool name="DefinesCapabilities">false</bool>
 									<string name="Name">Guide_Button</string>
 									<int64 name="SourceAssetId">-1</int64>
-									<BinaryString name="Tags"></BinaryString>
+									<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 								</Properties>
-								<Item class="UICorner" referent="RBX6260D440C5B240F8801939FA710C8772">
+								<Item class="UICorner" referent="RBX564D24EBEBF14AB08763FE81879B3E2E">
 									<Properties>
 										<UDim name="BottomLeftRadius">
 											<S>0.400000006</S>
@@ -12581,10 +12582,10 @@ end]]></ProtectedString>
 										<bool name="DefinesCapabilities">false</bool>
 										<string name="Name">UICorner</string>
 										<int64 name="SourceAssetId">-1</int64>
-										<BinaryString name="Tags"></BinaryString>
+										<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 									</Properties>
 								</Item>
-								<Item class="UIStroke" referent="RBX1BB10A2790934F309E0E39A7E41002EB">
+								<Item class="UIStroke" referent="RBXC6FEC230E2964C47B42AF437AC0566A2">
 									<Properties>
 										<token name="ApplyStrokeMode">1</token>
 										<UDim name="BorderOffset">
@@ -12608,10 +12609,10 @@ end]]></ProtectedString>
 										<bool name="DefinesCapabilities">false</bool>
 										<string name="Name">UIStroke</string>
 										<int64 name="SourceAssetId">-1</int64>
-										<BinaryString name="Tags"></BinaryString>
+										<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 									</Properties>
 								</Item>
-								<Item class="UIGradient" referent="RBXDC3B76946D2E45DBBDA18B550C10BB87">
+								<Item class="UIGradient" referent="RBX999F39F5B1994EDEBDF17DAE098255DD">
 									<Properties>
 										<ColorSequence name="Color">0 1 1 1 0 1 0.898039 0.898039 0.898039 0 </ColorSequence>
 										<bool name="Enabled">true</bool>
@@ -12629,11 +12630,11 @@ end]]></ProtectedString>
 										<bool name="DefinesCapabilities">false</bool>
 										<string name="Name">UIGradient</string>
 										<int64 name="SourceAssetId">-1</int64>
-										<BinaryString name="Tags"></BinaryString>
+										<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 									</Properties>
 								</Item>
 							</Item>
-							<Item class="LocalScript" referent="RBXB133758928FC4CD6B42190AA62361CDD">
+							<Item class="LocalScript" referent="RBX16BF6C591C174EDB856351718478B596">
 								<Properties>
 									<ProtectedString name="Source"><![CDATA[------------ Gamepad Control Module ------------
 local UserInputService = game:GetService("UserInputService")
@@ -12883,19 +12884,19 @@ end)]]></ProtectedString>
 									<bool name="Disabled">false</bool>
 									<Content name="LinkedSource"><null></null></Content>
 									<token name="RunContext">0</token>
-									<string name="ScriptGuid">{3041360D-C0EC-4CFB-8DE5-C70DB9874E0F}</string>
+									<string name="ScriptGuid">{DDB23053-47B9-47E1-8165-7B5DF95B8871}</string>
 									<BinaryString name="AttributesSerialize"></BinaryString>
 									<SecurityCapabilities name="Capabilities">17996771963439872</SecurityCapabilities>
 									<bool name="DefinesCapabilities">true</bool>
 									<string name="Name">Controller</string>
 									<int64 name="SourceAssetId">-1</int64>
-									<BinaryString name="Tags"></BinaryString>
+									<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 								</Properties>
 							</Item>
 						</Item>
 					</Item>
 				</Item>
-				<Item class="Model" referent="RBX6A0B4C5FE42D4F9F8E431E63989FF452">
+				<Item class="Model" referent="RBXFF2FEE1567D44B678DEBEB52C8C71F54">
 					<Properties>
 						<token name="LevelOfDetail">0</token>
 						<CoordinateFrame name="ModelMeshCFrame">
@@ -12944,9 +12945,9 @@ end)]]></ProtectedString>
 						<bool name="DefinesCapabilities">true</bool>
 						<string name="Name">Rotors</string>
 						<int64 name="SourceAssetId">-1</int64>
-						<BinaryString name="Tags"></BinaryString>
+						<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 					</Properties>
-					<Item class="Model" referent="RBXC45D2154E04F4E0A8784CF912C77E91C">
+					<Item class="Model" referent="RBX54C426539FEE4730B7643475F25A920D">
 						<Properties>
 							<token name="LevelOfDetail">0</token>
 							<CoordinateFrame name="ModelMeshCFrame">
@@ -12995,9 +12996,9 @@ end)]]></ProtectedString>
 							<bool name="DefinesCapabilities">true</bool>
 							<string name="Name">TopRotor</string>
 							<int64 name="SourceAssetId">-1</int64>
-							<BinaryString name="Tags"></BinaryString>
+							<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 						</Properties>
-						<Item class="Model" referent="RBXB59602DC97274865BED44DDD2B170D95">
+						<Item class="Model" referent="RBX7603932DC9964DE4807B29CAA66EAE33">
 							<Properties>
 								<token name="LevelOfDetail">0</token>
 								<CoordinateFrame name="ModelMeshCFrame">
@@ -13046,9 +13047,9 @@ end)]]></ProtectedString>
 								<bool name="DefinesCapabilities">true</bool>
 								<string name="Name">Parts</string>
 								<int64 name="SourceAssetId">-1</int64>
-								<BinaryString name="Tags"></BinaryString>
+								<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 							</Properties>
-							<Item class="Part" referent="RBXA10B6E0B031145E0AB55EB62256D4EF3">
+							<Item class="Part" referent="RBXDCF81323D4174705814A88663B3A87D3">
 								<Properties>
 									<token name="shape">1</token>
 									<token name="formFactorRaw">1</token>
@@ -13144,10 +13145,11 @@ end)]]></ProtectedString>
 									<bool name="DefinesCapabilities">false</bool>
 									<string name="Name">MotionBlur</string>
 									<int64 name="SourceAssetId">-1</int64>
-									<BinaryString name="Tags"></BinaryString>
+									<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 								</Properties>
-								<Item class="Decal" referent="RBX07EDC5229B704D71A1FF9103448206C8">
+								<Item class="Decal" referent="RBXA14595BABA0E4B9CAEC241C0819F552D">
 									<Properties>
+										<bool name="AutoLocalize">true</bool>
 										<Color3 name="Color3">
 											<R>0</R>
 											<G>0</G>
@@ -13176,11 +13178,12 @@ end)]]></ProtectedString>
 										<bool name="DefinesCapabilities">false</bool>
 										<string name="Name">Decal1</string>
 										<int64 name="SourceAssetId">-1</int64>
-										<BinaryString name="Tags"></BinaryString>
+										<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 									</Properties>
 								</Item>
-								<Item class="Decal" referent="RBX147BA893BE8A4A9BBB002C673ED2F930">
+								<Item class="Decal" referent="RBX4C2C496CBD394F26AAD4B867817B8BEA">
 									<Properties>
+										<bool name="AutoLocalize">true</bool>
 										<Color3 name="Color3">
 											<R>0</R>
 											<G>0</G>
@@ -13209,11 +13212,11 @@ end)]]></ProtectedString>
 										<bool name="DefinesCapabilities">false</bool>
 										<string name="Name">Decal2</string>
 										<int64 name="SourceAssetId">-1</int64>
-										<BinaryString name="Tags"></BinaryString>
+										<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 									</Properties>
 								</Item>
 							</Item>
-							<Item class="Part" referent="RBXF4ADE6C2F6F1441FB161A83472C2AC1F">
+							<Item class="Part" referent="RBX7E0107B48C874E378A9119488016E6A1">
 								<Properties>
 									<token name="shape">1</token>
 									<token name="formFactorRaw">1</token>
@@ -13309,9 +13312,9 @@ end)]]></ProtectedString>
 									<bool name="DefinesCapabilities">false</bool>
 									<string name="Name">B</string>
 									<int64 name="SourceAssetId">-1</int64>
-									<BinaryString name="Tags"></BinaryString>
+									<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 								</Properties>
-								<Item class="Attachment" referent="RBXFED25422E11C4212BD1525BBA77FEC31">
+								<Item class="Attachment" referent="RBXFAFFBF33E32E4BDD9DA71DAFDE53F49C">
 									<Properties>
 										<CoordinateFrame name="CFrame">
 											<X>0</X>
@@ -13333,11 +13336,11 @@ end)]]></ProtectedString>
 										<bool name="DefinesCapabilities">false</bool>
 										<string name="Name">Attachment1</string>
 										<int64 name="SourceAssetId">-1</int64>
-										<BinaryString name="Tags"></BinaryString>
+										<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 									</Properties>
 								</Item>
 							</Item>
-							<Item class="WeldConstraint" referent="RBX7E654353C2E84E8F8285866B4A111A8B">
+							<Item class="WeldConstraint" referent="RBX210BB59F0BA74AB19327BFB00D1F3FBF">
 								<Properties>
 									<CoordinateFrame name="CFrame0">
 										<X>0</X>
@@ -13361,10 +13364,10 @@ end)]]></ProtectedString>
 									<bool name="DefinesCapabilities">false</bool>
 									<string name="Name">IgnoreWeld</string>
 									<int64 name="SourceAssetId">-1</int64>
-									<BinaryString name="Tags"></BinaryString>
+									<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 								</Properties>
 							</Item>
-							<Item class="MeshPart" referent="RBX959503479A8B4225BBA3329E35A3D106">
+							<Item class="MeshPart" referent="RBX8210205313214836B065F4455472D344">
 								<Properties>
 									<bool name="DoubleSided">false</bool>
 									<bool name="HasJointOffset">false</bool>
@@ -13496,10 +13499,10 @@ end)]]></ProtectedString>
 									<bool name="DefinesCapabilities">false</bool>
 									<string name="Name">Top Rotor Main</string>
 									<int64 name="SourceAssetId">-1</int64>
-									<BinaryString name="Tags"></BinaryString>
+									<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 								</Properties>
 							</Item>
-							<Item class="MeshPart" referent="RBX77866C49322A4CBDB3849EB5F96C9374">
+							<Item class="MeshPart" referent="RBXE41DA560CD454A3B946C364B257A10DD">
 								<Properties>
 									<bool name="DoubleSided">false</bool>
 									<bool name="HasJointOffset">false</bool>
@@ -13631,10 +13634,10 @@ end)]]></ProtectedString>
 									<bool name="DefinesCapabilities">false</bool>
 									<string name="Name">Rotor_Blades</string>
 									<int64 name="SourceAssetId">-1</int64>
-									<BinaryString name="Tags"></BinaryString>
+									<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 								</Properties>
 							</Item>
-							<Item class="Script" referent="RBX168D58ED7B344D61ACBF301870FE4E8D">
+							<Item class="Script" referent="RBX5EF7120427EE477980ECA435F1054672">
 								<Properties>
 									<ProtectedString name="Source"><![CDATA[-- A basic weld script
 local parent = script.Parent
@@ -13672,17 +13675,17 @@ script:Destroy()]]></ProtectedString>
 									<bool name="Disabled">false</bool>
 									<Content name="LinkedSource"><null></null></Content>
 									<token name="RunContext">0</token>
-									<string name="ScriptGuid">{DFCA4E6D-4289-425E-B6BB-DFCF4C7065D1}</string>
+									<string name="ScriptGuid">{BBB7C292-C5FB-4989-ADD9-6E8CFA8DB612}</string>
 									<BinaryString name="AttributesSerialize"></BinaryString>
 									<SecurityCapabilities name="Capabilities">17996771963439872</SecurityCapabilities>
 									<bool name="DefinesCapabilities">true</bool>
 									<string name="Name">Weld</string>
 									<int64 name="SourceAssetId">7040081846</int64>
-									<BinaryString name="Tags"></BinaryString>
+									<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 								</Properties>
 							</Item>
 						</Item>
-						<Item class="Part" referent="RBXDF5EEE8AD6E2483BBB9622F902AAB13B">
+						<Item class="Part" referent="RBX7F1617DC97A94FA19E5E55422DE0813E">
 							<Properties>
 								<token name="shape">1</token>
 								<token name="formFactorRaw">1</token>
@@ -13778,9 +13781,9 @@ script:Destroy()]]></ProtectedString>
 								<bool name="DefinesCapabilities">false</bool>
 								<string name="Name">Main</string>
 								<int64 name="SourceAssetId">-1</int64>
-								<BinaryString name="Tags"></BinaryString>
+								<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 							</Properties>
-							<Item class="Attachment" referent="RBX4401D29C39204A96A01A3F33EA11B991">
+							<Item class="Attachment" referent="RBX4BD44EB63E6942BC9F4DFFE5892AC715">
 								<Properties>
 									<CoordinateFrame name="CFrame">
 										<X>0</X>
@@ -13802,10 +13805,10 @@ script:Destroy()]]></ProtectedString>
 									<bool name="DefinesCapabilities">false</bool>
 									<string name="Name">Attachment0</string>
 									<int64 name="SourceAssetId">-1</int64>
-									<BinaryString name="Tags"></BinaryString>
+									<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 								</Properties>
 							</Item>
-							<Item class="HingeConstraint" referent="RBX14425358C8D5444C8345B0290D2AFB76">
+							<Item class="HingeConstraint" referent="RBX0BE3F5761AB84C9D925CACDE7913B29C">
 								<Properties>
 									<token name="ActuatorType">1</token>
 									<float name="AngularResponsiveness">45</float>
@@ -13821,8 +13824,8 @@ script:Destroy()]]></ProtectedString>
 									<bool name="SoftlockServoUponReachingTarget">false</bool>
 									<float name="TargetAngle">0</float>
 									<float name="UpperAngle">45</float>
-									<Ref name="Attachment0">RBX4401D29C39204A96A01A3F33EA11B991</Ref>
-									<Ref name="Attachment1">RBXFED25422E11C4212BD1525BBA77FEC31</Ref>
+									<Ref name="Attachment0">RBX4BD44EB63E6942BC9F4DFFE5892AC715</Ref>
+									<Ref name="Attachment1">RBXFAFFBF33E32E4BDD9DA71DAFDE53F49C</Ref>
 									<int name="Color">1009</int>
 									<bool name="Enabled">true</bool>
 									<bool name="Visible">false</bool>
@@ -13831,10 +13834,10 @@ script:Destroy()]]></ProtectedString>
 									<bool name="DefinesCapabilities">false</bool>
 									<string name="Name">Motor</string>
 									<int64 name="SourceAssetId">-1</int64>
-									<BinaryString name="Tags"></BinaryString>
+									<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 								</Properties>
 							</Item>
-							<Item class="Sound" referent="RBX71B78E9B9F7F4185B447D832F92D8B8A">
+							<Item class="Sound" referent="RBX880E5BB590A84E118984677EF69B7ADC">
 								<Properties>
 									<bool name="AcousticSimulationEnabled">true</bool>
 									<NumberRange name="LoopRegion">0 60000 </NumberRange>
@@ -13856,12 +13859,12 @@ script:Destroy()]]></ProtectedString>
 									<bool name="DefinesCapabilities">false</bool>
 									<string name="Name">Sound</string>
 									<int64 name="SourceAssetId">-1</int64>
-									<BinaryString name="Tags"></BinaryString>
+									<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 								</Properties>
 							</Item>
 						</Item>
 					</Item>
-					<Item class="Model" referent="RBX83662323054B4A6E991D7792D404298D">
+					<Item class="Model" referent="RBXA7E75ED16CB34C17AD9B7A726DAD78CD">
 						<Properties>
 							<token name="LevelOfDetail">0</token>
 							<CoordinateFrame name="ModelMeshCFrame">
@@ -13910,9 +13913,9 @@ script:Destroy()]]></ProtectedString>
 							<bool name="DefinesCapabilities">true</bool>
 							<string name="Name">TailRotor</string>
 							<int64 name="SourceAssetId">-1</int64>
-							<BinaryString name="Tags"></BinaryString>
+							<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 						</Properties>
-						<Item class="Model" referent="RBX54BB6CD55FDF4A30A69AC2B9F1BAE3E7">
+						<Item class="Model" referent="RBXB4BB2B237D36413E8327415DECD1193B">
 							<Properties>
 								<token name="LevelOfDetail">0</token>
 								<CoordinateFrame name="ModelMeshCFrame">
@@ -13961,9 +13964,9 @@ script:Destroy()]]></ProtectedString>
 								<bool name="DefinesCapabilities">true</bool>
 								<string name="Name">Parts</string>
 								<int64 name="SourceAssetId">-1</int64>
-								<BinaryString name="Tags"></BinaryString>
+								<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 							</Properties>
-							<Item class="Part" referent="RBX6351B0D7A68D4D02B946B3B9F8737F39">
+							<Item class="Part" referent="RBX6DE4965FFB354E61A97152FD6C5A8253">
 								<Properties>
 									<token name="shape">1</token>
 									<token name="formFactorRaw">1</token>
@@ -14059,10 +14062,11 @@ script:Destroy()]]></ProtectedString>
 									<bool name="DefinesCapabilities">false</bool>
 									<string name="Name">MotionBlur</string>
 									<int64 name="SourceAssetId">-1</int64>
-									<BinaryString name="Tags"></BinaryString>
+									<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 								</Properties>
-								<Item class="Decal" referent="RBX43525A06772446B19E540668A70909F2">
+								<Item class="Decal" referent="RBXFB3698B34B534A60826D90B610ADBC2D">
 									<Properties>
+										<bool name="AutoLocalize">true</bool>
 										<Color3 name="Color3">
 											<R>0</R>
 											<G>0</G>
@@ -14091,11 +14095,12 @@ script:Destroy()]]></ProtectedString>
 										<bool name="DefinesCapabilities">false</bool>
 										<string name="Name">Decal1</string>
 										<int64 name="SourceAssetId">-1</int64>
-										<BinaryString name="Tags"></BinaryString>
+										<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 									</Properties>
 								</Item>
-								<Item class="Decal" referent="RBX10275904EC7D49D99EB9BFE4FC101CF0">
+								<Item class="Decal" referent="RBX3575F31E8D104B3382DFD9014EBD2256">
 									<Properties>
+										<bool name="AutoLocalize">true</bool>
 										<Color3 name="Color3">
 											<R>0</R>
 											<G>0</G>
@@ -14124,11 +14129,11 @@ script:Destroy()]]></ProtectedString>
 										<bool name="DefinesCapabilities">false</bool>
 										<string name="Name">Decal2</string>
 										<int64 name="SourceAssetId">-1</int64>
-										<BinaryString name="Tags"></BinaryString>
+										<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 									</Properties>
 								</Item>
 							</Item>
-							<Item class="Part" referent="RBXD9DC9DA7219C4357AC66B49BF9ED540F">
+							<Item class="Part" referent="RBX31A61A9A537C4D7A9AA4A1684D8C5396">
 								<Properties>
 									<token name="shape">1</token>
 									<token name="formFactorRaw">1</token>
@@ -14224,9 +14229,9 @@ script:Destroy()]]></ProtectedString>
 									<bool name="DefinesCapabilities">false</bool>
 									<string name="Name">B</string>
 									<int64 name="SourceAssetId">-1</int64>
-									<BinaryString name="Tags"></BinaryString>
+									<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 								</Properties>
-								<Item class="Attachment" referent="RBX2158FD126D254FF3B5B80EA4BB7EE988">
+								<Item class="Attachment" referent="RBXBAA4B0E94D78434A99D925B64CDE043D">
 									<Properties>
 										<CoordinateFrame name="CFrame">
 											<X>0</X>
@@ -14248,11 +14253,11 @@ script:Destroy()]]></ProtectedString>
 										<bool name="DefinesCapabilities">false</bool>
 										<string name="Name">Attachment1</string>
 										<int64 name="SourceAssetId">-1</int64>
-										<BinaryString name="Tags"></BinaryString>
+										<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 									</Properties>
 								</Item>
 							</Item>
-							<Item class="WeldConstraint" referent="RBXE5CECC56365647D38C16A4C4CF80BC1F">
+							<Item class="WeldConstraint" referent="RBX3BDC3B35F95D441D9E2094732512D0B4">
 								<Properties>
 									<CoordinateFrame name="CFrame0">
 										<X>0</X>
@@ -14276,10 +14281,10 @@ script:Destroy()]]></ProtectedString>
 									<bool name="DefinesCapabilities">false</bool>
 									<string name="Name">IgnoreWeld</string>
 									<int64 name="SourceAssetId">-1</int64>
-									<BinaryString name="Tags"></BinaryString>
+									<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 								</Properties>
 							</Item>
-							<Item class="MeshPart" referent="RBX87BE68ECD6374AEC95ED66A8597CEECD">
+							<Item class="MeshPart" referent="RBXB4A57F5A4E774E0A85214A76EA10FCDB">
 								<Properties>
 									<bool name="DoubleSided">false</bool>
 									<bool name="HasJointOffset">false</bool>
@@ -14411,10 +14416,10 @@ script:Destroy()]]></ProtectedString>
 									<bool name="DefinesCapabilities">false</bool>
 									<string name="Name">Tail Rotor Main</string>
 									<int64 name="SourceAssetId">-1</int64>
-									<BinaryString name="Tags"></BinaryString>
+									<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 								</Properties>
 							</Item>
-							<Item class="MeshPart" referent="RBX929E52BF9CDF4CF787B447E5F2CD2C9E">
+							<Item class="MeshPart" referent="RBXC5F646A286F64AB79D836CC90928D1D2">
 								<Properties>
 									<bool name="DoubleSided">false</bool>
 									<bool name="HasJointOffset">false</bool>
@@ -14546,10 +14551,10 @@ script:Destroy()]]></ProtectedString>
 									<bool name="DefinesCapabilities">false</bool>
 									<string name="Name">Rotor_Blades</string>
 									<int64 name="SourceAssetId">-1</int64>
-									<BinaryString name="Tags"></BinaryString>
+									<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 								</Properties>
 							</Item>
-							<Item class="Script" referent="RBX22048D6B4E394715A9E137E591807726">
+							<Item class="Script" referent="RBX3F5BCF8AD65B4ED18937BBA6B6CC19C7">
 								<Properties>
 									<ProtectedString name="Source"><![CDATA[-- A basic weld script
 local parent = script.Parent
@@ -14587,17 +14592,17 @@ script:Destroy()]]></ProtectedString>
 									<bool name="Disabled">false</bool>
 									<Content name="LinkedSource"><null></null></Content>
 									<token name="RunContext">0</token>
-									<string name="ScriptGuid">{0843BFBF-66B8-46CA-ABB9-C90CAEE05153}</string>
+									<string name="ScriptGuid">{2291D425-CA10-4214-A6A9-1BF1AB6C58BB}</string>
 									<BinaryString name="AttributesSerialize"></BinaryString>
 									<SecurityCapabilities name="Capabilities">17996771963439872</SecurityCapabilities>
 									<bool name="DefinesCapabilities">true</bool>
 									<string name="Name">Weld</string>
 									<int64 name="SourceAssetId">7040081846</int64>
-									<BinaryString name="Tags"></BinaryString>
+									<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 								</Properties>
 							</Item>
 						</Item>
-						<Item class="Part" referent="RBXA37D957308CC4DF18AF73C346743C110">
+						<Item class="Part" referent="RBX6EE117D72E8F423FAF4C09C3E047E0CD">
 							<Properties>
 								<token name="shape">1</token>
 								<token name="formFactorRaw">1</token>
@@ -14693,9 +14698,9 @@ script:Destroy()]]></ProtectedString>
 								<bool name="DefinesCapabilities">false</bool>
 								<string name="Name">Main</string>
 								<int64 name="SourceAssetId">-1</int64>
-								<BinaryString name="Tags"></BinaryString>
+								<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 							</Properties>
-							<Item class="Attachment" referent="RBX248458E01CFB482EA019BA9F578B6554">
+							<Item class="Attachment" referent="RBX74E68A8EEF85448B98B5CC129FD6C691">
 								<Properties>
 									<CoordinateFrame name="CFrame">
 										<X>0</X>
@@ -14717,10 +14722,10 @@ script:Destroy()]]></ProtectedString>
 									<bool name="DefinesCapabilities">false</bool>
 									<string name="Name">Attachment0</string>
 									<int64 name="SourceAssetId">-1</int64>
-									<BinaryString name="Tags"></BinaryString>
+									<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 								</Properties>
 							</Item>
-							<Item class="HingeConstraint" referent="RBXF128C32630EC44119CA20EAD53F9CBDE">
+							<Item class="HingeConstraint" referent="RBXC6104CD507814E1AAC6F643193B90D45">
 								<Properties>
 									<token name="ActuatorType">1</token>
 									<float name="AngularResponsiveness">45</float>
@@ -14736,8 +14741,8 @@ script:Destroy()]]></ProtectedString>
 									<bool name="SoftlockServoUponReachingTarget">false</bool>
 									<float name="TargetAngle">0</float>
 									<float name="UpperAngle">45</float>
-									<Ref name="Attachment0">RBX248458E01CFB482EA019BA9F578B6554</Ref>
-									<Ref name="Attachment1">RBX2158FD126D254FF3B5B80EA4BB7EE988</Ref>
+									<Ref name="Attachment0">RBX74E68A8EEF85448B98B5CC129FD6C691</Ref>
+									<Ref name="Attachment1">RBXBAA4B0E94D78434A99D925B64CDE043D</Ref>
 									<int name="Color">1009</int>
 									<bool name="Enabled">true</bool>
 									<bool name="Visible">false</bool>
@@ -14746,12 +14751,12 @@ script:Destroy()]]></ProtectedString>
 									<bool name="DefinesCapabilities">false</bool>
 									<string name="Name">Motor</string>
 									<int64 name="SourceAssetId">-1</int64>
-									<BinaryString name="Tags"></BinaryString>
+									<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 								</Properties>
 							</Item>
 						</Item>
 					</Item>
-					<Item class="Script" referent="RBX4E6949529F71460AB8236F74B25FF44C">
+					<Item class="Script" referent="RBX5AB543F5D11C4FD8A5C9BD795FBD3987">
 						<Properties>
 							<ProtectedString name="Source"><![CDATA[task.wait(1)
 ----- Settings -----
@@ -14791,15 +14796,15 @@ end]]></ProtectedString>
 							<bool name="Disabled">false</bool>
 							<Content name="LinkedSource"><null></null></Content>
 							<token name="RunContext">0</token>
-							<string name="ScriptGuid">{F6430B35-EFFC-43D9-B867-867FA12E6446}</string>
+							<string name="ScriptGuid">{E105FAE0-042F-455F-B9E3-0C6CB831B963}</string>
 							<BinaryString name="AttributesSerialize"></BinaryString>
 							<SecurityCapabilities name="Capabilities">17996771963439872</SecurityCapabilities>
 							<bool name="DefinesCapabilities">true</bool>
 							<string name="Name">Rotor_Script</string>
 							<int64 name="SourceAssetId">-1</int64>
-							<BinaryString name="Tags"></BinaryString>
+							<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 						</Properties>
-						<Item class="Script" referent="RBXD73977ED9A3C43A2B7F3BD2F0BA1DA5E">
+						<Item class="Script" referent="RBX9D7AA35383554AB0AF01E33BAF8A1C46">
 							<Properties>
 								<ProtectedString name="Source"><![CDATA[task.wait(1)
 local rotors = script.Parent.Parent
@@ -14845,16 +14850,16 @@ end)]]></ProtectedString>
 								<bool name="Disabled">false</bool>
 								<Content name="LinkedSource"><null></null></Content>
 								<token name="RunContext">2</token>
-								<string name="ScriptGuid">{683EAB34-5D77-405F-8BE6-ADE00B35ECA3}</string>
+								<string name="ScriptGuid">{A8C28031-5E59-4D63-9589-7812F83C0D69}</string>
 								<BinaryString name="AttributesSerialize"></BinaryString>
 								<SecurityCapabilities name="Capabilities">17996771963439872</SecurityCapabilities>
 								<bool name="DefinesCapabilities">true</bool>
 								<string name="Name">Motion_Blur</string>
 								<int64 name="SourceAssetId">-1</int64>
-								<BinaryString name="Tags"></BinaryString>
+								<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 							</Properties>
 						</Item>
-						<Item class="Script" referent="RBX07C57C1805DF4D81BC170766A5712A19">
+						<Item class="Script" referent="RBXABB1ECBD32834804B331A979933AE8D6">
 							<Properties>
 								<ProtectedString name="Source"><![CDATA[task.wait(1)
 ----- Settings -----
@@ -14873,18 +14878,18 @@ end)]]></ProtectedString>
 								<bool name="Disabled">false</bool>
 								<Content name="LinkedSource"><null></null></Content>
 								<token name="RunContext">2</token>
-								<string name="ScriptGuid">{C106ACE7-05CF-47F4-909C-6F38D570217C}</string>
+								<string name="ScriptGuid">{49AD1ADD-3EE0-478D-BFEE-3B376F906B82}</string>
 								<BinaryString name="AttributesSerialize"></BinaryString>
 								<SecurityCapabilities name="Capabilities">17996771963439872</SecurityCapabilities>
 								<bool name="DefinesCapabilities">true</bool>
 								<string name="Name">Sound</string>
 								<int64 name="SourceAssetId">-1</int64>
-								<BinaryString name="Tags"></BinaryString>
+								<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 							</Properties>
 						</Item>
 					</Item>
 				</Item>
-				<Item class="Folder" referent="RBX2F7C709AEB7A4D12952C903BC5465ED8">
+				<Item class="Folder" referent="RBX8E0428B77D42455A9E81EF689B96FFA1">
 					<Properties>
 						<BinaryString name="AttributesSerialize"><![CDATA[BAAAAAYAAABBY3RpdmUDAAoAAABDb2xsZWN0aXZlBQAAAAAEAAAARnVlbAYAAAAAAABZQAYA
 AABNb3Rpb24RAAAAAAAAAAAAAAAA]]></BinaryString>
@@ -14892,19 +14897,19 @@ AABNb3Rpb24RAAAAAAAAAAAAAAAA]]></BinaryString>
 						<bool name="DefinesCapabilities">true</bool>
 						<string name="Name">Stats</string>
 						<int64 name="SourceAssetId">-1</int64>
-						<BinaryString name="Tags"></BinaryString>
+						<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 					</Properties>
 				</Item>
-				<Item class="Folder" referent="RBX7B686B936DB04D9389714DD6F17870F8">
+				<Item class="Folder" referent="RBX4BD513C5AE564AC6ABCEE58179DEB16E">
 					<Properties>
 						<BinaryString name="AttributesSerialize"></BinaryString>
 						<SecurityCapabilities name="Capabilities">17996771963439872</SecurityCapabilities>
 						<bool name="DefinesCapabilities">true</bool>
 						<string name="Name">Mods</string>
 						<int64 name="SourceAssetId">-1</int64>
-						<BinaryString name="Tags"></BinaryString>
+						<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 					</Properties>
-					<Item class="Script" referent="RBXF79104F8C13D48A8BAF3286F303F5385">
+					<Item class="Script" referent="RBX4B7E7CC9CD754EBFBDBC24B648DB514C">
 						<Properties>
 							<ProtectedString name="Source"><![CDATA[--[ Adjust the group ID/rank in the "Settings" module ]--
 
@@ -14936,17 +14941,17 @@ end]]></ProtectedString>
 							<bool name="Disabled">false</bool>
 							<Content name="LinkedSource"><null></null></Content>
 							<token name="RunContext">0</token>
-							<string name="ScriptGuid">{81F93F14-BAF6-4575-8531-3B1AD6C02925}</string>
+							<string name="ScriptGuid">{6FF07752-AB61-49E2-9EFB-6F44C1C8B752}</string>
 							<BinaryString name="AttributesSerialize"></BinaryString>
 							<SecurityCapabilities name="Capabilities">17996771963439872</SecurityCapabilities>
 							<bool name="DefinesCapabilities">true</bool>
 							<string name="Name">Group_Lock</string>
 							<int64 name="SourceAssetId">-1</int64>
-							<BinaryString name="Tags"></BinaryString>
+							<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 						</Properties>
 					</Item>
 				</Item>
-				<Item class="Model" referent="RBX36FAC69686F74B2595EEC1DE71446FF9">
+				<Item class="Model" referent="RBXF31BDE7745F34275B8021F728D97031E">
 					<Properties>
 						<token name="LevelOfDetail">0</token>
 						<CoordinateFrame name="ModelMeshCFrame">
@@ -14995,9 +15000,9 @@ end]]></ProtectedString>
 						<bool name="DefinesCapabilities">true</bool>
 						<string name="Name">LandingGear</string>
 						<int64 name="SourceAssetId">-1</int64>
-						<BinaryString name="Tags"></BinaryString>
+						<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 					</Properties>
-					<Item class="Model" referent="RBX4E1EDC2FBB5C4A28A5F84327888AE92B">
+					<Item class="Model" referent="RBXD1E9297FD8D64734A173FC2F2C37ECAB">
 						<Properties>
 							<token name="LevelOfDetail">0</token>
 							<CoordinateFrame name="ModelMeshCFrame">
@@ -15046,10 +15051,10 @@ end]]></ProtectedString>
 							<bool name="DefinesCapabilities">true</bool>
 							<string name="Name">Extended</string>
 							<int64 name="SourceAssetId">-1</int64>
-							<BinaryString name="Tags"></BinaryString>
+							<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 						</Properties>
 					</Item>
-					<Item class="Model" referent="RBXBF46179D6FDD45EE839BD2F8B5563036">
+					<Item class="Model" referent="RBX9B18DB81FD0F4FC383CC1489C379B173">
 						<Properties>
 							<token name="LevelOfDetail">0</token>
 							<CoordinateFrame name="ModelMeshCFrame">
@@ -15098,11 +15103,11 @@ end]]></ProtectedString>
 							<bool name="DefinesCapabilities">true</bool>
 							<string name="Name">Retracted</string>
 							<int64 name="SourceAssetId">-1</int64>
-							<BinaryString name="Tags"></BinaryString>
+							<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 						</Properties>
 					</Item>
 				</Item>
-				<Item class="Part" referent="RBX51464EE91D8945A8AAC9486E32717149">
+				<Item class="Part" referent="RBX98649A4C89874A3DB3064C9F27748717">
 					<Properties>
 						<token name="shape">1</token>
 						<token name="formFactorRaw">1</token>
@@ -15198,11 +15203,11 @@ end]]></ProtectedString>
 						<bool name="DefinesCapabilities">false</bool>
 						<string name="Name">Main</string>
 						<int64 name="SourceAssetId">-1</int64>
-						<BinaryString name="Tags"></BinaryString>
+						<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 					</Properties>
 				</Item>
 			</Item>
-			<Item class="Model" referent="RBXB66D1D0958744B5184BDF041E22CE483">
+			<Item class="Model" referent="RBX3C21FBFA4C314C34BF98B50D636B6928">
 				<Properties>
 					<token name="LevelOfDetail">0</token>
 					<CoordinateFrame name="ModelMeshCFrame">
@@ -15251,9 +15256,9 @@ end]]></ProtectedString>
 					<bool name="DefinesCapabilities">true</bool>
 					<string name="Name">Body</string>
 					<int64 name="SourceAssetId">-1</int64>
-					<BinaryString name="Tags"></BinaryString>
+					<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 				</Properties>
-				<Item class="MeshPart" referent="RBXF030E70A512145CFA34A497F0C29927B">
+				<Item class="MeshPart" referent="RBXE11201A4157D4C68951B3C3FAE06BEF8">
 					<Properties>
 						<bool name="DoubleSided">false</bool>
 						<bool name="HasJointOffset">false</bool>
@@ -15385,10 +15390,10 @@ end]]></ProtectedString>
 						<bool name="DefinesCapabilities">false</bool>
 						<string name="Name">Fuselage</string>
 						<int64 name="SourceAssetId">-1</int64>
-						<BinaryString name="Tags"></BinaryString>
+						<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 					</Properties>
 				</Item>
-				<Item class="MeshPart" referent="RBXCAFDEA3A5BD14E9F99F5EB67094CE2D0">
+				<Item class="MeshPart" referent="RBX4AD6FCDF0D7642F38F5086EE262175D7">
 					<Properties>
 						<bool name="DoubleSided">false</bool>
 						<bool name="HasJointOffset">false</bool>
@@ -15520,10 +15525,10 @@ end]]></ProtectedString>
 						<bool name="DefinesCapabilities">false</bool>
 						<string name="Name">Tailboom</string>
 						<int64 name="SourceAssetId">-1</int64>
-						<BinaryString name="Tags"></BinaryString>
+						<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 					</Properties>
 				</Item>
-				<Item class="MeshPart" referent="RBX3F917281ED2943E7BDDBF95213E3D1F5">
+				<Item class="MeshPart" referent="RBX3D5DC2CAD170437F990276E38C4C62F6">
 					<Properties>
 						<bool name="DoubleSided">false</bool>
 						<bool name="HasJointOffset">false</bool>
@@ -15655,10 +15660,10 @@ end]]></ProtectedString>
 						<bool name="DefinesCapabilities">false</bool>
 						<string name="Name">Engine</string>
 						<int64 name="SourceAssetId">-1</int64>
-						<BinaryString name="Tags"></BinaryString>
+						<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 					</Properties>
 				</Item>
-				<Item class="MeshPart" referent="RBX294F7A3A12B742A8BBBCB77CE8F515A1">
+				<Item class="MeshPart" referent="RBXD34F0F3231824209B9D8AB7ACC08742A">
 					<Properties>
 						<bool name="DoubleSided">false</bool>
 						<bool name="HasJointOffset">false</bool>
@@ -15790,10 +15795,10 @@ end]]></ProtectedString>
 						<bool name="DefinesCapabilities">false</bool>
 						<string name="Name">Holes</string>
 						<int64 name="SourceAssetId">-1</int64>
-						<BinaryString name="Tags"></BinaryString>
+						<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 					</Properties>
 				</Item>
-				<Item class="MeshPart" referent="RBX3EAFFFEA85A24BBB92B76F8ABA281FBC">
+				<Item class="MeshPart" referent="RBXFC6F6B7FC79E4EB5B727A3CE5808CA6B">
 					<Properties>
 						<bool name="DoubleSided">false</bool>
 						<bool name="HasJointOffset">false</bool>
@@ -15925,10 +15930,10 @@ end]]></ProtectedString>
 						<bool name="DefinesCapabilities">false</bool>
 						<string name="Name">Interior</string>
 						<int64 name="SourceAssetId">-1</int64>
-						<BinaryString name="Tags"></BinaryString>
+						<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 					</Properties>
 				</Item>
-				<Item class="MeshPart" referent="RBX5713C9918C59461EBABC089935ACCC53">
+				<Item class="MeshPart" referent="RBXD4A0EEE5BC3D4616B9EF354A427E8488">
 					<Properties>
 						<bool name="DoubleSided">false</bool>
 						<bool name="HasJointOffset">false</bool>
@@ -16060,10 +16065,10 @@ end]]></ProtectedString>
 						<bool name="DefinesCapabilities">false</bool>
 						<string name="Name">Rotor Heads</string>
 						<int64 name="SourceAssetId">-1</int64>
-						<BinaryString name="Tags"></BinaryString>
+						<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 					</Properties>
 				</Item>
-				<Item class="MeshPart" referent="RBXADDAFF1EDA2B4B4298B516843433D87C">
+				<Item class="MeshPart" referent="RBXB8588EDEAAB641F1AE491F6D899FDEEF">
 					<Properties>
 						<bool name="DoubleSided">false</bool>
 						<bool name="HasJointOffset">false</bool>
@@ -16195,10 +16200,10 @@ end]]></ProtectedString>
 						<bool name="DefinesCapabilities">false</bool>
 						<string name="Name">Skids</string>
 						<int64 name="SourceAssetId">-1</int64>
-						<BinaryString name="Tags"></BinaryString>
+						<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 					</Properties>
 				</Item>
-				<Item class="MeshPart" referent="RBXDB7B0439305447A98A3EBDC61B79CE22">
+				<Item class="MeshPart" referent="RBX49A40B093DFB48A58FD50D67F376ABB8">
 					<Properties>
 						<bool name="DoubleSided">true</bool>
 						<bool name="HasJointOffset">false</bool>
@@ -16330,10 +16335,10 @@ end]]></ProtectedString>
 						<bool name="DefinesCapabilities">false</bool>
 						<string name="Name">Windshield</string>
 						<int64 name="SourceAssetId">-1</int64>
-						<BinaryString name="Tags"></BinaryString>
+						<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 					</Properties>
 				</Item>
-				<Item class="UnionOperation" referent="RBXDBC273E6D18F43A1B08BE3B6294E77A7">
+				<Item class="UnionOperation" referent="RBX6CE7851BADAA473A91DFBD1DDEE62864">
 					<Properties>
 						<Content name="AssetId"><null></null></Content>
 						<BinaryString name="ChildData"></BinaryString>
@@ -16466,11 +16471,11 @@ end]]></ProtectedString>
 						<bool name="DefinesCapabilities">false</bool>
 						<string name="Name">Union</string>
 						<int64 name="SourceAssetId">-1</int64>
-						<BinaryString name="Tags"></BinaryString>
+						<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 					</Properties>
 				</Item>
 			</Item>
-			<Item class="Part" referent="RBX1893241ED1234E88B09CCD3FF4A4E7B6">
+			<Item class="Part" referent="RBX17CC254E11244356A0305726EE5FD18E">
 				<Properties>
 					<token name="shape">1</token>
 					<token name="formFactorRaw">1</token>
@@ -16566,9 +16571,9 @@ end]]></ProtectedString>
 					<bool name="DefinesCapabilities">false</bool>
 					<string name="Name">Weight</string>
 					<int64 name="SourceAssetId">-1</int64>
-					<BinaryString name="Tags"></BinaryString>
+					<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 				</Properties>
-				<Item class="Script" referent="RBXBC91C8AB4E4648E89D630A73FEB06809">
+				<Item class="Script" referent="RBXA1A33029B38D4AF5A39095DA9A0937CD">
 					<Properties>
 						<ProtectedString name="Source"><![CDATA[-- [ Settings ] --
 local weight = nil -- Set nil if you don't want to customize it.
@@ -16637,18 +16642,18 @@ end)
 						<bool name="Disabled">false</bool>
 						<Content name="LinkedSource"><null></null></Content>
 						<token name="RunContext">0</token>
-						<string name="ScriptGuid">{1299B574-878E-4AF2-B699-77B3A2F8ECBE}</string>
+						<string name="ScriptGuid">{D3AB5867-9B01-4A7B-80ED-D25FEACEC1CD}</string>
 						<BinaryString name="AttributesSerialize"></BinaryString>
 						<SecurityCapabilities name="Capabilities">17996771963439872</SecurityCapabilities>
 						<bool name="DefinesCapabilities">true</bool>
 						<string name="Name">Configuration</string>
 						<int64 name="SourceAssetId">-1</int64>
-						<BinaryString name="Tags"></BinaryString>
+						<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 					</Properties>
 				</Item>
 			</Item>
 		</Item>
-		<Item class="Script" referent="RBXFD291C892FA94EA39739DA544086447F">
+		<Item class="Script" referent="RBXED7752ED397C42E7AAA7BE6170BCAE02">
 			<Properties>
 				<ProtectedString name="Source"><![CDATA[--[[ 
 
@@ -16681,16 +16686,16 @@ The kit has included built-in mods which can be modified or removed.
 				<bool name="Disabled">false</bool>
 				<Content name="LinkedSource"><null></null></Content>
 				<token name="RunContext">0</token>
-				<string name="ScriptGuid">{333A0CA0-7DDB-472A-9F97-883CE10ADA31}</string>
+				<string name="ScriptGuid">{2394904D-76A2-4B5E-AF87-B8401D8A9504}</string>
 				<BinaryString name="AttributesSerialize"></BinaryString>
 				<SecurityCapabilities name="Capabilities">17996771963439872</SecurityCapabilities>
 				<bool name="DefinesCapabilities">true</bool>
 				<string name="Name">READ ME</string>
 				<int64 name="SourceAssetId">-1</int64>
-				<BinaryString name="Tags"></BinaryString>
+				<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 			</Properties>
 		</Item>
-		<Item class="Camera" referent="RBX8959E4FFBD52435BB2E04DF015853D12">
+		<Item class="Camera" referent="RBX0A1B4BB3A07C459DB4F407142E5A81BD">
 			<Properties>
 				<CoordinateFrame name="CFrame">
 					<X>-16</X>
@@ -16732,11 +16737,12 @@ The kit has included built-in mods which can be modified or removed.
 				<bool name="DefinesCapabilities">false</bool>
 				<string name="Name">ThumbnailCamera</string>
 				<int64 name="SourceAssetId">-1</int64>
-				<BinaryString name="Tags"></BinaryString>
+				<SharedString name="Tags">yuZpQdnvvUBOTYh1jqZ2cA==</SharedString>
 			</Properties>
 		</Item>
 	</Item>
 	<SharedStrings>
+		<SharedString md5="MEAPekSJQmjYC+BmYiRYig==">U0tZdGVjaF9TeXN0ZW0=</SharedString>
 		<SharedString md5="VDeaqqWdlSY3Drce38CG1w==">Q1NHUEhTCAAAAAIAKLUv/WAQA7UPAJQTBwAAAE+CEBz9ILQD0Ey9yL9Ov+DTE789KMpOPz/l
 basKC8rtFoq3bkvy3mwVlOJ2i22rVaWqqqK8r1uqGr3FTL0AqCW5wIvIvPpAYbu9wUw9AICl
 uED9d1kPvib1QTRJ+76Zw0AmOLJJ/MTOPlytVT5ERg++nOC+PQDMTD2OMDU/+6/pPpzETL0D
@@ -17520,5 +17526,6 @@ Gdgv/uY/AddI5nt774yyW8k7PuCb36hx8K/sNIyMA8B2gRRP+9g+4jetYO0iRG1eka34MTE8
 ZwI/0+UwGvH3+bGyYA7Hn/pyJi/IclvVfnDkbU580XzsUzRh3ztTL41+ucAw8T+mezzf+Vnl
 uf9AsjJ8YDkD</SharedString>
 		<SharedString md5="yuZpQdnvvUBOTYh1jqZ2cA=="></SharedString>
+		<SharedString md5="38LNAHE1nG5PFR8GD6tUYg==">U0tZdGVjaCByb3RvckxpdGU=</SharedString>
 	</SharedStrings>
 </roblox>
