@@ -1,0 +1,260 @@
+local Master = {}
+
+local Players = game:GetService("Players")
+
+local KitMaster = script.Parent.Parent
+local Packages = KitMaster.Packages
+local Constraints = Packages.Constraints
+
+function Master.Initialize(
+	kitName,
+	aircraft,
+	Presets,
+	connections,
+	LegacySyncing,
+	Welder
+)
+	local Settings = aircraft:WaitForChild("Settings")
+	local main = aircraft:WaitForChild("Main")
+	local mainPart = main:WaitForChild("Main")
+	local Stats_ = main:WaitForChild("Stats")
+	local pilotSeat = main:FindFirstChild("PilotSeat")
+
+	local legacyValues = {
+		["Active"] = Stats_:FindFirstChild("Active"),
+		["Throttle"] = Stats_:FindFirstChild("Throttle"),
+		["Motion"] = Stats_:FindFirstChild("Motion"),
+		["Fuel"] = Stats_:FindFirstChild("Fuel")
+	}
+
+	-- Check for missing stats attributes and overwrite them with legacy values if found.
+	Stats_:SetAttribute("Active", if legacyValues.Active then
+		legacyValues.Active.Value
+		else
+		Stats_:GetAttribute("Active") or false)
+	Stats_:SetAttribute("Throttle", if legacyValues.Throttle then
+		legacyValues.Throttle.Value
+		else
+		Stats_:GetAttribute("Throttle") or 0)
+	Stats_:SetAttribute("Motion", if legacyValues.Motion then
+		legacyValues.Motion.Value
+		else
+		Stats_:GetAttribute("Motion") or Vector3.zero)
+	if legacyValues.Motion then
+		legacyValues["Trim"] = legacyValues.Motion:FindFirstChild("Trim")
+	end
+	Stats_:SetAttribute("Trim", if legacyValues.Trim then
+		legacyValues.Trim.Value
+		else 0)
+	Stats_:SetAttribute("Fuel", if legacyValues.Fuel then
+		legacyValues.Fuel.Value
+		else
+		Stats_:GetAttribute("Fuel") or 100
+	)
+
+	LegacySyncing.FindMissingSettings(Settings, Presets)
+	LegacySyncing.SyncSettings(Settings, connections)
+
+	aircraft.PrimaryPart = mainPart
+	
+	if not mainPart:HasTag("SKYtech_System") then
+		mainPart:AddTag("SKYtech_System")
+	end
+
+	-------------------------------------
+
+	-- Clone the attachment and constraints if they don't exist.
+	local main_Attachment = mainPart:FindFirstChild("Main_Attachment")
+	if not main_Attachment then
+		main_Attachment = Packages.Main_Attachment:Clone()
+		main_Attachment.Parent = mainPart
+	end
+
+	for _, constraint in (Constraints:GetChildren()) do		
+		local existingConstraint = mainPart:FindFirstChild(constraint.Name)
+		if not existingConstraint then
+			existingConstraint = constraint:Clone()
+			if existingConstraint:IsA("Constraint") then
+				existingConstraint.Attachment0 = main_Attachment
+			end
+			existingConstraint.Parent = mainPart
+		else
+			-- Reconnect the attachment for safety
+			if existingConstraint:IsA("Constraint") and not existingConstraint.Attachment0 then
+				existingConstraint.Attachment0 = main_Attachment
+			end
+		end
+	end
+
+	local weldFolder = mainPart:FindFirstChild("Welds")
+	if not weldFolder then
+		-- Weld only once
+		Welder.Weld(aircraft, mainPart)
+	end
+
+	---------------------------------------------------------------------------------
+
+	local kitSystem = aircraft:FindFirstChild("System")
+	if not kitSystem then
+		kitSystem = Packages.System:Clone()
+		kitSystem.Parent = aircraft
+		kitSystem.Enabled = true
+	end
+
+	local kitGui = if pilotSeat then
+		pilotSeat:FindFirstChild(kitName.."_System") or kitSystem:FindFirstChild(kitName.."_System")
+		else nil
+
+	local controller = if kitGui then kitGui:FindFirstChild("Controller") else nil
+
+	if kitGui then
+		if not controller then
+			controller = Packages.Controller:Clone()
+			controller.Enabled = true
+			controller.Parent = kitGui
+		end
+
+		local controlHandler = kitGui:FindFirstChild("Control_Handler")
+		if not controlHandler then
+			controlHandler = Packages.Control_Handler:Clone()
+			controlHandler.Parent = kitGui
+		end
+
+		local aircraftOrigin = kitGui:FindFirstChild("Aircraft")
+		if not aircraftOrigin then
+			aircraftOrigin = Packages.Aircraft:Clone()
+			aircraftOrigin.Value = aircraft
+			aircraftOrigin.Parent = kitGui
+		end
+
+		if kitGui.Parent ~= kitSystem then
+			kitGui.Parent = kitSystem
+		end
+	end
+
+	local loader = aircraft:FindFirstChild("Settings/Loader")
+	if loader then
+		local hasCustomControls = loader:GetChildren()
+		if hasCustomControls and controller then
+			for _, module in (hasCustomControls) do
+				if module.Name ~= kitName.." Source" then
+					module.Parent = controller
+				end
+			end
+			hasCustomControls = nil
+		end
+		loader:Destroy()
+	end
+
+	local defaultLandingGear = main:FindFirstChild("LandingGear")
+	local oldGearScript = main.Mods:FindFirstChild("Landing_Gear")
+	if (defaultLandingGear and defaultLandingGear:FindFirstChild("Extended") and defaultLandingGear:FindFirstChild("Retracted"))
+		and (not oldGearScript or (oldGearScript and not oldGearScript:IsA("Script"))) then
+		defaultLandingGear:AddTag("SKYtech_LandingGear")
+	end
+
+	table.insert(connections, mainPart.AncestryChanged:Connect(function(instance, parent)
+		if not parent then
+			aircraft:Destroy()
+		end
+	end))
+
+	return Settings, main, mainPart, Stats_, pilotSeat, kitSystem, kitGui, legacyValues
+end
+
+function Master.HandlePilotSeat(
+	licenseName,
+	aircraft,
+	Settings,
+	mainPart,
+	pilotValue,
+	pilotSeat,
+	kitGui,
+	kitSystem,
+	connections,
+	NetworkManager
+)
+	local pilotGui
+	local license = kitSystem.License
+	local kitLicense = kitSystem:FindFirstChild(licenseName)
+
+	table.insert(connections, pilotSeat:GetPropertyChangedSignal("Occupant"):Connect(function()
+		local player = Players:GetPlayerFromCharacter(if pilotSeat.Occupant then pilotSeat.Occupant.Parent else nil)
+
+		if player then
+			-- Pilot enter
+			pilotValue.Value = player
+
+			local existingPilotGui = player.PlayerGui:FindFirstChild(kitGui.Name)
+			pilotGui = if existingPilotGui then existingPilotGui else kitGui:Clone()
+			pilotGui.Parent = player.PlayerGui
+
+			license.Value = if license.Value then license.Value else kitLicense:Clone()
+			license.Value.Parent = player.PlayerGui
+		else
+			-- Pilot leave
+			if pilotValue.Value then pilotValue.Value = nil end
+			
+			task.wait(0.1)
+			
+			if pilotGui then pilotGui:Destroy() end
+			if license.Value then license.Value:Destroy() end
+			
+			pilotGui = nil
+			license.Value = nil
+		end
+
+		if player and Settings:GetAttribute("Advanced/ClientControlled") == true then
+			NetworkManager.SetNetworkOwner(player, mainPart, aircraft)
+		elseif not player and Settings:GetAttribute("Advanced/ResetNetwork") == true then
+			NetworkManager.SetNetworkOwner(nil, mainPart, aircraft)
+		end
+	end))
+end
+
+function Master.UpdateStats(
+	licenseName,
+	kitSystem,
+	Stats_,
+	connections
+)
+	local updateEvent = kitSystem.Update
+
+	table.insert(connections, updateEvent.OnServerEvent:Connect(function(player, event, packet)
+		if not player.PlayerGui:FindFirstChild(licenseName) then return end
+
+		local hasFuel = Stats_:GetAttribute("Fuel") > 0
+
+		if event == "Active" then
+			Stats_:SetAttribute("Active", Stats_:GetAttribute("Active") ~= true and hasFuel)
+			Stats_:SetAttribute("Throttle", 0)
+
+		elseif event == "Stats" then
+			local throttle = if hasFuel then packet.Throttle else 0
+			local brake = packet.Brake
+			local roll = packet.Roll
+			local pitch = packet.Pitch
+			local trim = packet.Trim
+			local yaw = packet.Yaw
+			local motion = Vector3.new(roll, pitch, yaw)
+
+			Stats_:SetAttribute("Throttle", throttle)
+			Stats_:SetAttribute("Brake", brake)
+			Stats_:SetAttribute("Motion", motion)
+			Stats_:SetAttribute("Trim", trim)
+
+		elseif event == "States" then
+			local taxiing = packet.Taxiing
+			local flying = packet.Flying
+			local stalling = packet.Stalling
+			local hovering = packet.Hovering
+
+			kitSystem:SetAttribute("Taxiing", taxiing)
+			kitSystem:SetAttribute("Flying", flying)
+			kitSystem:SetAttribute("Stalling", stalling)
+			kitSystem:SetAttribute("Hovering", hovering)
+		end
+	end))
+end
+
+return Master
