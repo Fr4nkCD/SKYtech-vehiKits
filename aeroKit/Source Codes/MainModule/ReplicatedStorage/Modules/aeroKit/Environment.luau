@@ -2,6 +2,9 @@
 -- Handles terrain profiling, surface tracking, collision exceptions, and stall speed calculations
 local Environment = {}
 
+local math_cos = math.cos
+local math_sin = math.sin
+
 function Environment.Update(dt, state)
 	local Utils = state.Utils
 	local System = state.System
@@ -36,15 +39,15 @@ function Environment.Update(dt, state)
 
 	local bankAngle = -Utils.Deg(Utils.GetRoll(mainPart.CFrame)) + 360
 	local notUpsideDown = bankAngle >= -90 and bankAngle <= 90
-	local invertedBankAngle = Utils.Deg(Utils.GetRoll(mainPart.CFrame * Utils.CFAngles(0, 0, Utils.Rad(180)))) - 360
+	local invertedBankAngle = Utils.Deg(Utils.GetRoll(mainPart.CFrame * Utils.CFAngles(0, 0, Utils.Pi))) - 360
 	local pitchRad, yawAngle, _ = mainCFrame:ToEulerAnglesYXZ()
 	local pitchAngle = Utils.Deg(pitchRad)
 	local velocity = mainPart.CFrame:VectorToObjectSpace(mainPart.AssemblyLinearVelocity) / physicsScale
-	local trueSpeed = Utils.Abs(-velocity.Z + mainPart.CFrame:VectorToObjectSpace(workspace.GlobalWind).Z)
+	local trueSpeed = Utils.Abs(-velocity.Z + mainPart.CFrame:VectorToObjectSpace(globalWind).Z)
 	local altitude = mainPart.Position.Y / physicsScale
 	
 	local mass = Components.StateWrapper:GetAttribute("Mass") or 1
-	local weight = mass * 196.2 * Utils.Min(workspace.Gravity / 35, 1)
+	local weight = mass * 196.2 * Utils.Min(globalGravity / 35, 1)
 
 	local yawInput = System.Yaw
 	local yawDriftAngle = yawInput * _attitudeControls.YawSpeed / 200 * (1 - trueSpeed / _maxSpeed / 2.5)
@@ -52,8 +55,10 @@ function Environment.Update(dt, state)
 	local driftDirection = mainPart.CFrame.RightVector * sideWindMagnitude * Utils.Min(Utils.Max(trueSpeed - _stallSpeed, 0) / _stallSpeed / (10 * physicsScale), 1)
 	local localWindDirection = if (globalWind + driftDirection).Magnitude > 0 then mainPart.CFrame:VectorToObjectSpace(globalWind + driftDirection).Unit else Utils.V3Zero
 
+	local effectiveBankAngle = if notUpsideDown then bankAngle else invertedBankAngle
+
 	local stallSpeedChangedbyAltitude = if _changedbyAltitude then (_maxSpeed - _stallSpeed) * Utils.Clamp((altitude / _maxAltitude) + Utils.Clamp((altitude - _maxAltitude) / 10, 0, 10), 0, 10) else 0
-	local stallSpeed = _stallSpeed + ((if _symmetricalAirfoil then Utils.Abs(if notUpsideDown then bankAngle else invertedBankAngle) / 180 else Utils.Abs(bankAngle / 180)) * (_stallSpeed / 2.5)) + stallSpeedChangedbyAltitude + (_maxSpeed * math.max(altitude - _maxAltitude, 0) / 100)
+	local stallSpeed = _stallSpeed + ((if _symmetricalAirfoil then Utils.Abs(effectiveBankAngle) / 180 else Utils.Abs(bankAngle / 180)) * (_stallSpeed / 2.5)) + stallSpeedChangedbyAltitude + (_maxSpeed * math.max(altitude - _maxAltitude, 0) / 100)
 	local maxSpeed = _maxSpeedSL + (_maxSpeed - _maxSpeedSL) * (altitude / _maxAltitude + Utils.Max(-pitchAngle, 0) / 180)
 
 	local stalling = 0
@@ -62,7 +67,7 @@ function Environment.Update(dt, state)
 
 	if _lowestPoint == "Auto" then
 		local halfY, halfZ = boundSize.Y / 2, boundSize.Z / 2
-		local projectedExtent = halfY * math.cos(pitchRad) + halfZ * Utils.Abs(math.sin(pitchRad))
+		local projectedExtent = halfY * math_cos(pitchRad) + halfZ * Utils.Abs(math_sin(pitchRad))
 		lowestPoint = projectedExtent + physicsScale
 	else
 		lowestPoint = Utils.Abs(_lowestPoint)
@@ -103,6 +108,7 @@ function Environment.Update(dt, state)
 	state.EnvironmentData = {
 		PhysicsScale = physicsScale,
 		GlobalGravity = globalGravity,
+		GlobalWind = globalWind,
 		MainCFrame = mainCFrame,
 		Position = position,
 		WorldVelocity = mainPart.AssemblyLinearVelocity, -- non-scaled world velocity for hover math
@@ -113,6 +119,7 @@ function Environment.Update(dt, state)
 		BankAngle = bankAngle,
 		NotUpsideDown = notUpsideDown,
 		InvertedBankAngle = invertedBankAngle,
+		EffectiveBankAngle = effectiveBankAngle,
 		PitchRad = pitchRad,
 		PitchAngle = pitchAngle,
 		YawAngle = yawAngle,

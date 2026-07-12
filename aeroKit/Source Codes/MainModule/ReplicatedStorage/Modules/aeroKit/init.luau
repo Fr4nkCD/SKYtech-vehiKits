@@ -31,6 +31,8 @@ function aeroKit:Initialize(aircraft)
 			RestingAngle = 0,
 			CurrentRoll = 0,
 			CurrentPitch = 0,
+			VTOLlevel = 0,
+			VTOLHovering = false,
 		},
 		Settings = {},
 		Connections = {},
@@ -89,20 +91,22 @@ function aeroKit:Update(aircraft, dt, onClient)
 	local stateWrapper = state.Components.StateWrapper
 	local stateUpdateEvent = state.Components.StateUpdateEvent
 
-	local states = {
-		Taxiing = stateWrapper:GetAttribute("Taxiing"),
-		Flying = stateWrapper:GetAttribute("Flying"),
-		Stalling = stateWrapper:GetAttribute("Stalling"),
-		Hovering = stateWrapper:GetAttribute("Hovering")
-	}
+	local states = state.CalculatedStateFlags
 
 	if not mainPart:IsGrounded() then
+		-- Cache standard parameters & attributes for this physics step
+		state.System.VTOLlevel = stateWrapper:GetAttribute("VTOL") or 0
+		state.System.VTOLHovering = stateWrapper:GetAttribute("Hovering") == true
+
 		-- Pipeline Sequence via Context Injection
 		Environment.Update(dt, state)
 		Aerodynamics.Update(dt, state)
 		Motion.Update(dt, state)
-		
-		states = state.CalculatedStateFlags
+	else
+		states.Taxiing = stateWrapper:GetAttribute("Taxiing") or false
+		states.Flying = stateWrapper:GetAttribute("Flying") or false
+		states.Stalling = stateWrapper:GetAttribute("Stalling") or false
+		states.Hovering = stateWrapper:GetAttribute("Hovering") or false
 	end
 	
 	if state.Step >= 0.5 then

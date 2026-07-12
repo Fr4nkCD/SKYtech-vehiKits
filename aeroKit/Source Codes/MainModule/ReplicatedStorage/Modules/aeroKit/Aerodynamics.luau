@@ -7,12 +7,12 @@ function Aerodynamics.Update(dt, state)
 	local System = state.System
 	local Components = state.Components
 	local Env = state.EnvironmentData
-	local globalWind = workspace.GlobalWind
+	local globalWind = Env.GlobalWind
 
 	local forwardDrag = Env.TrueSpeed / Env.MaxSpeed / (3000 + (1000 * Env.Velocity.Magnitude / Env.MaxSpeed)) * Utils.Max(1 - Env.Altitude / state.Settings.AircraftStatistics.MaxAltitude, 0.25) * Env.DragCoeff
 	local maxSpeedDrag = Utils.Max((Env.Velocity.Magnitude - Env.MaxSpeed) / (5000 + 5000 * (1 - Env.StabilityCoeff)), 0) or 1 - Utils.Abs(Env.BankAngle / 270)
 
-	local liftLoss = if Env.SymmetricalAirfoil then 1 - Utils.Abs(if Env.NotUpsideDown then Env.BankAngle else Env.InvertedBankAngle) / 270 else 1 - Utils.Abs(Env.BankAngle) / 270
+	local liftLoss = if Env.SymmetricalAirfoil then 1 - Utils.Abs(Env.EffectiveBankAngle) / 270 else 1 - Utils.Abs(Env.BankAngle) / 270
 	local lift_Force = Utils.Clamp((Env.TrueSpeed - Env.StallSpeed) / (60 + 40 * (1 - Env.StabilityCoeff)), 0, Utils.Max(Env.StabilityCoeff, 0.001)) / 10 * liftLoss
 	local stall_Force = Env.TrueSpeed / Env.StallSpeed * Env.Velocity.Magnitude / Env.StallSpeed / 400
 
@@ -21,7 +21,7 @@ function Aerodynamics.Update(dt, state)
 	local aeroZ = Env.MainCFrame.LookVector * Env.Weight * (forwardDrag + maxSpeedDrag) * Env.Velocity.Z
 
 	local motionStability = Components.StateWrapper:GetAttribute("Stability") * System.Throttle
-	local VTOLlevel = Components.StateWrapper:GetAttribute("VTOL") or 0
+	local VTOLlevel = System.VTOLlevel
 	local VTOL = VTOLlevel * System.Throttle * (if Env.TrueSpeed < Env.StallSpeed then 1 else 0)
 	local aeroHover = Utils.V3New(0, Env.Weight * -Env.Velocity.Y / (200 * (1 + Utils.Abs(Env.WorldVelocity.Y) / 20)) * VTOL, 0)
 
