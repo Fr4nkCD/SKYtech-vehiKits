@@ -8,9 +8,6 @@ function Lift.Update(dt, state)
 	local Settings = state.Settings
 	local Components = state.Components
 	local Env = state.EnvironmentData
-
-	local lift = Components.Lift
-	local aerodynamics = Components.Aerodynamics
 	local globalWind = workspace.GlobalWind
 
 	local _maxSpeed = Utils.Max(Settings.AircraftStatistics.MaxSpeed, 0.001)
@@ -39,17 +36,17 @@ function Lift.Update(dt, state)
 	local aeroHover = Utils.V3New(0, if Env.IsHovering then Env.Weight * -Env.LocalVelocity.Y / 140 else 0, 0)
 	local crosswind = globalWind * Env.Weight * Env.SpeedMagnitude / 25000
 	
-	aerodynamics.Force = (aerodynamicsForce + aeroHover + crosswind) * Env.RPM
+	Components.Aerodynamics.Force = (aerodynamicsForce + aeroHover + crosswind) * Env.RPM
 
 	local rateOfClimb = _rateOfClimb + (_maxSpeed - _rateOfClimb) * Env.HorizontalMagnitude
 	local liftDrag = 1 - Utils.Max((Env.WorldVelocity.Y - rateOfClimb) / 5, 0)
 	local pressureLoss = Utils.Min(Utils.Max(Env.Altitude - _maxAltitude, 0) / 100, 1)
 	local liftForce = Env.Weight / 2 * Utils.Max(System.Collective - 0.1, 0) * liftDrag * (1 - pressureLoss)
 
-	state.LiftData = {
-		LiftForce = liftForce,
-		RateOfClimb = rateOfClimb,
-	}
+	-- In-place modification of LiftData to prevent GC pressure
+	local lft = state.LiftData
+	lft.LiftForce = liftForce
+	lft.RateOfClimb = rateOfClimb
 end
 
 return Lift

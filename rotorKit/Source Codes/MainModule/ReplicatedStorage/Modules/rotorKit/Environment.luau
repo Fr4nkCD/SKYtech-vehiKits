@@ -8,7 +8,6 @@ function Environment.Update(dt, state)
 	local Settings = state.Settings
 	local Components = state.Components
 
-	local Stats_ = Components.Stats_
 	local mainPart = Components.MainPart
 
 	local physicsScale = Utils.Max(Settings.Modifications.PhysicsScale or Settings.Advanced.PhysicsScale, 0.001)
@@ -25,39 +24,40 @@ function Environment.Update(dt, state)
 	local pitchRad, _, _ = mainCFrame:ToEulerAnglesYXZ()
 	local pitchAngle = Utils.Deg(pitchRad)
 
-	local RPM_ = Stats_:GetAttribute("RPM")
-	local direction_ = Stats_:GetAttribute("Direction")
-	local isHovering = Stats_:GetAttribute("Hover")
+	local RPM_ = state.RPM_
+	local direction_ = state.Direction_
+	local isHovering = state.IsHovering
 
 	local mass = Components.StateWrapper:GetAttribute("Mass") or 1
 	local weight = mass * 160 * Utils.Min(globalGravity / 35, 1)
 	local RPM = Utils.Max((RPM_ - 70), 0) / 30
 
-	local horizontalUnit = if direction_.Unit then direction_.Unit else Utils.V3Zero
+	-- Safe check to prevent division-by-zero or NaN on direction_.Unit
+	local horizontalUnit = if direction_.Magnitude > 0.001 then direction_.Unit else Utils.V3Zero
 	local horizontalMagnitude = Utils.V2New(horizontalUnit.X, horizontalUnit.Z).Magnitude
 
-	state.EnvironmentData = {
-		PhysicsScale = physicsScale,
-		GlobalGravity = globalGravity,
-		MainCFrame = mainCFrame,
-		Position = position,
-		WorldVelocity = worldVelocity,
-		LocalVelocity = localVelocity,
-		SpeedMagnitude = speedMagnitude,
-		Altitude = altitude,
-		BankAngle = bankAngle,
-		IsInverted = isInverted,
-		InvertedBankAngle = invertedBankAngle,
-		PitchRad = pitchRad,
-		PitchAngle = pitchAngle,
-		RPM = RPM,
-		Weight = weight,
-		Mass = mass,
-		Direction_ = direction_,
-		IsHovering = isHovering,
-		HorizontalUnit = horizontalUnit,
-		HorizontalMagnitude = horizontalMagnitude,
-	}
+	-- In-place modification of EnvironmentData to prevent GC pressure
+	local env = state.EnvironmentData
+	env.PhysicsScale = physicsScale
+	env.GlobalGravity = globalGravity
+	env.MainCFrame = mainCFrame
+	env.Position = position
+	env.WorldVelocity = worldVelocity
+	env.LocalVelocity = localVelocity
+	env.SpeedMagnitude = speedMagnitude
+	env.Altitude = altitude
+	env.BankAngle = bankAngle
+	env.IsInverted = isInverted
+	env.InvertedBankAngle = invertedBankAngle
+	env.PitchRad = pitchRad
+	env.PitchAngle = pitchAngle
+	env.RPM = RPM
+	env.Weight = weight
+	env.Mass = mass
+	env.Direction_ = direction_
+	env.IsHovering = isHovering
+	env.HorizontalUnit = horizontalUnit
+	env.HorizontalMagnitude = horizontalMagnitude
 end
 
 return Environment

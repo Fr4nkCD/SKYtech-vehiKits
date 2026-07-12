@@ -35,8 +35,35 @@ function rotorKit:Initialize(aircraft)
 			Gravity = mainPart.Gravity,
 			StateWrapper = aircraft.System,
 		},
-		EnvironmentData = {},
-		LiftData = {},
+		EnvironmentData = {
+			PhysicsScale = 0.001,
+			GlobalGravity = 196.2,
+			MainCFrame = CFrame.new(),
+			Position = Vector3.zero,
+			WorldVelocity = Vector3.zero,
+			LocalVelocity = Vector3.zero,
+			SpeedMagnitude = 0,
+			Altitude = 0,
+			BankAngle = 0,
+			IsInverted = false,
+			InvertedBankAngle = 0,
+			PitchRad = 0,
+			PitchAngle = 0,
+			RPM = 0,
+			Weight = 0,
+			Mass = 1,
+			Direction_ = Vector3.zero,
+			IsHovering = false,
+			HorizontalUnit = Vector3.zero,
+			HorizontalMagnitude = 0,
+		},
+		LiftData = {
+			LiftForce = 0,
+			RateOfClimb = 0,
+		},
+		RPM_ = 0,
+		Direction_ = Vector3.zero,
+		IsHovering = false,
 	}
 
 	local state = self.States[aircraft]
@@ -66,8 +93,14 @@ function rotorKit:Update(aircraft, dt, onClient)
 	if not state then return end
 
 	local mainPart = state.Components.MainPart
+	local stats = state.Components.Stats_
 
 	if not mainPart:IsGrounded() then
+		-- Cache attributes once per frame
+		state.RPM_ = stats:GetAttribute("RPM") or 0
+		state.Direction_ = stats:GetAttribute("Direction") or Vector3.zero
+		state.IsHovering = stats:GetAttribute("Hover") == true
+
 		-- Pipeline Sequence via Context Injection
 		Environment.Update(dt, state)
 		Lift.Update(dt, state)

@@ -28,11 +28,11 @@ function Motion.Update(dt, state)
 	if _limitAngle or System.Hovering then
 		local maxBank = if System.Hovering then 20 else Utils.Max(Utils.Abs(Settings.AttitudeControls.MaxBank), 1)
 		local bankLimit = Utils.Clamp(Env.BankAngle / maxBank, -1, 1) * Utils.Abs(System.Roll)
-		local bankLevelOut = (Env.BankAngle > 0 and 0.3 or -0.3) * Utils.Min(Utils.Abs(Env.BankAngle) / 5, 1) * (1 - Utils.Abs(System.Roll))
+		local bankLevelOut = Utils.Sign(Env.BankAngle) * 0.3 * Utils.Min(Utils.Abs(Env.BankAngle) / 5, 1) * (1 - Utils.Abs(System.Roll))
 		
 		local maxPitch = if System.Hovering then 20 else Utils.Max(Utils.Abs(Settings.AttitudeControls.MaxPitch), 1)
 		local pitchLimit = Utils.Clamp(Env.PitchAngle / maxPitch, -1, 1) * Utils.Abs(System.Pitch)
-		local pitchLevelOut = (Env.PitchAngle > 0 and 0.3 or -0.3) * Utils.Min(Utils.Abs(Env.PitchAngle) / 5, 1) * (1 - Utils.Abs(System.Pitch))
+		local pitchLevelOut = Utils.Sign(Env.PitchAngle) * 0.3 * Utils.Min(Utils.Abs(Env.PitchAngle) / 5, 1) * (1 - Utils.Abs(System.Pitch))
 		
 		rollInput = System.Roll - bankLimit - bankLevelOut
 		pitchInput = System.Pitch - pitchLimit - pitchLevelOut
