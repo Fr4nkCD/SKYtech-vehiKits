@@ -6,16 +6,6 @@ By tracking our production-ready assets here in plain-text XML format, we mainta
 
 ---
 
-## 📂 Repository Structure
-
-The workspace is organized to separate active development assets from historical and production-ready deployments:
-
-*   **`Developer Versions/`** – Contains our active production flight and vehicle packages saved in `.rbxmx` (XML text) format. This is the primary directory for Git version tracking.
-*   **`Cloud Releases/`** – Stable, packaged assets formatted and configured specifically for cloud-synchronized test environments and live server production.
-*   **`Non-cloud Releases/`** – Standalone local framework backups and historical archive modules.
-
----
-
 ## 🚀 Active Kits
 
 This repository actively manages the source files for our core flight packages:
