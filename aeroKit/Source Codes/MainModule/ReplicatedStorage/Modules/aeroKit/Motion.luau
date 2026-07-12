@@ -55,16 +55,22 @@ function Motion.Update(dt, state)
 	local pitch = pitchInput * _attitudeControls.PitchSpeed / 10 * (1 - Env.TrueSpeed / Env.MaxSpeed / 2.5)
 	local yaw = System.Yaw * _attitudeControls.YawSpeed / 10 * (1 - Env.TrueSpeed / Env.MaxSpeed / 2.5)
 
-	local cancelWindDirection = Env.GlobalWind - (Env.ScaledWorldVelocity.Unit * Env.GlobalWind:Dot(Env.ScaledWorldVelocity.Unit))
-	cancelWindDirection = if cancelWindDirection == cancelWindDirection then cancelWindDirection else Utils.V3Zero
+	-- Safe wind calculations
+	local cancelWindDirection = Utils.V3Zero
+	if Env.ScaledWorldVelocity.Magnitude > 0.001 then
+		local velUnit = Env.ScaledWorldVelocity.Unit
+		cancelWindDirection = Env.GlobalWind - (velUnit * Env.GlobalWind:Dot(velUnit))
+		cancelWindDirection = if cancelWindDirection == cancelWindDirection then cancelWindDirection else Utils.V3Zero
+	end
 
 	local mainVelocity = Env.ScaledWorldVelocity - (cancelWindDirection * Utils.Clamp((Env.TrueSpeed - Env.StallSpeed * 0.9) / (Env.StallSpeed * 0.1), 0, 1))
-	local mainXZ = Utils.V3New(Env.MainCFrame.LookVector.X, 0, Env.MainCFrame.LookVector.Z).Unit
-	local velocityXZ = Utils.V3New(mainVelocity.X, 0, mainVelocity.Z).Unit
 	
-	-- Safe check to avoid NaN on unit vector division
-	mainXZ = if mainXZ == mainXZ then mainXZ else Utils.V3Zero
-	velocityXZ = if velocityXZ == velocityXZ then velocityXZ else Utils.V3Zero
+	-- Safe horizontal unit projection to prevent division-by-zero NaNs at near-zero vectors
+	local lookXZ = Utils.V3New(Env.MainCFrame.LookVector.X, 0, Env.MainCFrame.LookVector.Z)
+	local mainXZ = if lookXZ.Magnitude > 0.001 then lookXZ.Unit else Utils.V3Zero
+
+	local velXZ = Utils.V3New(mainVelocity.X, 0, mainVelocity.Z)
+	local velocityXZ = if velXZ.Magnitude > 0.001 then velXZ.Unit else Utils.V3Zero
 
 	local forwardComponent = mainVelocity:Dot(Env.MainCFrame.LookVector)
 	local rad = Utils.Rad(Env.BankAngle)
@@ -78,18 +84,26 @@ function Motion.Update(dt, state)
 		velocityDirection = math_acos(Utils.Clamp(Utils.V3New(0, 0, -1):Dot(velocityXZ), -1, 1)) * (if Utils.V3New(0, 0, -1):Cross(velocityXZ).Y >= 0 then 1 else -1)
 	end
 
+	-- Proportional Cross-Product Steering & Pitch Cosine Decay for pathYaw
 	local pathYaw = 0
 	if mainXZ.Magnitude > 0.001 and velocityXZ.Magnitude > 0.001 then
-		pathYaw = math_acos(Utils.Clamp(mainXZ:Dot(velocityXZ), -1, 1)) * (if mainXZ:Cross(velocityXZ).Y >= 0 then 1 else -1) / (10 - 5 * Env.Stalling) * (1 + 0.25 * Env.Stalling)
+		local yawError = mainXZ:Cross(velocityXZ).Y
+		local pitchCosine = math_cos(Env.PitchRad)
+		pathYaw = (yawError * 1.5) / (10 - 5 * Env.Stalling) * (1 + 0.25 * Env.Stalling) * Utils.Max(pitchCosine, 0)
 	end
 	
 	local pathPitch = Utils.Clamp(math.atan2(upComponent, forwardComponent), -2, 2) * 1.25 * Utils.Clamp(1 - (Env.ScaledWorldVelocity.Magnitude - Env.StallSpeed) / Env.MaxSpeed, 0.1, 1)
 
-	local flightPath = (Utils.V3New(0, pathYaw, 0) + Utils.CFAngles(0, velocityDirection, 0):VectorToWorldSpace(Utils.V3New(pathPitch, 0, 0)) * Utils.Min(if Env.ScaledWorldVelocity.Magnitude >= 1 then Env.ScaledWorldVelocity.Magnitude / Env.StallSpeed + Env.Stalling else 0, 1)) * Utils.Max(1 - Aero.MotionStability * 4, 0)
+	-- Calculate the target flight path vector
+	local targetFlightPath = (Utils.V3New(0, pathYaw, 0) + Utils.CFAngles(0, velocityDirection, 0):VectorToWorldSpace(Utils.V3New(pathPitch, 0, 0)) * Utils.Min(if Env.ScaledWorldVelocity.Magnitude >= 1 then Env.ScaledWorldVelocity.Magnitude / Env.StallSpeed + Env.Stalling else 0, 1)) * Utils.Max(1 - Aero.MotionStability * 4, 0)
+
+	-- Low-Pass filter smoothing (8 Hz decay constant)
+	local filterAlpha = 1 - math_cos(Utils.Clamp(8 * dt, 0, 1.57)) -- Safe filter blending coeff
+	System.FlightPath = System.FlightPath:Lerp(targetFlightPath, filterAlpha)
 
 	motion.MaxTorque = Env.Weight * Utils.Clamp(Utils.Max((Env.TrueSpeed - Env.StallSpeed * 0.3) / (Env.StallSpeed * 0.7), 0) + Env.Stalling + Aero.MotionStability, 0, 1) * 2 * _attitudeControls.TorqueResponsiveness
 	local motionControl = Env.MainCFrame:VectorToWorldSpace(Utils.V3New(pitch, yaw + turn, roll + yaw / 4) * Utils.Clamp(Utils.Max(Env.TrueSpeed - Env.StallSpeed * (0.3 + 0.3 * Env.Stalling), 0) / (Env.StallSpeed * (0.7 - 0.3 * Env.Stalling)) + Aero.MotionStability, 0.15, 1))
-	motion.AngularVelocity = motionControl + flightPath
+	motion.AngularVelocity = motionControl + System.FlightPath
 
 	gravity.Force = Utils.V3New(0, Env.Mass * Utils.Max(Env.GlobalGravity - 35, 0), 0)
 	local aeroForce = Aero.AeroX + Aero.AeroY + Aero.AeroZ + Aero.AeroHover + Aero.Crosswind

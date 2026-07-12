@@ -33,6 +33,7 @@ function aeroKit:Initialize(aircraft)
 			CurrentPitch = 0,
 			VTOLlevel = 0,
 			VTOLHovering = false,
+			FlightPath = Vector3.zero,
 		},
 		Settings = {},
 		Connections = {},
