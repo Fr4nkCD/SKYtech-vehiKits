@@ -42,8 +42,28 @@ function rotorLite:Initialize(aircraft)
 			Stats_ = main.Stats,
 		},
 		IgnoredObjects = {aircraft},
-		EnvironmentData = {},
-		ThrustData = {}
+		EnvironmentData = {
+			PhysicsScale = 0.001,
+			Velocity = Vector3.zero,
+			BankAngle = 0,
+			IsInverted = false,
+			InvertedBankAngle = 0,
+			PitchRad = 0,
+			PitchAngle = 0,
+			MaxSpeed = 0,
+			MaxAltitude = 0,
+			RateOfClimb = 0,
+			Sensitivity = 0,
+			MainCFrame = CFrame.new(),
+			Position = Vector3.zero,
+			GlobalWind = Vector3.zero,
+			GlobalGravity = 196.2,
+		},
+		ThrustData = {
+			StabilityAlpha = 0,
+			Mass = 1,
+		},
+		Active = false,
 	}
 
 	local state = self.States[aircraft]
@@ -103,10 +123,14 @@ function rotorLite:Update(aircraft, dt, onClient)
 	local System = state.System
 	local Components = state.Components
 	local mainPart = Components.MainPart
+	local stats = Components.Stats_
 	
 	System.OnClient = onClient
 
 	if not mainPart:IsGrounded() then
+		-- Cache Stats attribute once per frame
+		state.Active = stats:GetAttribute("Active") == true
+
 		-- Ordered calculation pipeline execution
 		Environment.Update(dt, state)
 		Lift.Update(dt, state)
@@ -117,7 +141,7 @@ function rotorLite:Update(aircraft, dt, onClient)
 		local velocity = mainPart.AssemblyLinearVelocity / physicsScale
 		local bankAngle = -VehicleUtils.Deg(VehicleUtils.GetRoll(mainCFrame)) + 360
 		
-		System.MaxForce = VehicleUtils.Clamp(System.Collective / 0.1 + velocity.Magnitude / 20, 0, 1) * (if Components.Stats_:GetAttribute("Active") == true then 1 else 0)
+		System.MaxForce = VehicleUtils.Clamp(System.Collective / 0.1 + velocity.Magnitude / 20, 0, 1) * (if stats:GetAttribute("Active") == true then 1 else 0)
 		System.Forward = -mainCFrame:VectorToObjectSpace(velocity).Z
 		System.SidewaysSpeed = mainCFrame:VectorToObjectSpace(velocity).X
 		System.Velocity = velocity * physicsScale

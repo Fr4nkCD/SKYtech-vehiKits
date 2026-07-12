@@ -8,11 +8,11 @@ function Lift.Update(dt, state)
 	local Settings = state.Settings
 	local Components = state.Components
 	local Env = state.EnvironmentData
-
+	
 	local mainPart = Components.MainPart
-	local mainCFrame = mainPart.CFrame
-	local position = mainPart.Position
-	local globalWind = workspace.GlobalWind
+	local mainCFrame = Env.MainCFrame
+	local position = Env.Position
+	local globalWind = Env.GlobalWind
 	
 	local frameScale = dt * 45
 	local _aircraftStatistics = Settings.AircraftStatistics
@@ -50,10 +50,10 @@ function Lift.Update(dt, state)
 
 	System.Velocity = System.Velocity:Lerp((ascend + descend + (mainCFrame.LookVector * System.Forward * horizontalVector) + (mainCFrame.RightVector * System.SidewaysSpeed * horizontalVector)) * maxAltitude + altitudeDrop + crosswind, stabilityAlpha)
 
-	state.ThrustData = {
-		StabilityAlpha = stabilityAlpha,
-		Mass = mainPart.AssemblyMass
-	}
+	-- Export calculated thrust state in-place
+	local thr = state.ThrustData
+	thr.StabilityAlpha = stabilityAlpha
+	thr.Mass = mainPart.AssemblyMass
 end
 
 return Lift

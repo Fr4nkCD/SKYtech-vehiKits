@@ -2,6 +2,10 @@
 -- Manages spatial orientation matrices, auto-coordinated bank target curves, and constraints
 local Motion = {}
 
+local math_cos = math.cos
+local math_sin = math.sin
+local math_acos = math.acos
+
 function Motion.Update(dt, state)
 	local Utils = state.Utils
 	local System = state.System
@@ -15,9 +19,9 @@ function Motion.Update(dt, state)
 	local lift = Components.Lift
 	local gravity = Components.Gravity
 
-	local mainCFrame = mainPart.CFrame
-	local position = mainPart.Position
-	local globalGravity = workspace.Gravity
+	local mainCFrame = Env.MainCFrame
+	local position = Env.Position
+	local globalGravity = Env.GlobalGravity
 
 	lift.MaxForce = Thr.Mass * 100 * System.MaxForce
 	motion.MaxTorque = Thr.Mass * 2000 * System.MaxForce
@@ -45,7 +49,7 @@ function Motion.Update(dt, state)
 		local maxAngle = Utils.Pi / 4 + Utils.Pi / 8 * Env.Sensitivity
 
 		if start2D.Magnitude > 0.001 and target2D.Magnitude > 0.001 then
-			local turnAngle = math.acos(Utils.Clamp(start2D.Unit:Dot(target2D.Unit), -1, 1))
+			local turnAngle = math_acos(Utils.Clamp(start2D.Unit:Dot(target2D.Unit), -1, 1))
 			local turnSign = Utils.Sign(Vector3.yAxis:Dot(start2D:Cross(target2D)))
 
 			local cleanForwardSpeed = Utils.Abs(System.Forward)

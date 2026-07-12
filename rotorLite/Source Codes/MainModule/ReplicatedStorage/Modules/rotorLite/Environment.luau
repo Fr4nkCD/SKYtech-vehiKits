@@ -8,11 +8,9 @@ function Environment.Update(dt, state)
 	local Settings = state.Settings
 	local Components = state.Components
 
-	local Stats_ = Components.Stats_
 	local mainPart = Components.MainPart
 	local mainCFrame = mainPart.CFrame
 	local position = mainPart.Position
-	local altitude = position.Y
 
 	local physicsScale = Utils.Max(Settings.Modifications.PhysicsScale or Settings.Advanced.PhysicsScale, 0.001)
 	local _aircraftStatistics = Settings.AircraftStatistics
@@ -26,27 +24,34 @@ function Environment.Update(dt, state)
 	local bankAngle = -Utils.Deg(Utils.GetRoll(mainCFrame)) + 360
 	local isInverted = bankAngle % 360 >= 90 and bankAngle % 360 <= 270
 	local invertedBankAngle = Utils.Deg(Utils.GetRoll(mainCFrame * Utils.CFAngles(0, 0, Utils.Pi))) - 360
-	local pitchRad, yawAngle, _ = mainCFrame:ToEulerAnglesYXZ()
+	
+	local pitchRad = Utils.GetPitch(mainCFrame)
 	local pitchAngle = Utils.Deg(pitchRad)
 
-	local collective = Utils.Clamp(System.Collective / 0.1 + velocity.Magnitude / 20, 0, 1) * (if Stats_:GetAttribute("Active") == true then 1 else 0)
+	local collective = Utils.Clamp(System.Collective / 0.1 + velocity.Magnitude / 20, 0, 1) * (if state.Active then 1 else 0)
 	local forceAlpha = 1 - Utils.Exp(-10 * (0.5 + _sensitivity / 2) * dt)
 	System.MaxForce = Utils.Lerp(System.MaxForce, collective, forceAlpha)
 
-	state.EnvironmentData = {
-		PhysicsScale = physicsScale,
-		Velocity = velocity,
-		BankAngle = bankAngle,
-		IsInverted = isInverted,
-		InvertedBankAngle = invertedBankAngle,
-		PitchRad = pitchRad,
-		PitchAngle = pitchAngle,
-		YawAngle = yawAngle,
-		MaxSpeed = _maxSpeed,
-		MaxAltitude = _maxAltitude,
-		RateOfClimb = _rateOfClimb,
-		Sensitivity = _sensitivity
-	}
+	local globalWind = workspace.GlobalWind
+	local globalGravity = workspace.Gravity
+
+	-- Export calculated environment state in-place
+	local env = state.EnvironmentData
+	env.PhysicsScale = physicsScale
+	env.Velocity = velocity
+	env.BankAngle = bankAngle
+	env.IsInverted = isInverted
+	env.InvertedBankAngle = invertedBankAngle
+	env.PitchRad = pitchRad
+	env.PitchAngle = pitchAngle
+	env.MaxSpeed = _maxSpeed
+	env.MaxAltitude = _maxAltitude
+	env.RateOfClimb = _rateOfClimb
+	env.Sensitivity = _sensitivity
+	env.MainCFrame = mainCFrame
+	env.Position = position
+	env.GlobalWind = globalWind
+	env.GlobalGravity = globalGravity
 end
 
 return Environment
