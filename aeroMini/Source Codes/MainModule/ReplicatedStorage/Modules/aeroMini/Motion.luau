@@ -2,6 +2,11 @@
 -- Manages spatial vectors, aerodynamic torque adjustments, and constraint mapping
 local Motion = {}
 
+local math_cos = math.cos
+local math_sin = math.sin
+local math_acos = math.acos
+local math_clamp = math.clamp
+
 function Motion.Update(dt, state)
 	local Utils = state.Utils
 	
@@ -10,8 +15,8 @@ function Motion.Update(dt, state)
 	local Components = state.Components
 	local Env = state.EnvironmentData
 	
-	local globalWind = workspace.GlobalWind
-	local globalGravity = workspace.Gravity
+	local globalWind = Env.GlobalWind
+	local globalGravity = Env.GlobalGravity
 
 	local mainPart = Components.MainPart
 	local motion = Components.Motion
@@ -117,7 +122,8 @@ function Motion.Update(dt, state)
 			direction = direction * Utils.CFAngles(0, yawOutput, 0)
 
 			local directionVector = direction.LookVector
-			local flatForward = Utils.V3New(directionVector.X, 0, directionVector.Z).Unit
+			local flatForwardVec = Utils.V3New(directionVector.X, 0, directionVector.Z)
+			local flatForward = if flatForwardVec.Magnitude > 0.001 then flatForwardVec.Unit else Utils.V3New(0, 0, -1)
 			local yawOnlyDir = Utils.CFLookAt(position, position + flatForward)
 
 			local groundAlignedWithYaw = yawOnlyDir * Utils.CFAngles(Utils.Rad(tailLiftAngle), 0, 0) * currentRollCF
@@ -154,7 +160,7 @@ function Motion.Update(dt, state)
 		local target2D = targetPosition * flatMask
 
 		if start2D.Magnitude > 0.001 and target2D.Magnitude > 0.001 then
-			local angle = math.acos(math.clamp(start2D.Unit:Dot(target2D.Unit), -1, 1))
+			local angle = math_acos(math_clamp(start2D.Unit:Dot(target2D.Unit), -1, 1))
 			local sign = Utils.Sign(Vector3.yAxis:Dot(start2D:Cross(target2D)))
 
 			local maxAngle = Utils.Pi / 2
@@ -166,7 +172,8 @@ function Motion.Update(dt, state)
 
 		if underSpeed and Env.HasCollision then
 			local surfaceUp = Env.OnGroundNormal or Vector3.yAxis
-			local flatForward = Utils.V3New(System.Direction.X, 0, System.Direction.Z).Unit
+			local flatForwardVec = Utils.V3New(System.Direction.X, 0, System.Direction.Z)
+			local flatForward = if flatForwardVec.Magnitude > 0.001 then flatForwardVec.Unit else Utils.V3New(0, 0, -1)
 			local yawOnlyDir = Utils.CFLookAt(position, position + flatForward)
 
 			local groundAlignedWithYaw = CFrame.fromMatrix(

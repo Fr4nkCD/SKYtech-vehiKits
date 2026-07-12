@@ -19,8 +19,7 @@ function Thrust.Update(dt, state)
 	local _minSpeed = System.MinSpeed * physicsScale
 	local _maxSpeed = Utils.Max(_aircraftStatistics.MaxSpeed * physicsScale, 0.001)
 
-	local pitchRad, _, _ = mainCFrame:ToEulerAnglesYXZ()
-	local pitchAngle = Utils.Deg(pitchRad)
+	local pitchAngle = Utils.Deg(Utils.GetPitch(mainCFrame))
 
 	local throttleExponential = if Settings.FlightControls.ThrottleExponential then Utils.Max(System.Throttle, 0.5) else 1
 	local desiredSpeed = _maxSpeed * System.Throttle * throttleExponential

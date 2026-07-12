@@ -2,6 +2,9 @@
 -- Handles ground detection and orientation alignment
 local Environment = {}
 
+local math_cos = math.cos
+local math_sin = math.sin
+
 function Environment.Update(dt, state)
 	local Utils = state.Utils
 	
@@ -15,7 +18,6 @@ function Environment.Update(dt, state)
 
 	local mainCFrame = mainPart.CFrame
 	local position = mainPart.Position
-	local _, _, _ = mainCFrame:ToEulerAnglesYXZ()
 	local pitchRad = Utils.GetPitch(mainCFrame)
 
 	local _lowestPoint = Settings.Advanced.LowestPoint or "Auto"
@@ -27,10 +29,11 @@ function Environment.Update(dt, state)
 	local hasCollision = false
 
 	if _lowestPoint == "Auto" then
-		local projectedExtent = (boundSize.Y / 2) * math.cos(pitchRad) + (boundSize.Z / 2) * Utils.Abs(math.sin(pitchRad))
+		local projectedExtent = (boundSize.Y / 2) * math_cos(pitchRad) + (boundSize.Z / 2) * Utils.Abs(math_sin(pitchRad))
 		lowestPoint = projectedExtent + physicsScale
 	else
-		lowestPoint = Utils.Abs(_lowestPoint)
+		projectedExtent = Utils.Abs(_lowestPoint)
+		lowestPoint = projectedExtent
 	end
 
 	state.RayFilter.FilterDescendantsInstances = state.IgnoredObjects
@@ -74,12 +77,13 @@ function Environment.Update(dt, state)
 		System.CurrentRoll = Utils.Lerp(System.CurrentRoll, Utils.Rad(bankAngle), dt)
 	end
 
-	-- Export calculated environment state for downstream processing
-	state.EnvironmentData = {
-		HasCollision = hasCollision,
-		OnGroundNormal = onGround and onGround.Normal or nil,
-		LowestPoint = lowestPoint
-	}
+	-- Export calculated environment state in-place
+	local env = state.EnvironmentData
+	env.HasCollision = hasCollision
+	env.OnGroundNormal = onGround and onGround.Normal or nil
+	env.LowestPoint = lowestPoint
+	env.GlobalWind = globalWind
+	env.GlobalGravity = workspace.Gravity
 end
 
 return Environment

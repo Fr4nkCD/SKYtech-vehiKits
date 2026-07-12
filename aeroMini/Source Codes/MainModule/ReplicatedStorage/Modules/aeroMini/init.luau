@@ -6,7 +6,7 @@ local aeroMini = {
 }
 
 -- Processors
-local VehhicleUtils = require(script.Parent:WaitForChild("VehicleUtils"))
+local VehicleUtils = require(script.Parent:WaitForChild("VehicleUtils"))
 local Environment = require(script:WaitForChild("Environment"))
 local Thrust = require(script:WaitForChild("Thrust"))
 local Motion = require(script:WaitForChild("Motion"))
@@ -17,7 +17,7 @@ function aeroMini:Initialize(aircraft)
 
 	self.States[aircraft] = {
 		AircraftInstance = aircraft,
-		Utils = VehhicleUtils,
+		Utils = VehicleUtils,
 		System = {
 			Throttle = 0,
 			Roll = 0,
@@ -48,7 +48,13 @@ function aeroMini:Initialize(aircraft)
 		},
 		IgnoredObjects = {aircraft},
 		RayFilter = nil,
-		EnvironmentData = {},
+		EnvironmentData = {
+			HasCollision = false,
+			OnGroundNormal = Vector3.yAxis,
+			LowestPoint = 0,
+			GlobalWind = Vector3.zero,
+			GlobalGravity = 196.2,
+		},
 		Step = 0,
 	}
 
@@ -56,17 +62,17 @@ function aeroMini:Initialize(aircraft)
 	local Settings = aircraft:FindFirstChild("Settings")
 
 	for attrName, attrValue in pairs(Settings:GetAttributes()) do
-		VehhicleUtils.UpdateSetting(attrName, attrValue, state.Settings)
+		VehicleUtils.UpdateSetting(attrName, attrValue, state.Settings)
 	end	
 
-	if VehhicleUtils.IsClient() then
-		VehhicleUtils.SyncLegacyValues(Settings, state.Connections)
+	if VehicleUtils.IsClient() then
+		VehicleUtils.SyncLegacyValues(Settings, state.Connections)
 	end
 
 	table.insert(state.Connections, Settings.AttributeChanged:Connect(function(attrName)
 		local attrValue = Settings:GetAttribute(attrName)
 		if attrValue == nil then return end
-		VehhicleUtils.UpdateSetting(attrName, attrValue, state.Settings)
+		VehicleUtils.UpdateSetting(attrName, attrValue, state.Settings)
 	end))
 
 	state.RayFilter = RaycastParams.new()
@@ -133,10 +139,9 @@ function aeroMini:Update(aircraft, dt, onClient)
 		local _stallSpeed = Utils.Max(Settings.AircraftStatistics.StallSpeed * physicsScale, 0.001)
 		local _maxAltitude = Utils.Max(Settings.AircraftStatistics.MaxAltitude * physicsScale, 0.001)
 
-		local trueSpeed = Utils.Abs(System.Speed + mainPart.CFrame:VectorToObjectSpace(workspace.GlobalWind).Z)
+		local trueSpeed = Utils.Abs(System.Speed + mainPart.CFrame:VectorToObjectSpace(state.EnvironmentData.GlobalWind).Z)
 		local lift = if trueSpeed >= _stallSpeed then 1 else 0
-		local stalling = if state.Components.StateWrapper:GetAttribute("Stalling") == true then 1 else 0
-		stalling = if state.EnvironmentData.HasCollision then 0 else 1 - lift
+		local stalling = if state.EnvironmentData.HasCollision then 0 else 1 - lift
 
 		local belowMaxAlt = mainPart.Position.Y <= _maxAltitude
 
