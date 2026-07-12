@@ -36,6 +36,9 @@ function Lift.Update(dt, state)
 	local acceleration = (-Env.PitchAngle / 10 * _acceleration) * frameScale
 	System.Forward = Utils.Clamp(System.Forward + acceleration + (System.DynamicForwardDrag * drag_Damping * frameScale), -maxSpeed, maxSpeed)
 
+	-- Apply turning speed bleed to prevent high-speed slinging
+	System.Forward = System.Forward * (1 - Utils.Min(turnRate * 0.1, 0.25) * dt)
+
 	local sidewaysMaxSpeed = maxSpeed / 4
 	local sideways_Drag = Utils.Clamp(-System.SidewaysSpeed / Env.PhysicsScale, -0.1, 0.1) * Env.PhysicsScale
 	local sideSlip = ((if Env.IsInverted then Env.InvertedBankAngle else Env.BankAngle) / 10 * _acceleration * -Utils.Max(1 - Env.Velocity.Magnitude / 100, 0)) * frameScale
@@ -46,15 +49,24 @@ function Lift.Update(dt, state)
 	local altitudeDrop = Utils.V3New(0, Utils.Clamp((Env.MaxAltitude - 1) - position.Y, -Env.RateOfClimb, 0), 0)
 	local crosswind = globalWind * Utils.Min(Env.Velocity.Magnitude / 25, 1)
 
-	local stabilitySpeed = 1 + 0.2 ^ (Utils.Abs(System.Forward) / Env.MaxSpeed)
-	local stabilityAlpha = 1 - Utils.Exp(-_stability * stabilitySpeed * dt)
+	local speedRatio = Utils.Clamp(Utils.Abs(System.Forward) / Env.MaxSpeed, 0, 1)
+	local stabilitySpeedHorizontal = Utils.Lerp(2.0, 1.65, speedRatio)
+
+	local stabilityAlphaHorizontal = 1 - Utils.Exp(-_stability * stabilitySpeedHorizontal * dt)
+	local stabilityAlphaVertical = 1 - Utils.Exp(-_stability * 2.0 * dt)
 	local horizontalVector = Utils.V3New(1, 0.3, 1)
 
-	System.Velocity = System.Velocity:Lerp((ascend + descend + (mainCFrame.LookVector * System.Forward * horizontalVector) + (mainCFrame.RightVector * System.SidewaysSpeed * horizontalVector)) * maxAltitude + altitudeDrop + crosswind, stabilityAlpha)
+	local targetVelocity = (ascend + descend + (mainCFrame.LookVector * System.Forward * horizontalVector) + (mainCFrame.RightVector * System.SidewaysSpeed * horizontalVector)) * maxAltitude + altitudeDrop + crosswind
+
+	local newVelocityX = Utils.Lerp(System.Velocity.X, targetVelocity.X, stabilityAlphaHorizontal)
+	local newVelocityY = Utils.Lerp(System.Velocity.Y, targetVelocity.Y, stabilityAlphaVertical)
+	local newVelocityZ = Utils.Lerp(System.Velocity.Z, targetVelocity.Z, stabilityAlphaHorizontal)
+
+	System.Velocity = Utils.V3New(newVelocityX, newVelocityY, newVelocityZ)
 
 	-- Export calculated thrust state in-place
 	local thr = state.ThrustData
-	thr.StabilityAlpha = stabilityAlpha
+	thr.StabilityAlpha = stabilityAlphaHorizontal
 	thr.Mass = mainPart.AssemblyMass
 end
 
