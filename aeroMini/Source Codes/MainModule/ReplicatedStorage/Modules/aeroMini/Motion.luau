@@ -184,7 +184,7 @@ function Motion.Update(dt, state)
 	end
 
 	motion.CFrame = System.MotionCFrame
-	gravity.Force = Utils.V3New(0, mass * Utils.Max(globalGravity - 35, 0) * Utils.Min(Utils.Abs(System.Speed) / (physicsScale * 3), 1), 0)
+	gravity.Force = Utils.V3New(0, mass * Utils.Max(globalGravity - 35, 0), 0)
 
 	-- Absolute bypass resets
 	if not thrust.Enabled then

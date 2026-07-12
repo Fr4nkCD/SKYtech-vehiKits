@@ -72,8 +72,7 @@ function Motion.Update(dt, state)
 		System.MotionCFrame = mainCFrame
 	end
 
-	local speedGain = Utils.Min(System.MaxForce + Env.Velocity.Magnitude / 10, 1)
-	gravity.Force = Utils.V3New(0, Thr.Mass * Utils.Max(globalGravity - 35, 0) * speedGain, 0)
+	gravity.Force = Utils.V3New(0, Thr.Mass * Utils.Max(globalGravity - 35, 0), 0)
 
 	local responsiveness = Utils.Clamp((10 + Utils.Max(Settings.AircraftStatistics.TorqueResponsiveness, 0.001)) * Thr.StabilityAlpha, 0, 0.25) 
 	motion.CFrame = motion.CFrame:Lerp(System.MotionCFrame, responsiveness)

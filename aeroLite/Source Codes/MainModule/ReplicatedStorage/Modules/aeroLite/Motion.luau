@@ -161,7 +161,7 @@ function Motion.Update(dt, state)
 	motion.CFrame = motion.CFrame:Lerp(System.MotionCFrame, responsiveness)
 	turn.CFrame = turn.CFrame:Lerp(System.TurnCFrame, responsiveness)
 
-	gravity.Force = Utils.V3New(0, mass * Utils.Max(globalGravity - 35, 0) * initialSpeedGlobal, 0)
+	gravity.Force = Utils.V3New(0, mass * Utils.Max(globalGravity - 35, 0), 0)
 
 	-- Overwrite/bypass logic handling
 	if not thrust.Enabled and not lift.Enabled then
