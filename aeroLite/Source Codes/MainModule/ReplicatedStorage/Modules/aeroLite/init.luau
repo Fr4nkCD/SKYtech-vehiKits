@@ -47,9 +47,31 @@ function aeroLite:Initialize(aircraft)
 		},
 		IgnoredObjects = {aircraft},
 		RayFilter = nil,
-		EnvironmentData = {},
-		ThrustData = {},
-		CalculatedStateFlags = {Taxiing = false, Flying = false, Stalling = false},
+		EnvironmentData = {
+			HasCollision = false,
+			OnGroundNormal = Vector3.yAxis,
+			Stalling = 0,
+			StallDrop = 0,
+			StallForce = 0,
+			StallBank = 0,
+			StallSpeed = 0,
+			MaxSpeedCalculated = 0,
+			MainCFrame = CFrame.new(),
+			Position = Vector3.zero,
+			GlobalWind = Vector3.zero,
+			GlobalGravity = 196.2,
+		},
+		ThrustData = {
+			LiftForce = 0,
+			LiftTorque = 0,
+			SpeedChange = 0,
+			StallSpeed95 = 0,
+		},
+		CalculatedStateFlags = {
+			Taxiing = false,
+			Flying = false,
+			Stalling = false,
+		},
 		Step = 0,
 	}
 
@@ -129,9 +151,10 @@ function aeroLite:Update(aircraft, dt, onClient)
 		Components.Motion.CFrame = System.MotionCFrame
 		Components.Turn.CFrame = System.TurnCFrame
 
-		state.CalculatedStateFlags.Taxiing = true
-		state.CalculatedStateFlags.Flying = false
-		state.CalculatedStateFlags.Stalling = false
+		local flags = state.CalculatedStateFlags
+		flags.Taxiing = true
+		flags.Flying = false
+		flags.Stalling = false
 	end
 
 	-- Network State Synchronization Loop

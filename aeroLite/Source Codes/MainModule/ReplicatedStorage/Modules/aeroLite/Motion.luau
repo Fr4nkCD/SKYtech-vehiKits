@@ -2,6 +2,10 @@
 -- Manages aerospace transforms, control surfaces, and orientation interpolation
 local Motion = {}
 
+local math_cos = math.cos
+local math_sin = math.sin
+
+
 function Motion.Update(dt, state)
 	local Utils = state.Utils
 	local System = state.System
@@ -17,10 +21,11 @@ function Motion.Update(dt, state)
 	local lift = Components.Lift
 	local gravity = Components.Gravity
 
-	local mainCFrame = mainPart.CFrame
-	local position = mainPart.Position
+	local mainCFrame = Env.MainCFrame
+	local position = Env.Position
 	local mass = mainPart.AssemblyMass
-	local globalGravity = workspace.Gravity
+	local globalGravity = Env.GlobalGravity
+	local globalWind = Env.GlobalWind
 
 	local physicsScale = Utils.Max(Settings.Modifications.PhysicsScale or Settings.Advanced.PhysicsScale, 0.001)
 	local _aircraftStatistics = Settings.AircraftStatistics
@@ -37,14 +42,14 @@ function Motion.Update(dt, state)
 	local pitchAngle = Utils.Deg(pitchRad)
 	local bankAngle = -Utils.Deg(Utils.GetRoll(mainCFrame)) + 360
 	local invertedBankAngle = Utils.Deg(Utils.GetRoll(mainCFrame * Utils.CFAngles(0, 0, Utils.Pi))) - 360
-	local trueSpeed = Utils.Abs(System.Speed + mainCFrame:VectorToObjectSpace(workspace.GlobalWind).Z)
+	local trueSpeed = Utils.Abs(System.Speed + mainCFrame:VectorToObjectSpace(globalWind).Z)
 
 	local initialSpeed = Utils.Min(Utils.Abs(System.Speed)/(3 * physicsScale), 1)
 	local thrust_Force = Utils.Clamp(initialSpeed + Env.Stalling, 0, 1)
 	local turn_Torque = initialSpeed - (Thr.LiftTorque * (1 - Env.Stalling))
 
 	local bankTurn = if bankAngle < 90 and bankAngle > -90 then bankAngle/90 else invertedBankAngle/90
-	local crosswind = workspace.GlobalWind * Thr.LiftForce
+	local crosswind = globalWind * Thr.LiftForce
 	local speedGain = Utils.Min(Utils.Max(trueSpeed - Thr.StallSpeed95, 0)/(Env.StallSpeed * 0.05) + Env.Stalling, 1)
 	local flareRate = Utils.Min(Utils.Max(trueSpeed - Env.StallSpeed, 0)/_flareRate, 1)
 	local flaring = speedGain - flareRate
@@ -86,28 +91,28 @@ function Motion.Update(dt, state)
 		pitchOutput = ((System.Pitch * Utils.Sign(_attitudeControls.PitchSpeed) * Utils.Clamp(1 - Utils.Abs(Env.StallForce), 0, 1)) + Env.StallForce/1.5) * Thr.LiftTorque * Utils.Abs(_attitudeControls.PitchSpeed) * controlStability
 		yawOutput = (System.Roll * Utils.Clamp(1 - Thr.LiftTorque - Utils.Abs(System.Yaw), 0, 1) + System.Yaw) * (1 - Thr.LiftTorque/1.6) * _attitudeControls.YawSpeed * controlStability * initialSpeedGlobal + bankYaw
 	else
-		local bankLimitPct = math.clamp(bankAngle / _attitudeControls.MaxBank, -1, 1)
-		local pitchLimitPct = math.clamp(pitchAngle / _attitudeControls.MaxPitch, -1, 1)
+		local bankLimitPct = Utils.Clamp(bankAngle / _attitudeControls.MaxBank, -1, 1)
+		local pitchLimitPct = Utils.Clamp(pitchAngle / _attitudeControls.MaxPitch, -1, 1)
 
 		local rollLevelOut = bankLimitPct * 0.45
 		local rollDirectionMatch = System.Roll * (if bankAngle > 0 then 1 else -1)
 		local rollAuthority = 1.0
 		if rollDirectionMatch > 0 then
-			rollAuthority = 1.0 - (math.abs(bankLimitPct) * 0.7)
+			rollAuthority = 1.0 - (Utils.Abs(bankLimitPct) * 0.7)
 		else
-			rollAuthority = 1.0 + (math.abs(bankLimitPct) * 0.3)
+			rollAuthority = 1.0 + (Utils.Abs(bankLimitPct) * 0.3)
 		end
 		local modifiedRoll = (System.Roll * rollAuthority * (1 - Env.StallForce / 2)) - rollLevelOut
 
 		local isExceedingPitch = (System.Pitch * pitchAngle) > 0
-		local pitchAuthority = if isExceedingPitch then (1 - math.abs(pitchLimitPct)) else 1.0
+		local pitchAuthority = if isExceedingPitch then (1 - Utils.Abs(pitchLimitPct)) else 1.0
 
 		local stallPitchOffset = Env.StallForce / 1.5
-		local cleanPitchInput = System.Pitch * pitchAuthority * math.clamp(1 - math.abs(Env.StallForce), 0, 1)
-		local modifiedPitch = (cleanPitchInput * math.sign(_attitudeControls.PitchSpeed)) + stallPitchOffset
+		local cleanPitchInput = System.Pitch * pitchAuthority * Utils.Clamp(1 - Utils.Abs(Env.StallForce), 0, 1)
+		local modifiedPitch = (cleanPitchInput * Utils.Sign(_attitudeControls.PitchSpeed)) + stallPitchOffset
 
 		rollOutput = modifiedRoll * Thr.LiftTorque * _attitudeControls.RollSpeed * (controlStability + trueSpeed / (Env.MaxSpeedCalculated / 2))
-		pitchOutput = modifiedPitch * Thr.LiftTorque * math.abs(_attitudeControls.PitchSpeed) * controlStability
+		pitchOutput = modifiedPitch * Thr.LiftTorque * Utils.Abs(_attitudeControls.PitchSpeed) * controlStability
 		yawOutput = ((System.Roll * (1 - Thr.LiftTorque)) * (1 - Thr.LiftTorque / 1.6) * _attitudeControls.YawSpeed * controlStability * initialSpeedGlobal) + bankYaw
 	end
 
@@ -135,7 +140,11 @@ function Motion.Update(dt, state)
 				local groundBlend = 1 - liftTransition
 
 				local tailLiftAngle = if _tailLift then System.RestingAngle * groundBlend else System.RestingAngle
-				local yawOnlyDir = Utils.CFLookAt(position, position + Utils.V3New(direction.LookVector.X, 0, direction.LookVector.Z).Unit)
+				
+				-- Safe flatForward calculation to prevent vertical climb NaN crashes
+				local flatForwardVec = Utils.V3New(direction.LookVector.X, 0, direction.LookVector.Z)
+				local flatForward = if flatForwardVec.Magnitude > 0.001 then flatForwardVec.Unit else Utils.V3New(0, 0, -1)
+				local yawOnlyDir = Utils.CFLookAt(position, position + flatForward)
 
 				-- Perfect -200 Hard Clamp for Ground Alignment
 				local blendAlpha = if _tailLift then 1 else (1 - Utils.Exp(-250 * dt))
@@ -177,11 +186,10 @@ function Motion.Update(dt, state)
 		turn.CFrame = System.TurnCFrame
 	end
 
-	state.CalculatedStateFlags = {
-		Taxiing = Thr.LiftForce == 0 and Env.Stalling == 0,
-		Flying = Thr.LiftForce > 0 and Env.Stalling == 0,
-		Stalling = Env.Stalling == 1
-	}
+	local flags = state.CalculatedStateFlags
+	flags.Taxiing = Thr.LiftForce == 0 and Env.Stalling == 0
+	flags.Flying = Thr.LiftForce > 0 and Env.Stalling == 0
+	flags.Stalling = Env.Stalling == 1
 end
 
 return Motion

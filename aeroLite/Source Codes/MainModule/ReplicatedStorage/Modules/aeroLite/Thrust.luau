@@ -10,7 +10,7 @@ function Thrust.Update(dt, state)
 	local Env = state.EnvironmentData
 
 	local mainPart = Components.MainPart
-	local mainCFrame = mainPart.CFrame
+	local mainCFrame = Env.MainCFrame
 
 	local physicsScale = Utils.Max(Settings.Modifications.PhysicsScale or Settings.Advanced.PhysicsScale, 0.001)
 	local _aircraftStatistics = Settings.AircraftStatistics
@@ -23,9 +23,9 @@ function Thrust.Update(dt, state)
 	local _gravitySpeed = _aircraftStatistics.GravitySpeed * physicsScale
 	local _turningBleed = _attitudeControls.TurningBleed
 
-	local pitchRad, _, _ = mainCFrame:ToEulerAnglesYXZ()
+	local pitchRad = Utils.GetPitch(mainCFrame)
 	local pitchAngle = Utils.Deg(pitchRad)
-	local trueSpeed = Utils.Abs(System.Speed + mainCFrame:VectorToObjectSpace(workspace.GlobalWind).Z)
+	local trueSpeed = Utils.Abs(System.Speed + mainCFrame:VectorToObjectSpace(Env.GlobalWind).Z)
 
 	local lift_Force = Utils.Min(Utils.Max(trueSpeed - Env.StallSpeed, 0)/(Env.StallSpeed * 0.1) + Env.Stalling, 1)
 	local stallSpeed95 = Env.StallSpeed * 0.95
@@ -61,13 +61,12 @@ function Thrust.Update(dt, state)
 		Env.MaxSpeedCalculated
 	)
 
-	-- Save tracking state variables for kinematics calculations
-	state.ThrustData = {
-		LiftForce = lift_Force,
-		LiftTorque = lift_Torque,
-		SpeedChange = speedChange,
-		StallSpeed95 = stallSpeed95
-	}
+	-- Save tracking state variables for kinematics calculations in-place
+	local thr = state.ThrustData
+	thr.LiftForce = lift_Force
+	thr.LiftTorque = lift_Torque
+	thr.SpeedChange = speedChange
+	thr.StallSpeed95 = stallSpeed95
 end
 
 return Thrust

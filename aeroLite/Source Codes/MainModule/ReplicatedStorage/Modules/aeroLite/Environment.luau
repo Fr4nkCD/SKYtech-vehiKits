@@ -7,7 +7,6 @@ function Environment.Update(dt, state)
 	local System = state.System
 	local Settings = state.Settings
 	local Components = state.Components
-	local stateWrapper = Components.StateWrapper
 
 	local mainPart = Components.MainPart
 	local boundSize = Components.BoundSize
@@ -26,12 +25,14 @@ function Environment.Update(dt, state)
 	local _lowestPoint = Settings.Advanced.LowestPoint or "Auto"
 	local _restingAngle = _aircraftStatistics.RestingAngle
 
-	local pitchRad, _, _ = mainCFrame:ToEulerAnglesYXZ()
+	local pitchRad = Utils.GetPitch(mainCFrame)
 	local pitchAngle = Utils.Deg(pitchRad)
 	local bankAngle = -Utils.Deg(Utils.GetRoll(mainCFrame)) + 360
 	local invertedBankAngle = Utils.Deg(Utils.GetRoll(mainCFrame * Utils.CFAngles(0, 0, Utils.Pi))) - 360
 
-	local trueSpeed = Utils.Abs(System.Speed + mainCFrame:VectorToObjectSpace(workspace.GlobalWind).Z)
+	local globalWind = workspace.GlobalWind
+	local globalGravity = workspace.Gravity
+	local trueSpeed = Utils.Abs(System.Speed + mainCFrame:VectorToObjectSpace(globalWind).Z)
 
 	local stallSpeedChangedbyAltitude = if _changedbyAltitude then (_maxSpeed - _stallSpeed) * Utils.Clamp((altitude/_maxAltitude) + Utils.Clamp((altitude - _maxAltitude)/10, 0, 10), 0, 10) else 0
 	local stallSpeed = Utils.Max(_stallSpeed + (Utils.Abs(bankAngle/180) * (_stallSpeed/3)) + stallSpeedChangedbyAltitude, 0.001)
@@ -101,17 +102,20 @@ function Environment.Update(dt, state)
 		System.CurrentRoll = Utils.Lerp(System.CurrentRoll, Utils.Rad(bankAngle), dt)
 	end
 
-	-- Export calculations down the context pipeline
-	state.EnvironmentData = {
-		HasCollision = hasCollision,
-		OnGroundNormal = onGround and onGround.Normal or nil,
-		Stalling = stalling,
-		StallDrop = stallDrop,
-		StallForce = stallForce,
-		StallBank = stallBank,
-		StallSpeed = stallSpeed,
-		MaxSpeedCalculated = maxSpeed
-	}
+	-- Export calculations down the context pipeline in-place
+	local env = state.EnvironmentData
+	env.HasCollision = hasCollision
+	env.OnGroundNormal = onGround and onGround.Normal or nil
+	env.Stalling = stalling
+	env.StallDrop = stallDrop
+	env.StallForce = stallForce
+	env.StallBank = stallBank
+	env.StallSpeed = stallSpeed
+	env.MaxSpeedCalculated = maxSpeed
+	env.MainCFrame = mainCFrame
+	env.Position = position
+	env.GlobalWind = globalWind
+	env.GlobalGravity = globalGravity
 end
 
 return Environment

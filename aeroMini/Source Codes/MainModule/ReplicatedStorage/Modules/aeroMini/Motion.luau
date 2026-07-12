@@ -5,7 +5,6 @@ local Motion = {}
 local math_cos = math.cos
 local math_sin = math.sin
 local math_acos = math.acos
-local math_clamp = math.clamp
 
 function Motion.Update(dt, state)
 	local Utils = state.Utils
@@ -160,7 +159,7 @@ function Motion.Update(dt, state)
 		local target2D = targetPosition * flatMask
 
 		if start2D.Magnitude > 0.001 and target2D.Magnitude > 0.001 then
-			local angle = math_acos(math_clamp(start2D.Unit:Dot(target2D.Unit), -1, 1))
+			local angle = math_acos(Utils.Clamp(start2D.Unit:Dot(target2D.Unit), -1, 1))
 			local sign = Utils.Sign(Vector3.yAxis:Dot(start2D:Cross(target2D)))
 
 			local maxAngle = Utils.Pi / 2
