@@ -26,6 +26,39 @@ function Motion.Update(dt, state)
 
 	local rollInput = System.Roll
 	local pitchInput = System.Pitch
+	local yawInput = System.Yaw
+	
+	-- Induce realistic Stall Spin (wing drop & authority loss)
+	local stallSpinRoll = 0
+	
+	if Env.Stalling == 1 then
+		if System.StallSpinDirection == 0 then
+			-- Lock in the spin direction at the start of the stall
+			local rollDir = Utils.Sign(Env.BankAngle)
+			if rollDir == 0 then
+				rollDir = Utils.Sign(Env.LocalWindDirection.X)
+			end
+			if rollDir == 0 then
+				rollDir = 1 -- Fallback bias
+			end
+			System.StallSpinDirection = rollDir
+		end
+		
+		local severity = Utils.Clamp(1 - (Env.TrueSpeed / Env.StallSpeed), 0, 1)
+		local pitchCosine = math_cos(Env.PitchRad)
+		
+		-- Wing drop rolling authority (up to 2.5 rad/s spin), scaled down near vertical pitch
+		stallSpinRoll = System.StallSpinDirection * severity * 2.5 * Utils.Max(pitchCosine, 0)
+		
+		-- Decay control authority (drop to 10% responsiveness at deep stall)
+		local authority = Utils.Clamp(1 - severity * 0.9, 0.1, 1)
+		rollInput = rollInput * authority
+		pitchInput = pitchInput * authority
+		yawInput = yawInput * authority
+	else
+		-- Reset stall spin direction lock when flying again
+		System.StallSpinDirection = 0
+	end
 	
 	local VTOL_Hovering = System.VTOLHovering
 	
@@ -51,9 +84,9 @@ function Motion.Update(dt, state)
 		pitchInput = pitchInput - pitchLimit - pitchLevelOut
 	end
 	
-	local roll = rollInput * _attitudeControls.RollSpeed / 10 * (0.8 + Env.TrueSpeed / Env.MaxSpeed / 2.5)
+	local roll = rollInput * _attitudeControls.RollSpeed / 10 * (0.8 + Env.TrueSpeed / Env.MaxSpeed / 2.5) + stallSpinRoll
 	local pitch = pitchInput * _attitudeControls.PitchSpeed / 10 * (1 - Env.TrueSpeed / Env.MaxSpeed / 2.5)
-	local yaw = System.Yaw * _attitudeControls.YawSpeed / 10 * (1 - Env.TrueSpeed / Env.MaxSpeed / 2.5)
+	local yaw = yawInput * _attitudeControls.YawSpeed / 10 * (1 - Env.TrueSpeed / Env.MaxSpeed / 2.5)
 
 	-- Safe wind calculations
 	local cancelWindDirection = Utils.V3Zero
@@ -96,6 +129,12 @@ function Motion.Update(dt, state)
 
 	-- Calculate the target flight path vector
 	local targetFlightPath = (Utils.V3New(0, pathYaw, 0) + Utils.CFAngles(0, velocityDirection, 0):VectorToWorldSpace(Utils.V3New(pathPitch, 0, 0)) * Utils.Min(if Env.ScaledWorldVelocity.Magnitude >= 1 then Env.ScaledWorldVelocity.Magnitude / Env.StallSpeed + Env.Stalling else 0, 1)) * Utils.Max(1 - Aero.MotionStability * 4, 0)
+
+	-- Reduce path alignment torque while wheels are touching the ground to prevent overshoot (lerped based on speed)
+	if Env.HasCollision then
+		local speedRatio = Utils.Clamp(Env.TrueSpeed / Env.StallSpeed, 0, 1)
+		targetFlightPath = targetFlightPath * (speedRatio * 0.3)
+	end
 
 	-- Low-Pass filter smoothing (8 Hz decay constant)
 	local filterAlpha = 1 - math_cos(Utils.Clamp(8 * dt, 0, 1.57)) -- Safe filter blending coeff

@@ -4,6 +4,8 @@ local Environment = {}
 
 local math_cos = math.cos
 local math_sin = math.sin
+local math_sqrt = math.sqrt
+local math_asin = math.asin
 
 function Environment.Update(dt, state)
 	local Utils = state.Utils
@@ -40,7 +42,13 @@ function Environment.Update(dt, state)
 	local bankAngle = -Utils.Deg(Utils.GetRoll(mainPart.CFrame)) + 360
 	local notUpsideDown = bankAngle >= -90 and bankAngle <= 90
 	local invertedBankAngle = Utils.Deg(Utils.GetRoll(mainPart.CFrame * Utils.CFAngles(0, 0, Utils.Pi))) - 360
-	local pitchRad, yawAngle, _ = mainCFrame:ToEulerAnglesYXZ()
+	local _, yawAngle, _ = mainCFrame:ToEulerAnglesYXZ()
+	
+	-- Stable vector-based pitch and trig calculations to completely bypass gimbal lock
+	local lookVector = mainCFrame.LookVector
+	local sinPitch = lookVector.Y
+	local cosPitch = math_sqrt(lookVector.X^2 + lookVector.Z^2)
+	local pitchRad = math_asin(Utils.Clamp(sinPitch, -1, 1))
 	local pitchAngle = Utils.Deg(pitchRad)
 	local velocity = mainPart.CFrame:VectorToObjectSpace(mainPart.AssemblyLinearVelocity) / physicsScale
 	local trueSpeed = Utils.Abs(-velocity.Z + mainPart.CFrame:VectorToObjectSpace(globalWind).Z)
@@ -63,46 +71,52 @@ function Environment.Update(dt, state)
 
 	local stalling = 0
 	local lowestPoint = 0
+	local projectedExtent = 0
 	local hasCollision = false
 
 	if _lowestPoint == "Auto" then
 		local halfY, halfZ = boundSize.Y / 2, boundSize.Z / 2
-		local projectedExtent = halfY * math_cos(pitchRad) + halfZ * Utils.Abs(math_sin(pitchRad))
+		projectedExtent = halfY * cosPitch + halfZ * Utils.Abs(sinPitch)
 		lowestPoint = projectedExtent + physicsScale
 	else
-		lowestPoint = Utils.Abs(_lowestPoint)
+		projectedExtent = Utils.Abs(_lowestPoint)
+		lowestPoint = projectedExtent
 	end
 	
 	state.RayFilter.FilterDescendantsInstances = state.IgnoredObjects
 	local onGround = workspace:Raycast(position, Utils.V3New(0, -lowestPoint, 0), state.RayFilter)
+	
 	if onGround then
-		local instance = onGround.Instance
-		local model = instance.Parent
-		if model:IsA("Model") then
-			local humanoid = model:FindFirstChildOfClass("Humanoid")
-			if humanoid == nil then
-				hasCollision = Utils.CheckPartCollision(instance, state.IgnoredObjects)
+		-- Only register ground contact if the hit distance is close to the physical aircraft boundary
+		local touching = onGround.Distance <= projectedExtent + 0.5
+		
+		if touching then
+			local instance = onGround.Instance
+			local model = instance.Parent
+			if model:IsA("Model") then
+				local humanoid = model:FindFirstChildOfClass("Humanoid")
+				if humanoid == nil then
+					hasCollision = Utils.CheckPartCollision(instance, state.IgnoredObjects)
+				else
+					table.insert(state.IgnoredObjects, model)
+				end
 			else
-				table.insert(state.IgnoredObjects, model)
+				hasCollision = Utils.CheckPartCollision(instance, state.IgnoredObjects)
 			end
-		else
-			hasCollision = Utils.CheckPartCollision(instance, state.IgnoredObjects)
 		end
-	else
+	end
+
+	-- Reset ignored objects if not close to the ground
+	if not onGround then
 		if #state.IgnoredObjects > 1 then
 			table.clear(state.IgnoredObjects)
 			table.insert(state.IgnoredObjects, state.AircraftInstance)
 		end
-		
-		if trueSpeed < stallSpeed then
-			stalling = 1
-		else
-			stalling = 0
-		end
 	end
-
-	if hasCollision then
-		stalling = 0
+	
+	-- Calculate stall state
+	if not hasCollision and trueSpeed < stallSpeed then
+		stalling = 1
 	end
 
 	state.EnvironmentData = {
@@ -134,6 +148,7 @@ function Environment.Update(dt, state)
 		SymmetricalAirfoil = _symmetricalAirfoil,
 		DragCoeff = _drag,
 		TurningRate = _turningRate,
+		HasCollision = hasCollision,
 	}
 end
 
