@@ -1,6 +1,6 @@
--- Lift Module
--- Processes translational aerodynamics, directional lift mixing, and drag profiles
 local Lift = {}
+
+local math_sqrt = math.sqrt
 
 function Lift.Update(dt, state)
 	local Utils = state.Utils
@@ -16,7 +16,9 @@ function Lift.Update(dt, state)
 	
 	local frameScale = dt * 45
 	local _aircraftStatistics = Settings.AircraftStatistics
-	local _acceleration = _aircraftStatistics.Acceleration * Env.PhysicsScale
+	
+	-- Apply square root compression curve to prevent settings deadzone jumps
+	local _acceleration = math_sqrt(Utils.Max(_aircraftStatistics.Acceleration, 0)) * 0.22 * Env.PhysicsScale
 	local _stability = Utils.Max(_aircraftStatistics.Stability, 0.001)
 
 	local upperCollective = Utils.Min(Utils.Max(System.Collective - 0.5, 0) / 0.5, 1)
