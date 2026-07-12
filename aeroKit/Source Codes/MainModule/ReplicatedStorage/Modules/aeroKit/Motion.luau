@@ -59,6 +59,10 @@ function Motion.Update(dt, state)
 		-- Reset stall spin direction lock when flying again
 		System.StallSpinDirection = 0
 	end
+
+	-- Calculate yaw input rate of change and save current yaw
+	local yawJerkRate = if dt > 0.0001 then (yawInput - System.LastYaw) / dt else 0
+	System.LastYaw = yawInput
 	
 	local VTOL_Hovering = System.VTOLHovering
 	
@@ -144,8 +148,14 @@ function Motion.Update(dt, state)
 	local motionControl = Env.MainCFrame:VectorToWorldSpace(Utils.V3New(pitch, yaw + turn, roll + yaw / 4) * Utils.Clamp(Utils.Max(Env.TrueSpeed - Env.StallSpeed * (0.3 + 0.3 * Env.Stalling), 0) / (Env.StallSpeed * (0.7 - 0.3 * Env.Stalling)) + Aero.MotionStability, 0.15, 1))
 	motion.AngularVelocity = motionControl + System.FlightPath
 
+	-- Compute rudder side-force and deflection kick (pointing opposite to yaw input direction)
+	local speedRatio = Utils.Clamp(Env.TrueSpeed / Env.MaxSpeed, 0, 1)
+	local rudderForce = -yawInput * Env.Mass * 2.0 * speedRatio
+	local rudderKick = -yawJerkRate * Env.Mass * 0.4 * speedRatio
+	local totalYawJerk = Env.MainCFrame.RightVector * (rudderForce + rudderKick)
+
 	gravity.Force = Utils.V3New(0, Env.Mass * Utils.Max(Env.GlobalGravity - 35, 0), 0)
-	local aeroForce = Aero.AeroX + Aero.AeroY + Aero.AeroZ + Aero.AeroHover + Aero.Crosswind
+	local aeroForce = Aero.AeroX + Aero.AeroY + Aero.AeroZ + Aero.AeroHover + Aero.Crosswind + totalYawJerk
 	aerodynamics.Force = Utils.V3New(
 		Utils.Clamp(aeroForce.X, -Env.Weight, Env.Weight),
 		Utils.Clamp(aeroForce.Y, -Env.Weight, Env.Weight),

@@ -35,6 +35,7 @@ function aeroKit:Initialize(aircraft)
 			VTOLHovering = false,
 			FlightPath = Vector3.zero,
 			StallSpinDirection = 0,
+			LastYaw = 0,
 		},
 		Settings = {},
 		Connections = {},
