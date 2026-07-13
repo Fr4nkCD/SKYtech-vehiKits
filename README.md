@@ -25,12 +25,7 @@ These kits are currently under active development and testing. They are yet to b
 ---
 
 ## 🛠️ How to Use These Assets
-
-### For Development & Tracking
-All core assets in `Developer Versions` are stored as **`.rbxmx` (Roblox XML Model)** files. Unlike standard binary files, these are fully human-readable plain text, allowing GitHub to accurately diff and log every line-by-line script change we make.
-
-### Importing Into Roblox Studio
 You can import any kit from this repository directly into your Roblox Studio workspace on both Windows and macOS:
 1.  Navigate to the directory of the kit you need.
-2.  Download the `.rbxmx` file.
+2.  Download the `.rbxm` file.
 3.  **Drag and drop** the file directly from your local file explorer into your Roblox Studio **Explorer** window (or right-click an empty space in the Explorer, select **Insert from File...**, and open the asset).
