@@ -1,7 +1,7 @@
 -- rotorLite Source Module
 -- by SKYtech
 
-local module = {}
+local rotorLite = {}
 
 local KIT_NAME = "rotorLite" -- Change here
 local TAG_NAME = "SKYtech "..KIT_NAME
@@ -67,7 +67,7 @@ do -- Load core scripts for the kit and other systems
 	warn(KIT_NAME.." has been successfully installed.\nCurrent Version: "..script:GetAttribute("Version"))
 end
 
-function module:Load(vehicle)
+function rotorLite:Load(vehicle)
 	-- Legacy load function
 	-- Give the old version a tag so the new module can load it.
 	if not vehicle:HasTag(TAG_NAME) then
@@ -75,4 +75,4 @@ function module:Load(vehicle)
 	end
 end
 
-return module
+return rotorLite
