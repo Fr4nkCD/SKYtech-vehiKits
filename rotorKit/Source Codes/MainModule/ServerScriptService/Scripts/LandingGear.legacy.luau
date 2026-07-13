@@ -1,90 +1,85 @@
 -- Default landing gear script for all aircraft kits.
 
 local tagName = "SKYtech_LandingGear"
-
 local CollectionService = game:GetService("CollectionService")
 
-local function getParts(group, groupTable)
-	for _, v in (group:GetDescendants()) do
-		if v:IsA("BasePart") or v:IsA("Decal") or v:IsA("Texture") then
-			table.insert(groupTable, v)
+-- Pre-build a Lua-side part data table so updateGear reads from fast local tables
+-- instead of calling :GetAttribute() per part per toggle.
+local function buildPartData(group, dataTable)
+	for _, v in group:GetDescendants() do
+		if v:IsA("BasePart") then
+			table.insert(dataTable, {
+				part = v,
+				transparency = v.Transparency,
+				canCollide = v.CanCollide,
+			})
+		elseif v:IsA("Decal") or v:IsA("Texture") then
+			table.insert(dataTable, {
+				part = v,
+				transparency = v.Transparency,
+			})
 		end
 	end
 end
 
-local function createValues(parts)
-	for _, p in (parts) do
-		p:SetAttribute("DefaultTransparency", p.Transparency)
-		if p:IsA("BasePart") then
-			p:SetAttribute("DefaultCanCollide", p.CanCollide)
+-- toggle: true = extended (gear down), false = retracted (gear up).
+-- Reads from pre-built Lua tables — zero attribute queries per call.
+local function updateGear(extendedGroup, retractedGroup, toggle)
+	for _, data in extendedGroup do
+		data.part.Transparency = if toggle then data.transparency else 1
+		if data.canCollide ~= nil then
+			data.part.CanCollide = if toggle then data.canCollide else false
+		end
+	end
+	for _, data in retractedGroup do
+		data.part.Transparency = if toggle then 1 else data.transparency
+		if data.canCollide ~= nil then
+			data.part.CanCollide = if toggle then false else data.canCollide
 		end
 	end
 end
 
-local function updateGear(gearStats, extendedGroup, retractedGroup)
-	local toggle = gearStats:GetAttribute("Toggle") == true
-
-	for _, part in (extendedGroup) do
-		part.Transparency = if toggle then part:GetAttribute("DefaultTransparency") else 1
-		if part:IsA("BasePart") then
-			part.CanCollide = if toggle then part:GetAttribute("DefaultCanCollide") else false
-		end
-	end
-
-	for _, part in (retractedGroup) do
-		part.Transparency = if toggle then 1 else part:GetAttribute("DefaultTransparency")
-		if part:IsA("BasePart") then
-			part.CanCollide = if toggle then false else part:GetAttribute("DefaultCanCollide")
-		end
-	end
-end
-
-local function checkGround(aircraft, mainPart, boundCFrame, lowestPoint, filter)
-	local onGround = false
-
+local function checkGround(mainPart, boundCFrame, lowestPoint, filter)
 	local raycastResult = workspace:Raycast(boundCFrame.Position, mainPart.CFrame.UpVector * lowestPoint, filter)
+	if not raycastResult then return false end
 
-	if raycastResult then
-		local instance = raycastResult.Instance
-		local model = instance:FindFirstAncestorOfClass("Model") -- Check for possible ancestor model
-		if model == nil then -- Part
-			onGround = instance.CanCollide
-		else -- Model
-			local humanoid = model:FindFirstChildOfClass("Humanoid")
-			if humanoid == nil then
-				onGround = instance.CanCollide
-			end
-		end
+	local instance = raycastResult.Instance
+	local model = instance:FindFirstAncestorOfClass("Model")
+	if model == nil then
+		return instance.CanCollide
 	else
-		onGround = false
+		-- Only count as ground if there is no humanoid (excludes players/NPCs).
+		return model:FindFirstChildOfClass("Humanoid") == nil and instance.CanCollide
 	end
-
-	return onGround
 end
 
 local function setupLandingGear(landingGear)
-	local connections = {}
+	local connections = {}    -- Wake/sleep-managed connections.
+	local permanentConns = {} -- Connections that persist across wake/sleep cycles.
 	local initialized = false
 	local available = false
-	local runTask = nil
+	local isAwake = false
 
 	local aircraft = landingGear.Parent.Parent
 	local Settings
 	local mainPart = landingGear.Parent.Main
-
 	local mods = landingGear.Parent.Mods
+
 	local gearStats
 	local remoteEvent
 
 	local extendedGroup = {}
 	local retractedGroup = {}
 
-	local boundCFrame, boundSize
-	local lowestPoint
-
+	local toggle = true         -- Local mirror of the "Toggle" attribute.
+	local lowestPoint = 0       -- Cached from settings; rarely changes at runtime.
+	local boundSize = Vector3.zero  -- Cached bounding size; geometry is fixed.
+	local boundCFrame               -- Updated per toggle request (aircraft moves).
 	local onGround = true
+
 	local filter = RaycastParams.new()
 	filter.FilterType = Enum.RaycastFilterType.Exclude
+	local filterInstances = { aircraft } -- Cached to avoid per-toggle table allocation.
 
 	local function physicalInitialize()
 		Settings = aircraft:WaitForChild("Settings")
@@ -92,96 +87,98 @@ local function setupLandingGear(landingGear)
 
 		if gearStats then
 			remoteEvent = gearStats:FindFirstChild("Remote")
+			toggle = gearStats:GetAttribute("Toggle") == true
 		else
 			gearStats = Instance.new("Folder")
 			gearStats.Name = "LandingGear"
-
 			gearStats:SetAttribute("Available", false)
-			gearStats:SetAttribute("Toggle", gearStats:GetAttribute("Toggle") or true)
+			gearStats:SetAttribute("Toggle", true)
 
 			remoteEvent = Instance.new("RemoteEvent")
 			remoteEvent.Name = "Remote"
 			remoteEvent.Parent = gearStats
-
 			gearStats.Parent = mods
 		end
 
-		getParts(landingGear.Extended, extendedGroup)
-		getParts(landingGear.Retracted, retractedGroup)
-
-		if #extendedGroup > 0 then -- Check for extended group
-			createValues(extendedGroup)
-		end
-		if #retractedGroup > 0 then -- Check for retracted group
-			createValues(retractedGroup)
-		end
+		buildPartData(landingGear.Extended, extendedGroup)
+		buildPartData(landingGear.Retracted, retractedGroup)
 
 		available = #extendedGroup > 0 or #retractedGroup > 0
 		gearStats:SetAttribute("Available", available)
+
+		-- Cache bounding size once — aircraft geometry is fixed at runtime.
+		_, boundSize = aircraft:GetBoundingBox()
+
+		-- Cache lowestPoint and keep it synced if the setting changes.
+		local function updateLowestPoint()
+			local lp = Settings:GetAttribute("Advanced/LowestPoint")
+			lowestPoint = if lp == "Auto" then boundSize.Y * 0.55 else math.abs(lp)
+		end
+		updateLowestPoint()
+
+		-- Permanent: this listener must survive wake/sleep cycles.
+		table.insert(permanentConns,
+			Settings:GetAttributeChangedSignal("Advanced/LowestPoint"):Connect(updateLowestPoint))
 
 		initialized = true
 	end
 
 	local function wake()
-		if runTask or #connections > 0 then return end
+		if isAwake then return end
+		if not initialized then physicalInitialize() end
+		if not available then return end
 
-		if not initialized then
-			physicalInitialize()
-		end
+		isAwake = true
 
-		if not available then
-			return
-		end
+		table.insert(connections, remoteEvent.OnServerEvent:Connect(function()
+			-- Only refresh CFrame per toggle — boundSize is already cached.
+			boundCFrame = aircraft:GetBoundingBox()
+			filter.FilterDescendantsInstances = filterInstances
+			onGround = checkGround(mainPart, boundCFrame, -lowestPoint, filter)
 
-		runTask = task.spawn(function()
-			table.insert(connections, remoteEvent.OnServerEvent:Connect(function()
-				boundCFrame, boundSize = aircraft:GetBoundingBox()
-				local _lowestPoint = Settings:GetAttribute("Advanced/LowestPoint")
-				lowestPoint = if _lowestPoint == "Auto" then boundSize.Y * 0.55 else math.abs(_lowestPoint)
+			if onGround then return end
+			-- Flip the local mirror first, then write to the attribute once.
+			toggle = not toggle
+			gearStats:SetAttribute("Toggle", toggle)
+		end))
 
-				filter.FilterDescendantsInstances = {aircraft}
-				onGround = checkGround(aircraft, mainPart, boundCFrame, -lowestPoint, filter)
+		table.insert(connections, gearStats:GetAttributeChangedSignal("Toggle"):Connect(function()
+			-- Sync local mirror in case of external attribute changes.
+			toggle = gearStats:GetAttribute("Toggle") == true
+			updateGear(extendedGroup, retractedGroup, toggle)
+		end))
 
-				if onGround == true then return end
-				gearStats:SetAttribute("Toggle", gearStats:GetAttribute("Toggle") ~= true)
-			end))
-			
-			updateGear(gearStats, extendedGroup, retractedGroup)
-
-			table.insert(connections, gearStats:GetAttributeChangedSignal("Toggle"):Connect(function()
-				updateGear(gearStats, extendedGroup, retractedGroup)
-			end))
-		end)
+		updateGear(extendedGroup, retractedGroup, toggle)
 	end
 
 	local function sleep()
-		for _, connection in (connections) do
-			connection:Disconnect()
+		isAwake = false
+		for _, conn in connections do
+			conn:Disconnect()
 		end
 		connections = {}
-
-		if runTask then task.cancel(runTask) end
-		runTask = nil
 	end
 
 	local cleanup
 
 	local function terminate()
 		sleep()
-
+		for _, conn in permanentConns do
+			conn:Disconnect()
+		end
+		permanentConns = {}
 		connections = nil
 		landingGear = nil
-
 		if cleanup then
 			cleanup:Disconnect()
 			cleanup = nil
 		end
 	end
 
-	cleanup = landingGear.AncestryChanged:Connect(function(instance, parent)
+	cleanup = landingGear.AncestryChanged:Connect(function(_, parent)
 		if parent then
 			task.defer(function()
-				if landingGear:IsDescendantOf(workspace) then
+				if landingGear and landingGear:IsDescendantOf(workspace) then
 					wake()
 				else
 					sleep()
