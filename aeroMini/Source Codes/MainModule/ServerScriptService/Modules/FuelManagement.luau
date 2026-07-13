@@ -1,3 +1,8 @@
+-- Fuel Management Utility
+-- by SKYtech
+
+local math_max = math.max
+
 local FuelManagement = {}
 
 local function getBurnPercentages(PowerType)
@@ -11,7 +16,7 @@ end
 
 function FuelManagement.ProcessBurn(
 	PowerType : string,
-	consumptionRate : Configuration,
+	consumptionRate : number,
 	Stats_ : Folder,
 	deltaTime : number,
 	legacyValue : NumberValue
@@ -26,7 +31,7 @@ function FuelManagement.ProcessBurn(
 		local activeBurn = Stats_:GetAttribute(PowerType) * activeBurnPercent
 		local burnPerSecond = consumptionRate * (idleBurn + activeBurn) * deltaTime
 		
-		local newFuel = math.max(0, currentFuel - burnPerSecond)
+		local newFuel = math_max(0, currentFuel - burnPerSecond)
 		Stats_:SetAttribute("Fuel", newFuel)
 
 		if legacyValue then

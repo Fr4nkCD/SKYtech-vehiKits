@@ -1,4 +1,11 @@
+-- Welder Module
+-- by SKYtech
+
 local Welder = {}
+
+local os_clock = os.clock
+local Instance_new = Instance.new
+local ipairs = ipairs
 
 local function getParts(object, partsTable)
 	-- If this folder/part has the ignore signal, STOP searching this entire branch
@@ -19,7 +26,7 @@ end
 function Welder.Weld(model, primaryPart)
 	if not primaryPart then return end
 
-	local weldFolder = primaryPart:FindFirstChild("Welds") or Instance.new("Folder")
+	local weldFolder = primaryPart:FindFirstChild("Welds") or Instance_new("Folder")
 	weldFolder.Name = "Welds"
 	weldFolder.Parent = primaryPart
 
@@ -34,19 +41,19 @@ function Welder.Weld(model, primaryPart)
 	end
 
 	-- Time-Budgeted Loop (The "Anti-Timeout" Logic)
-	local startTime = os.clock()
+	local startTime = os_clock()
 	local TIME_BUDGET = 0.002 -- 2ms per frame
 
 	for _, part in (parts) do
 		-- Safety check to prevent the script from hanging on massive models
-		if os.clock() - startTime > TIME_BUDGET then
+		if os_clock() - startTime > TIME_BUDGET then
 			task.wait()
-			startTime = os.clock()
+			startTime = os_clock()
 		end
 
 		if part == primaryPart then continue end
 
-		local weld = Instance.new("Weld")
+		local weld = Instance_new("Weld")
 		weld.Part0 = primaryPart
 		weld.Part1 = part
 		weld.C0 = primaryPart.CFrame:ToObjectSpace(part.CFrame)

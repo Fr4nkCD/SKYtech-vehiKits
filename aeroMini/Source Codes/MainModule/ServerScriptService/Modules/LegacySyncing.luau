@@ -1,3 +1,6 @@
+-- Legacy Syncing Module
+-- by SKYtech
+
 local LegacySyncing = {}
 
 function LegacySyncing.FindMissingSettings(Settings, Presets)
@@ -41,7 +44,6 @@ function LegacySyncing.SyncSettings(Settings, ConnectionsTable)
 		for _, value in (category:GetChildren()) do
 			local valueName = value.Name:gsub("_", "")
 			local attrName = categoryName.."/"..valueName
-			local attribute = Settings:GetAttribute(attrName)
 			
 			-- Overwrite the attribute if the legacy value is found.
 			Settings:SetAttribute(categoryName.."/"..valueName, value.Value)

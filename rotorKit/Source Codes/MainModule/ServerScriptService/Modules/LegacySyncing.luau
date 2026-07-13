@@ -1,6 +1,9 @@
-local module = {}
+-- Legacy Syncing Module
+-- by SKYtech
 
-function module.FindMissingSettings(Settings, Presets)
+local LegacySyncing = {}
+
+function LegacySyncing.FindMissingSettings(Settings, Presets)
 	-- Find missing settings
 	for category, values in pairs(Presets) do
 		for name, value in pairs(values) do
@@ -13,7 +16,7 @@ function module.FindMissingSettings(Settings, Presets)
 	end
 end
 
-function module.SyncValue(AtrrName, Value, Folder, ConnectionsTable)
+function LegacySyncing.SyncValue(AtrrName, Value, Folder, ConnectionsTable)
 	-- Sync the legacy value with an attribute.
 
 	-- Value Changed
@@ -33,7 +36,7 @@ function module.SyncValue(AtrrName, Value, Folder, ConnectionsTable)
 	end))
 end
 
-function module.SyncSettings(Settings, ConnectionsTable)
+function LegacySyncing.SyncSettings(Settings, ConnectionsTable)
 	-- Sync attributes with legacy values if found.
 	for _, category in (Settings:GetChildren()) do
 		local categoryName = category.Name:gsub("_", "")
@@ -41,15 +44,14 @@ function module.SyncSettings(Settings, ConnectionsTable)
 		for _, value in (category:GetChildren()) do
 			local valueName = value.Name:gsub("_", "")
 			local attrName = categoryName.."/"..valueName
-			local attribute = Settings:GetAttribute(attrName)
 			
 			-- Overwrite the attribute if the legacy value is found.
 			Settings:SetAttribute(categoryName.."/"..valueName, value.Value)
 
 			-- Sync attributes and value objects.
-			module.SyncValue(attrName, value, Settings, ConnectionsTable)
+			LegacySyncing.SyncValue(attrName, value, Settings, ConnectionsTable)
 		end
 	end
 end
 
-return module
+return LegacySyncing

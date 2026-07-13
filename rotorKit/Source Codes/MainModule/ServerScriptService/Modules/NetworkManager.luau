@@ -1,3 +1,6 @@
+-- Network Manager Module
+-- by SKYtech
+
 local NetworkManager = {}
 
 function NetworkManager.GetNetworkOwner(rootAssembly : BasePart)
@@ -25,7 +28,7 @@ function NetworkManager.SetNetworkOwner(
 	local inWorkspace = rootAssembly:IsDescendantOf(workspace)
 	
 	if not isGrounded and inWorkspace then
-		-- Only change if the the assembly is unanchored and in workspace.
+		-- Only change if the assembly is unanchored and in workspace.
 		rootAssembly:SetNetworkOwner(player)
 	end
 end

@@ -1,4 +1,9 @@
-local module = {}
+-- Fuel Management Utility
+-- by SKYtech
+
+local math_max = math.max
+
+local FuelManagement = {}
 
 local function getBurnPercentages(PowerType)
 	-- Get burn percentages based on the aircraft type (fixed wing = throttle, helicopter = collective)
@@ -9,24 +14,24 @@ local function getBurnPercentages(PowerType)
 	return idleBurnPercent, activeBurnPercent
 end
 
-function module.ProcessBurn(
+function FuelManagement.ProcessBurn(
 	PowerType : string,
-	consumptionRate : Configuration,
+	consumptionRate : number,
 	Stats_ : Folder,
 	deltaTime : number,
 	legacyValue : NumberValue
 )
 	local currentFuel = Stats_:GetAttribute("Fuel") or 100
 	local isActive = Stats_:GetAttribute("Active") == true
-
+	
 	local idleBurnPercent, activeBurnPercent = getBurnPercentages(PowerType)
-
+	
 	if currentFuel > 0 and isActive then
 		local idleBurn = if isActive then idleBurnPercent else 0
 		local activeBurn = Stats_:GetAttribute(PowerType) * activeBurnPercent
 		local burnPerSecond = consumptionRate * (idleBurn + activeBurn) * deltaTime
-
-		local newFuel = math.max(0, currentFuel - burnPerSecond)
+		
+		local newFuel = math_max(0, currentFuel - burnPerSecond)
 		Stats_:SetAttribute("Fuel", newFuel)
 
 		if legacyValue then
@@ -36,4 +41,4 @@ function module.ProcessBurn(
 	end
 end
 
-return module
+return FuelManagement
