@@ -6,6 +6,9 @@ local KitMaster = script.Parent.Parent
 local Packages = KitMaster.Packages
 local Constraints = Packages.Constraints
 
+-- Cache license validation status per player to avoid per-packet C++ FindFirstChild queries
+local playerLicenseCache = {}
+
 function Master.Initialize(
 	kitName,
 	aircraft,
@@ -63,8 +66,8 @@ function Master.Initialize(
 		main_Attachment = Packages.Main_Attachment:Clone()
 		main_Attachment.Parent = mainPart
 	end
-	
-	for _, constraint in (Constraints:GetChildren()) do		
+
+	for _, constraint in Constraints:GetChildren() do		
 		local existingConstraint = mainPart:FindFirstChild(constraint.Name)
 		if not existingConstraint then
 			existingConstraint = constraint:Clone()
@@ -79,7 +82,7 @@ function Master.Initialize(
 			end
 		end
 	end
-	
+
 	local weldFolder = mainPart:FindFirstChild("Welds")
 	if not weldFolder then
 		-- Weld only once
@@ -87,7 +90,7 @@ function Master.Initialize(
 	end
 
 	---------------------------------------------------------------------------------
-	
+
 	local kitSystem = aircraft:FindFirstChild("System")
 	if not kitSystem then
 		kitSystem = Packages.System:Clone()
@@ -102,34 +105,34 @@ function Master.Initialize(
 			activate.Function.Enabled = true
 		end
 	end
-	
+
 	local handler = kitSystem.Handler
 	local kitGui = if pilotSeat then
 		pilotSeat:FindFirstChild(kitName.."_System") or handler:FindFirstChild(kitName.."_System")
 		else nil
-	
+
 	local controller = if kitGui then kitGui:FindFirstChild("Controller") else nil
-	
+
 	if kitGui then
 		if not controller then
 			controller = Packages.Controller:Clone()
 			controller.Enabled = true
 			controller.Parent = kitGui
 		end
-		
+
 		local controlHandler = kitGui:FindFirstChild("Control_Handler")
 		if not controlHandler then
 			controlHandler = Packages.Control_Handler:Clone()
 			controlHandler.Parent = kitGui
 		end
-		
+
 		local aircraftOrigin = kitGui:FindFirstChild("Aircraft")
 		if not aircraftOrigin then
 			aircraftOrigin = Packages.Aircraft:Clone()
 			aircraftOrigin.Value = aircraft
 			aircraftOrigin.Parent = kitGui
 		end
-		
+
 		if kitGui.Parent ~= handler then
 			kitGui.Parent = handler
 		end
@@ -139,7 +142,7 @@ function Master.Initialize(
 	if loader then
 		local hasCustomControls = loader:GetChildren()
 		if hasCustomControls and controller then
-			for _, module in (hasCustomControls) do
+			for _, module in hasCustomControls do
 				if module.Name ~= kitName.." Source" then
 					module.Parent = controller
 				end
@@ -188,25 +191,37 @@ function Master.HandlePilotSeat(
 		if player then
 			-- Pilot enter
 			pilotValue.Value = player
-			
+
 			local existingPilotGui = player.PlayerGui:FindFirstChild(kitGui.Name)
 			pilotGui = if existingPilotGui then existingPilotGui else kitGui:Clone()
 			pilotGui.Parent = player.PlayerGui
-			
+
 			license.Value = if license.Value then license.Value else kitLicense:Clone()
 			license.Value.Parent = player.PlayerGui
+			
+			-- Cache license verification status
+			playerLicenseCache[player] = true
 		else
-			-- Pilot leave
-			if pilotValue.Value then pilotValue.Value = nil end
+			-- Pilot leave (localize values first to prevent race condition during wait)
+			local targetPilot = pilotValue.Value
+			local targetGui = pilotGui
+			local targetLicenseVal = license.Value
+
+			if targetPilot then 
+				pilotValue.Value = nil 
+				playerLicenseCache[targetPilot] = nil
+			end
+			
 			task.wait(0.1)
-			if pilotGui then pilotGui:Destroy() end
-			if license.Value then license.Value:Destroy() end
+			
+			if targetGui then targetGui:Destroy() end
+			if targetLicenseVal then targetLicenseVal:Destroy() end
+			
 			pilotGui = nil
 			license.Value = nil
 			kitCore:Reset(aircraft)
 		end
 
-		local isGrounded = mainPart:IsGrounded()
 		if player and Settings:GetAttribute("Advanced/ClientControlled") == true then
 			NetworkManager.SetNetworkOwner(player, mainPart, aircraft)
 		elseif not player and Settings:GetAttribute("Advanced/ResetNetwork") == true then
@@ -230,7 +245,8 @@ function Master.UpdateStats(
 	local updateEvent = kitSystem.Update
 
 	table.insert(connections, updateEvent.OnServerEvent:Connect(function(player, event, packet)
-		if not player.PlayerGui:FindFirstChild(licenseName) then return end
+		-- Read validation status from local Lua cache instead of calling FindFirstChild per-packet
+		if not playerLicenseCache[player] then return end
 
 		local hasFuel = Stats_:GetAttribute("Fuel") > 0
 
