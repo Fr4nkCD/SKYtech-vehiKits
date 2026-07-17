@@ -7,8 +7,9 @@ local StarterGui	= game:GetService("StarterGui")
 local StarterPlayer	= game:GetService("StarterPlayer")
 local player		= game:GetService("Players").LocalPlayer
 
-local humanoid	= player.Character:WaitForChild("Humanoid")
-local rootPart	= player.Character:WaitForChild("HumanoidRootPart")
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid	= character:WaitForChild("Humanoid")
+local rootPart	= character:WaitForChild("HumanoidRootPart")
 local camera	= workspace.CurrentCamera
 
 local defaultMaxZoomDistance = StarterPlayer.CameraMaxZoomDistance
@@ -115,24 +116,40 @@ function changeControl()
 	controllerEvent:Fire("Stop")
 	controllerEvent:Fire("ChangeControl")
 
-	local timer = 1
-	repeat
-		timer -= RS.Heartbeat:Wait()
-		Control = script.Module.Value
-	until script.Module.Value ~= nil or timer <= 0
+	local controlVal = script.Module.Value
+	if not controlVal then
+		local thread = coroutine.running()
+		local delayTask = task.delay(1, task.spawn, thread)
+		local conn = script.Module:GetPropertyChangedSignal("Value"):Connect(function()
+			task.cancel(delayTask)
+			task.spawn(thread)
+		end)
+		coroutine.yield()
+		conn:Disconnect()
+		controlVal = script.Module.Value
+	end
 
-	if script.Module.Value == nil then return end
+	if not controlVal then return end
+	Control = controlVal
 
-	Sensitivity.Throttle = Control:GetAttribute("Throttle")
-	Sensitivity.Roll = Control:GetAttribute("Roll")
-	Sensitivity.Pitch = Control:GetAttribute("Pitch")
-	Sensitivity.Yaw = Control:GetAttribute("Yaw")
-	
-	-- Backward compatibility (old version used a normalized scale (0-1) while the new version uses a larger number)
-	Sensitivity.Throttle = if Sensitivity.Throttle < 1 then (1 - Sensitivity.Throttle) * 5 else Sensitivity.Throttle
-	Sensitivity.Roll = if Sensitivity.Roll < 1 then (1 - Sensitivity.Roll) * 5 else Sensitivity.Roll
-	Sensitivity.Pitch = if Sensitivity.Pitch < 1 then (1 - Sensitivity.Pitch) * 5 else Sensitivity.Pitch
-	Sensitivity.Yaw = if Sensitivity.Yaw < 1 then (1 - Sensitivity.Yaw) * 5 else Sensitivity.Yaw
+	local isNewSens = Control:GetAttribute("NewSensitivity") == true
+	local throttleRaw = Control:GetAttribute("Throttle") or 1
+	local rollRaw = Control:GetAttribute("Roll") or 1
+	local pitchRaw = Control:GetAttribute("Pitch") or 1
+	local yawRaw = Control:GetAttribute("Yaw") or 1
+
+	if isNewSens then
+		Sensitivity.Throttle = throttleRaw
+		Sensitivity.Roll = rollRaw
+		Sensitivity.Pitch = pitchRaw
+		Sensitivity.Yaw = yawRaw
+	else
+		-- Convert legacy duration (seconds) to responsiveness multiplier
+		Sensitivity.Throttle = 4.6 / math.max(throttleRaw, 0.01)
+		Sensitivity.Roll = 4.6 / math.max(rollRaw, 0.01)
+		Sensitivity.Pitch = 4.6 / math.max(pitchRaw, 0.01)
+		Sensitivity.Yaw = 4.6 / math.max(yawRaw, 0.01)
+	end
 
 	controllerEvent:Fire("Start")
 end
@@ -169,8 +186,11 @@ end
 
 
 
-local function getEffectiveInput(input, deadzone)
-	return math.max(0, math.abs(input) - deadzone) / (1 - deadzone)
+local function getEffectiveInput(input: number, deadzone: number): number
+	if math.abs(input) <= deadzone then
+		return 0
+	end
+	return math.sign(input) * (math.abs(input) - deadzone) / (1 - deadzone)
 end
 
 local accumulated = 0
@@ -197,15 +217,19 @@ connection = game:GetService("RunService").Heartbeat:Connect(function(dt)
 	local yaw_Input 		= Controls.Inputs.Yaw
 	------------------------------------------------------------------------------------------------
 	local deadzone = if isMobile then 0.1 else 0.005
-	local roll_Curve		= 0.8 + (getEffectiveInput(roll_Input, deadzone) * 0.2)
-	local pitch_Curve		= 0.8 + (getEffectiveInput(pitch_Input, deadzone) * 0.2)
-	local yaw_Curve			= 0.8 + (getEffectiveInput(yaw_Input, deadzone) * 0.2)
+	local effectiveRoll = getEffectiveInput(roll_Input, deadzone)
+	local effectivePitch = getEffectiveInput(pitch_Input, deadzone)
+	local effectiveYaw = getEffectiveInput(yaw_Input, deadzone)
+
+	local roll_Curve		= 0.8 + (math.abs(effectiveRoll) * 0.2)
+	local pitch_Curve		= 0.8 + (math.abs(effectivePitch) * 0.2)
+	local yaw_Curve			= 0.8 + (math.abs(effectiveYaw) * 0.2)
 	------------------------------------------------------------------------------------------------
 	Controls.Outputs.Throttle 		= math.lerp(Controls.Outputs.Throttle, throttle_Input, throttle_Sensitivity)
-	Controls.Outputs.Roll 			= math.lerp(Controls.Outputs.Roll, roll_Input * roll_Curve, roll_Sensitivity)
-	Controls.Outputs.Pitch 			= math.lerp(Controls.Outputs.Pitch, pitch_Input * pitch_Curve, pitch_Sensitivity)
+	Controls.Outputs.Roll 			= math.lerp(Controls.Outputs.Roll, effectiveRoll * roll_Curve, roll_Sensitivity)
+	Controls.Outputs.Pitch 			= math.lerp(Controls.Outputs.Pitch, effectivePitch * pitch_Curve, pitch_Sensitivity)
 	Controls.Outputs.Trim 			= math.lerp(Controls.Outputs.Trim, trim_Input, trim_Sensitivity)
-	Controls.Outputs.Yaw 			= math.lerp(Controls.Outputs.Yaw, yaw_Input * yaw_Curve, yaw_Sensitivity)
+	Controls.Outputs.Yaw 			= math.lerp(Controls.Outputs.Yaw, effectiveYaw * yaw_Curve, yaw_Sensitivity)
 	------------------------------------------------------------------------------------------------
 	handlerFrames.Inputs.Throttle.Size	= UDim2.new(0, 20, throttle_Input, 0)
 	handlerFrames.Inputs.Roll.Size			= UDim2.new(0, 20, roll_Input, 0)

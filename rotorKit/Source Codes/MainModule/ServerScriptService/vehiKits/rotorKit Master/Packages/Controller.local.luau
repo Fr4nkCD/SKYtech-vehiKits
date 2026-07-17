@@ -114,24 +114,40 @@ function changeControl()
 	controllerEvent:Fire("Stop")
 	controllerEvent:Fire("ChangeControl")
 
-	local timer = 1
-	repeat
-		timer -= RS.Heartbeat:Wait()
-		Control = script.Module.Value
-	until script.Module.Value ~= nil or timer <= 0
+	local controlVal = script.Module.Value
+	if not controlVal then
+		local thread = coroutine.running()
+		local delayTask = task.delay(1, task.spawn, thread)
+		local conn = script.Module:GetPropertyChangedSignal("Value"):Connect(function()
+			task.cancel(delayTask)
+			task.spawn(thread)
+		end)
+		coroutine.yield()
+		conn:Disconnect()
+		controlVal = script.Module.Value
+	end
 
-	if script.Module.Value == nil then return end
+	if not controlVal then return end
+	Control = controlVal
 
-	Sensitivity.Collective = Control:GetAttribute("Collective")
-	Sensitivity.Roll = Control:GetAttribute("Roll")
-	Sensitivity.Pitch = Control:GetAttribute("Pitch")
-	Sensitivity.Yaw = Control:GetAttribute("Yaw")
-	
-	-- Backward compatibility (old version used a normalized scale (0-1) while the new version uses a larger number)
-	Sensitivity.Collective = if Sensitivity.Collective < 1 then (1 - Sensitivity.Collective) * 5 else Sensitivity.Collective
-	Sensitivity.Roll = if Sensitivity.Roll < 1 then (1 - Sensitivity.Roll) * 5 else Sensitivity.Roll
-	Sensitivity.Pitch = if Sensitivity.Pitch < 1 then (1 - Sensitivity.Pitch) * 5 else Sensitivity.Pitch
-	Sensitivity.Yaw = if Sensitivity.Yaw < 1 then (1 - Sensitivity.Yaw) * 5 else Sensitivity.Yaw
+	local isNewSens = Control:GetAttribute("NewSensitivity") == true
+	local collectiveRaw = Control:GetAttribute("Collective") or 1
+	local rollRaw = Control:GetAttribute("Roll") or 1
+	local pitchRaw = Control:GetAttribute("Pitch") or 1
+	local yawRaw = Control:GetAttribute("Yaw") or 1
+
+	if isNewSens then
+		Sensitivity.Collective = collectiveRaw
+		Sensitivity.Roll = rollRaw
+		Sensitivity.Pitch = pitchRaw
+		Sensitivity.Yaw = yawRaw
+	else
+		-- Convert legacy duration (seconds) to responsiveness multiplier
+		Sensitivity.Collective = 4.6 / math.max(collectiveRaw, 0.01)
+		Sensitivity.Roll = 4.6 / math.max(rollRaw, 0.01)
+		Sensitivity.Pitch = 4.6 / math.max(pitchRaw, 0.01)
+		Sensitivity.Yaw = 4.6 / math.max(yawRaw, 0.01)
+	end
 
 	controllerEvent:Fire("Start")
 end
