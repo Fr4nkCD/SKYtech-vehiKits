@@ -4,8 +4,12 @@ local aircraft = script.Parent
 local mainPart = aircraft.Main.Main
 
 local parts = {}
+local scanStart = os.clock()
 for i, part in ipairs(aircraft:GetDescendants()) do
-	if i % 100 == 0 then task.wait() end
+	if os.clock() - scanStart > 0.005 then
+		task.wait()
+		scanStart = os.clock()
+	end
 
 	if part:IsA("BasePart") then
 		table.insert(parts, part)
@@ -14,8 +18,12 @@ end
 
 local function calculateMass()
 	local totalMass = 0
+	local calcStart = os.clock()
 	for i, part in pairs(parts) do
-		if i % 100 == 0 then task.wait() end
+		if os.clock() - calcStart > 0.005 then
+			task.wait()
+			calcStart = os.clock()
+		end
 
 		totalMass += if not part.Massless then part:GetMass() else 0
 		part:SetAttribute("CurrentMass", part:GetMass())
@@ -28,7 +36,9 @@ for _, part in (parts) do
 
 	physicsChanged = part:GetPropertyChangedSignal("CustomPhysicalProperties"):Connect(function()
 		local change = part:GetMass() - part:GetAttribute("CurrentMass")
-		script:SetAttribute("Mass", if not part.Massless then script:GetAttribute("Mass") + change else 0)
+		if not part.Massless then
+			script:SetAttribute("Mass", script:GetAttribute("Mass") + change)
+		end
 		part:SetAttribute("CurrentMass", part:GetMass())
 	end)
 
