@@ -61,6 +61,16 @@ local _data = {
 }
 
 -- 3. The Public API
+local REPLICATED_KEYS = {
+	Throttle = true,
+	Brake = true,
+	Roll = true,
+	Pitch = true,
+	Yaw = true,
+	Boost = true,
+	MinSpeed = true,
+}
+
 local SystemProxy = {
 	Changed = _changedSignal, -- This is the object with :Connect()
 	
@@ -84,12 +94,29 @@ setmetatable(SystemProxy, {
 			-- Sync Attribute for HUD/Client (Optional but recommended)
 			if not _isSyncing then
 				_isSyncing = true
-				_stats:SetAttribute(key, value)
+				if REPLICATED_KEYS[key] then
+					_stats:SetAttribute(key, value)
+				end
 				_changedSignal:Fire(key, value, oldValue)
 				_isSyncing = false
 			end
 		end
 	end
 })
+
+-- 4. Two-Way Reactive Synchronization
+_stats.AttributeChanged:Connect(function(key)
+	if _isSyncing then return end
+	local newValue = _stats:GetAttribute(key)
+	if newValue == nil then return end -- Ignore when attribute is deleted
+	
+	if _data[key] ~= nil and _data[key] ~= newValue then
+		_isSyncing = true
+		local oldValue = _data[key]
+		_data[key] = newValue
+		_changedSignal:Fire(key, newValue, oldValue)
+		_isSyncing = false
+	end
+end)
 
 return SystemProxy
