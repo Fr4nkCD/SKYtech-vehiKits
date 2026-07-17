@@ -112,7 +112,7 @@ local function setupLandingGear(landingGear)
 		-- Cache lowestPoint and keep it synced if the setting changes.
 		local function updateLowestPoint()
 			local lp = Settings:GetAttribute("Advanced/LowestPoint")
-			lowestPoint = if lp == "Auto" then boundSize.Y * 0.55 else math.abs(lp)
+			lowestPoint = if lp == "Auto" or lp == nil then boundSize.Y * 0.55 else math.abs(lp)
 		end
 		updateLowestPoint()
 
