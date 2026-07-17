@@ -7,8 +7,9 @@ local StarterGui	= game:GetService("StarterGui")
 local StarterPlayer	= game:GetService("StarterPlayer")
 local player		= game:GetService("Players").LocalPlayer
 
-local humanoid	= player.Character:WaitForChild("Humanoid")
-local rootPart	= player.Character:WaitForChild("HumanoidRootPart")
+local character = player.Character or player.CharacterAdded:Wait()
+local humanoid	= character:WaitForChild("Humanoid")
+local rootPart	= character:WaitForChild("HumanoidRootPart")
 local camera	= workspace.CurrentCamera
 
 local defaultMaxZoomDistance = StarterPlayer.CameraMaxZoomDistance
@@ -165,8 +166,11 @@ UIS.InputEnded:Connect(function(input, processed) -- Keys released
 	end
 end)
 
-local function getEffectiveInput(input, deadzone)
-	return math.max(0, math.abs(input) - deadzone) / (1 - deadzone)
+local function getEffectiveInput(input: number, deadzone: number): number
+	if math.abs(input) <= deadzone then
+		return 0
+	end
+	return math.sign(input) * (math.abs(input) - deadzone) / (1 - deadzone)
 end
 
 local accumulated = 0
@@ -213,17 +217,21 @@ connection = game:GetService("RunService").Heartbeat:Connect(function(dt)
 	local yaw_Input 		= Controls.Inputs.Yaw
 	------------------------------------------------------------------------------------------------
 	local deadzone = if isMobile or isGamepad then 0.1 else 0.005
-	local roll_Curve		= 0.8 + (getEffectiveInput(roll_Input, deadzone) * 0.2)
-	local pitch_Curve		= 0.8 + (getEffectiveInput(pitch_Input, deadzone) * 0.2)
-	local yaw_Curve			= 0.8 + (getEffectiveInput(yaw_Input, deadzone) * 0.2)
+	local effectiveRoll = getEffectiveInput(roll_Input, deadzone)
+	local effectivePitch = getEffectiveInput(pitch_Input, deadzone)
+	local effectiveYaw = getEffectiveInput(yaw_Input, deadzone)
+
+	local roll_Curve		= 0.8 + (math.abs(effectiveRoll) * 0.2)
+	local pitch_Curve		= 0.8 + (math.abs(effectivePitch) * 0.2)
+	local yaw_Curve			= 0.8 + (math.abs(effectiveYaw) * 0.2)
 	------------------------------------------------------------------------------------------------
 	Controls.Outputs.Collective = math.lerp(Controls.Outputs.Collective, collective_Input, sensitivity)
 	Controls.Outputs.MousePosition = if Controls.Inputs.MousePosition then
 		(Controls.Outputs.MousePosition or mainPart.Position + (mainPart.CFrame.LookVector * 1e6)):Lerp(Controls.Inputs.MousePosition, sensitivity)
 		else nil
-	Controls.Outputs.Roll = math.lerp(Controls.Outputs.Roll, roll_Input * roll_Curve, sensitivity)
-	Controls.Outputs.Pitch = math.lerp(Controls.Outputs.Pitch, pitch_Input * pitch_Curve, sensitivity)
-	Controls.Outputs.Yaw = math.lerp(Controls.Outputs.Yaw, yaw_Input * yaw_Curve, sensitivity)
+	Controls.Outputs.Roll = math.lerp(Controls.Outputs.Roll, effectiveRoll * roll_Curve, sensitivity)
+	Controls.Outputs.Pitch = math.lerp(Controls.Outputs.Pitch, effectivePitch * pitch_Curve, sensitivity)
+	Controls.Outputs.Yaw = math.lerp(Controls.Outputs.Yaw, effectiveYaw * yaw_Curve, sensitivity)
 	------------------------------------------------------------------------------------------------
 	handlerFrames.Linear.Collective.Size	= UDim2.new(0, 20, collective_Input, 0)
 	handlerFrames.Linear.Roll.Size			= UDim2.new(0, 20, roll_Input, 0)
