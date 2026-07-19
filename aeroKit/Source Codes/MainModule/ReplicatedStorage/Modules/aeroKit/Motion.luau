@@ -31,7 +31,7 @@ function Motion.Update(dt, state)
 	-- Induce realistic Stall Spin (wing drop & authority loss)
 	local stallSpinRoll = 0
 	
-	if Env.Stalling == 1 then
+	if Env.Stalling == 1 and not System.VTOLHovering then
 		if System.StallSpinDirection == 0 then
 			-- Lock in the spin direction at the start of the stall
 			local rollDir = Utils.Sign(Env.BankAngle)

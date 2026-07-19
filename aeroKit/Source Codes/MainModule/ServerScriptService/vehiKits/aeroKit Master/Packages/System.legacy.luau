@@ -75,3 +75,52 @@ mainPart:GetPropertyChangedSignal("Parent"):Connect(function()
 		aircraft:Destroy()
 	end
 end)
+
+-- Attribute mapping and synchronization wrapper for VTOLLevel & MotionStability
+local Stats_ = aircraft:WaitForChild("Main"):WaitForChild("Stats")
+
+local attributeMap = {
+	["MotionStability"] = "Stability",
+	["VTOLLevel"]        = "VTOL",
+}
+
+-- Initialize fallback values on startup
+for statsName, systemName in pairs(attributeMap) do
+	local statsValue = Stats_:GetAttribute(statsName)
+	local systemValue = script:GetAttribute(systemName)
+	
+	if statsValue ~= nil and systemValue == nil then
+		script:SetAttribute(systemName, statsValue)
+	elseif systemValue ~= nil and statsValue == nil then
+		Stats_:SetAttribute(statsName, systemValue)
+	end
+end
+
+-- Sync Stats (New Names) -> System (Legacy Names)
+Stats_.AttributeChanged:Connect(function(statsAttr)
+	local systemAttr = attributeMap[statsAttr]
+	if systemAttr then
+		local newValue = Stats_:GetAttribute(statsAttr)
+		if script:GetAttribute(systemAttr) ~= newValue then
+			script:SetAttribute(systemAttr, newValue)
+		end
+	end
+end)
+
+-- Sync System (Legacy Names) -> Stats (New Names)
+script.AttributeChanged:Connect(function(systemAttr)
+	local statsAttr = nil
+	for newName, legacyName in pairs(attributeMap) do
+		if legacyName == systemAttr then
+			statsAttr = newName
+			break
+		end
+	end
+	
+	if statsAttr then
+		local newValue = script:GetAttribute(systemAttr)
+		if Stats_:GetAttribute(statsAttr) ~= newValue then
+			Stats_:SetAttribute(statsAttr, newValue)
+		end
+	end
+end)

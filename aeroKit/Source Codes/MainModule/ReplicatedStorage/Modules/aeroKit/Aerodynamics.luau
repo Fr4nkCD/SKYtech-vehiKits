@@ -20,7 +20,9 @@ function Aerodynamics.Update(dt, state)
 	local aeroY = Env.MainCFrame.UpVector * Env.Weight * (lift_Force + maxSpeedDrag + stall_Force) * -Env.Velocity.Y * (1 - Utils.Abs(Env.LocalWindDirection.Y) / (1.5 - Env.StabilityCoeff / 2.5))
 	local aeroZ = Env.MainCFrame.LookVector * Env.Weight * (forwardDrag + maxSpeedDrag) * Env.Velocity.Z
 
-	local motionStability = Components.StateWrapper:GetAttribute("Stability") * System.Throttle
+	local stats = Components.Stats_
+	local stabilityVal = (stats and stats:GetAttribute("MotionStability")) or Components.StateWrapper:GetAttribute("Stability") or 0
+	local motionStability = stabilityVal * System.Throttle
 	local VTOLlevel = System.VTOLlevel
 	local VTOL = VTOLlevel * System.Throttle * (if Env.TrueSpeed < Env.StallSpeed then 1 else 0)
 	local aeroHover = Utils.V3New(0, Env.Weight * -Env.Velocity.Y / (200 * (1 + Utils.Abs(Env.WorldVelocity.Y) / 20)) * VTOL, 0)

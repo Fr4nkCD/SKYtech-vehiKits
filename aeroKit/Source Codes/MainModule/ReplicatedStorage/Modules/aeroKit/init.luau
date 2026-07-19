@@ -46,6 +46,7 @@ function aeroKit:Initialize(aircraft)
 			Motion = mainPart.Motion,
 			Aerodynamics = mainPart.Aerodynamics,
 			Gravity = mainPart.Gravity,
+			Stats_ = main.Stats,
 			BoundSize = nil,
 		},
 		IgnoredObjects = {aircraft},
@@ -98,7 +99,8 @@ function aeroKit:Update(aircraft, dt, onClient)
 
 	if not mainPart:IsGrounded() then
 		-- Cache standard parameters & attributes for this physics step
-		state.System.VTOLlevel = stateWrapper:GetAttribute("VTOL") or 0
+		local stats = state.Components.Stats_
+		state.System.VTOLlevel = (stats and stats:GetAttribute("VTOLLevel")) or stateWrapper:GetAttribute("VTOL") or 0
 		state.System.VTOLHovering = stateWrapper:GetAttribute("Hovering") == true
 
 		-- Pipeline Sequence via Context Injection
