@@ -3,8 +3,6 @@
 local Motion = {}
 
 local math_cos = math.cos
-local math_sin = math.sin
-local math_acos = math.acos
 
 function Motion.Update(dt, state)
 	local Utils = state.Utils
@@ -29,7 +27,7 @@ function Motion.Update(dt, state)
 	local yawInput = System.Yaw
 	
 	-- Induce realistic Stall Spin (wing drop & authority loss)
-	local stallSpinRoll = 0
+	local targetStallSpinRoll = 0
 	
 	if Env.Stalling == 1 and not System.VTOLHovering then
 		if System.StallSpinDirection == 0 then
@@ -47,17 +45,24 @@ function Motion.Update(dt, state)
 		local severity = Utils.Clamp(1 - (Env.TrueSpeed / Env.StallSpeed), 0, 1)
 		local pitchCosine = math_cos(Env.PitchRad)
 		
-		-- Wing drop rolling authority (up to 2.5 rad/s spin), scaled down near vertical pitch
-		stallSpinRoll = System.StallSpinDirection * severity * 2.5 * Utils.Max(pitchCosine, 0)
+		-- Wing drop rolling authority (up to 4.0 rad/s spin), scaled down near vertical pitch and VTOL transition level
+		local vtolFactor = 1 - System.VTOLlevel
+		targetStallSpinRoll = System.StallSpinDirection * severity * 4.0 * Utils.Max(pitchCosine, 0) * vtolFactor
 		
 		-- Decay control authority (drop to 10% responsiveness at deep stall)
 		local authority = Utils.Clamp(1 - severity * 0.9, 0.1, 1)
 		rollInput = rollInput * authority
 		pitchInput = pitchInput * authority
 		yawInput = yawInput * authority
+
+		-- Smoothly interpolate the active stall spin roll rate to avoid instant snaps
+		System.StallSpinRoll = System.StallSpinRoll or 0
+		local rollFilterAlpha = 1 - math_cos(Utils.Clamp(2 * dt, 0, 1.57))
+		System.StallSpinRoll = Utils.Lerp(System.StallSpinRoll, targetStallSpinRoll, rollFilterAlpha)
 	else
-		-- Reset stall spin direction lock when flying again
+		-- Reset stall spin direction and roll rate lock when flying normally or hovering
 		System.StallSpinDirection = 0
+		System.StallSpinRoll = 0
 	end
 
 	-- Calculate yaw input rate of change and save current yaw
@@ -88,7 +93,7 @@ function Motion.Update(dt, state)
 		pitchInput = pitchInput - pitchLimit - pitchLevelOut
 	end
 	
-	local roll = rollInput * _attitudeControls.RollSpeed / 10 * (0.8 + Env.TrueSpeed / Env.MaxSpeed / 2.5) + stallSpinRoll
+	local roll = rollInput * _attitudeControls.RollSpeed / 10 * (0.8 + Env.TrueSpeed / Env.MaxSpeed / 2.5) + System.StallSpinRoll
 	local pitch = pitchInput * _attitudeControls.PitchSpeed / 10 * (1 - Env.TrueSpeed / Env.MaxSpeed / 2.5)
 	local yaw = yawInput * _attitudeControls.YawSpeed / 10 * (1 - Env.TrueSpeed / Env.MaxSpeed / 2.5)
 
@@ -101,37 +106,24 @@ function Motion.Update(dt, state)
 
 	local mainVelocity = Env.ScaledWorldVelocity - (cancelWindDirection * Utils.Clamp((Env.TrueSpeed - Env.StallSpeed * 0.9) / (Env.StallSpeed * 0.1), 0, 1))
 	
-	-- Safe horizontal unit projection to prevent division-by-zero NaNs at near-zero vectors
-	local lookXZ = Utils.V3New(Env.MainCFrame.LookVector.X, 0, Env.MainCFrame.LookVector.Z)
-	local mainXZ = if lookXZ.Magnitude > 0.001 then lookXZ.Unit else Utils.V3Zero
-
-	local velXZ = Utils.V3New(mainVelocity.X, 0, mainVelocity.Z)
-	local velocityXZ = if velXZ.Magnitude > 0.001 then velXZ.Unit else Utils.V3Zero
-
-	local forwardComponent = mainVelocity:Dot(Env.MainCFrame.LookVector)
-	local rad = Utils.Rad(Env.BankAngle)
-	local right = Env.MainCFrame.RightVector
-	local up = Env.MainCFrame.UpVector
-	local smoothUp = up * math_cos(rad) + right * math_sin(rad)
-	local upComponent = mainVelocity:Dot(smoothUp.Unit)
-	
-	local velocityDirection = 0
-	if velocityXZ.Magnitude > 0.001 then
-		velocityDirection = math_acos(Utils.Clamp(Utils.V3New(0, 0, -1):Dot(velocityXZ), -1, 1)) * (if Utils.V3New(0, 0, -1):Cross(velocityXZ).Y >= 0 then 1 else -1)
+	-- Proportional Cross-Product 3D Vector Flight Path Alignment
+	local targetFlightPath = Utils.V3Zero
+	if mainVelocity.Magnitude > 0.1 then
+		local velUnit = mainVelocity.Unit
+		local look = Env.MainCFrame.LookVector
+		local alignmentAxis = look:Cross(velUnit)
+		
+		-- Resolve dead-center backward flight by adding a nudge/torque to flip the nose
+		if look:Dot(velUnit) < -0.99 then
+			alignmentAxis = Env.MainCFrame.UpVector
+		end
+		
+		targetFlightPath = alignmentAxis * 1.5 * Utils.Min(if Env.ScaledWorldVelocity.Magnitude >= 1 then Env.ScaledWorldVelocity.Magnitude / Env.StallSpeed + Env.Stalling else 0, 1) * Utils.Max(1 - Aero.MotionStability * 4, 0)
 	end
 
-	-- Proportional Cross-Product Steering & Pitch Cosine Decay for pathYaw
-	local pathYaw = 0
-	if mainXZ.Magnitude > 0.001 and velocityXZ.Magnitude > 0.001 then
-		local yawError = mainXZ:Cross(velocityXZ).Y
-		local pitchCosine = math_cos(Env.PitchRad)
-		pathYaw = (yawError * 1.5) / (10 - 5 * Env.Stalling) * (1 + 0.25 * Env.Stalling) * Utils.Max(pitchCosine, 0)
-	end
-	
-	local pathPitch = Utils.Clamp(math.atan2(upComponent, forwardComponent), -2, 2) * 1.25 * Utils.Clamp(1 - (Env.ScaledWorldVelocity.Magnitude - Env.StallSpeed) / Env.MaxSpeed, 0.1, 1)
-
-	-- Calculate the target flight path vector
-	local targetFlightPath = (Utils.V3New(0, pathYaw, 0) + Utils.CFAngles(0, velocityDirection, 0):VectorToWorldSpace(Utils.V3New(pathPitch, 0, 0)) * Utils.Min(if Env.ScaledWorldVelocity.Magnitude >= 1 then Env.ScaledWorldVelocity.Magnitude / Env.StallSpeed + Env.Stalling else 0, 1)) * Utils.Max(1 - Aero.MotionStability * 4, 0)
+	-- Scale down flight path alignment at low speed to prevent snapping (especially during VTOL transitions)
+	local alignmentSpeedFactor = Utils.Clamp(Env.TrueSpeed / Env.StallSpeed, 0, 1)
+	targetFlightPath = targetFlightPath * alignmentSpeedFactor
 
 	-- Reduce path alignment torque while wheels are touching the ground to prevent overshoot (lerped based on speed)
 	if Env.HasCollision then
