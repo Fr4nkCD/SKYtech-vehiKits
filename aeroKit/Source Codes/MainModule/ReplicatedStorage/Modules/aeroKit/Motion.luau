@@ -3,6 +3,7 @@
 local Motion = {}
 
 local math_cos = math.cos
+local math_clamp = math.clamp
 
 function Motion.Update(dt, state)
 	local Utils = state.Utils
@@ -57,7 +58,7 @@ function Motion.Update(dt, state)
 
 		-- Smoothly interpolate the active stall spin roll rate to avoid instant snaps
 		System.StallSpinRoll = System.StallSpinRoll or 0
-		local rollFilterAlpha = 1 - math_cos(Utils.Clamp(2 * dt, 0, 1.57))
+		local rollFilterAlpha = 1 - math_cos(math_clamp(2 * dt, 0, 1.57))
 		System.StallSpinRoll = Utils.Lerp(System.StallSpinRoll, targetStallSpinRoll, rollFilterAlpha)
 	else
 		-- Reset stall spin direction and roll rate lock when flying normally or hovering
@@ -132,7 +133,7 @@ function Motion.Update(dt, state)
 	end
 
 	-- Low-Pass filter smoothing (8 Hz decay constant)
-	local filterAlpha = 1 - math_cos(Utils.Clamp(8 * dt, 0, 1.57)) -- Safe filter blending coeff
+	local filterAlpha = 1 - math_cos(math_clamp(8 * dt, 0, 1.57)) -- Safe filter blending coeff
 	System.FlightPath = System.FlightPath:Lerp(targetFlightPath, filterAlpha)
 
 	motion.MaxTorque = Env.Weight * Utils.Clamp(Utils.Max((Env.TrueSpeed - Env.StallSpeed * 0.3) / (Env.StallSpeed * 0.7), 0) + Env.Stalling + Aero.MotionStability, 0, 1) * 2 * _attitudeControls.TorqueResponsiveness
