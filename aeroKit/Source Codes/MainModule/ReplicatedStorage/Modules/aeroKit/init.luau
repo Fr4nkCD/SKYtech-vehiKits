@@ -60,7 +60,7 @@ function aeroKit:Initialize(aircraft)
 	local state = self.States[aircraft]
 	local Settings = aircraft:FindFirstChild("Settings")
 
-	for attrName, attrValue in pairs(Settings:GetAttributes()) do
+	for attrName, attrValue in Settings:GetAttributes() do
 		VehicleUtils.UpdateSetting(attrName, attrValue, state.Settings)
 	end	
 
@@ -99,8 +99,7 @@ function aeroKit:Update(aircraft, dt, onClient)
 
 	if not mainPart:IsGrounded() then
 		-- Cache standard parameters & attributes for this physics step
-		local stats = state.Components.Stats_
-		state.System.VTOLlevel = (stats and stats:GetAttribute("VTOLLevel")) or stateWrapper:GetAttribute("VTOL") or 0
+		state.System.VTOLlevel = stateWrapper:GetAttribute("VTOL") or 0
 		state.System.VTOLHovering = stateWrapper:GetAttribute("Hovering") == true
 
 		-- Pipeline Sequence via Context Injection
@@ -137,7 +136,7 @@ function aeroKit:Cleanup(aircraft)
 	local state = self.States[aircraft]
 	if not state then return end
 
-	for _, connection in pairs(state.Connections) do
+	for _, connection in state.Connections do
 		connection:Disconnect()
 	end
 	state.Connections = nil

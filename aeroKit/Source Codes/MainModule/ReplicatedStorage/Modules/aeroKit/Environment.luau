@@ -70,8 +70,7 @@ function Environment.Update(dt, state)
 	local maxSpeed = _maxSpeedSL + (_maxSpeed - _maxSpeedSL) * (altitude / _maxAltitude + Utils.Max(-pitchAngle, 0) / 180)
 
 	local stalling = 0
-	local lowestPoint = 0
-	local projectedExtent = 0
+	local lowestPoint, projectedExtent
 	local hasCollision = false
 
 	if _lowestPoint == "Auto" then
@@ -88,18 +87,13 @@ function Environment.Update(dt, state)
 	
 	if onGround then
 		-- Only register ground contact if the hit distance is close to the physical aircraft boundary
-		local touching = onGround.Distance <= projectedExtent + 0.5
-		
-		if touching then
+		if onGround.Distance <= projectedExtent + 0.5 then
 			local instance = onGround.Instance
 			local model = instance.Parent
-			if model:IsA("Model") then
-				local humanoid = model:FindFirstChildOfClass("Humanoid")
-				if humanoid == nil then
-					hasCollision = Utils.CheckPartCollision(instance, state.IgnoredObjects)
-				else
-					table.insert(state.IgnoredObjects, model)
-				end
+			local humanoid = if model:IsA("Model") then model:FindFirstChildOfClass("Humanoid") else nil
+			
+			if humanoid then
+				table.insert(state.IgnoredObjects, model)
 			else
 				hasCollision = Utils.CheckPartCollision(instance, state.IgnoredObjects)
 			end

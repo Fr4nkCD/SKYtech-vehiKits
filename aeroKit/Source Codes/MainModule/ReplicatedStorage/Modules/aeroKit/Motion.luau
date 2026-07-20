@@ -97,7 +97,6 @@ function Motion.Update(dt, state)
 	if Env.ScaledWorldVelocity.Magnitude > 0.001 then
 		local velUnit = Env.ScaledWorldVelocity.Unit
 		cancelWindDirection = Env.GlobalWind - (velUnit * Env.GlobalWind:Dot(velUnit))
-		cancelWindDirection = if cancelWindDirection == cancelWindDirection then cancelWindDirection else Utils.V3Zero
 	end
 
 	local mainVelocity = Env.ScaledWorldVelocity - (cancelWindDirection * Utils.Clamp((Env.TrueSpeed - Env.StallSpeed * 0.9) / (Env.StallSpeed * 0.1), 0, 1))

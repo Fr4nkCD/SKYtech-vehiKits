@@ -10,7 +10,7 @@ function Aerodynamics.Update(dt, state)
 	local globalWind = Env.GlobalWind
 
 	local forwardDrag = Env.TrueSpeed / Env.MaxSpeed / (3000 + (1000 * Env.Velocity.Magnitude / Env.MaxSpeed)) * Utils.Max(1 - Env.Altitude / state.Settings.AircraftStatistics.MaxAltitude, 0.25) * Env.DragCoeff
-	local maxSpeedDrag = Utils.Max((Env.Velocity.Magnitude - Env.MaxSpeed) / (5000 + 5000 * (1 - Env.StabilityCoeff)), 0) or 1 - Utils.Abs(Env.BankAngle / 270)
+	local maxSpeedDrag = Utils.Max((Env.Velocity.Magnitude - Env.MaxSpeed) / (5000 + 5000 * (1 - Env.StabilityCoeff)), 0)
 
 	local liftLoss = if Env.SymmetricalAirfoil then 1 - Utils.Abs(Env.EffectiveBankAngle) / 270 else 1 - Utils.Abs(Env.BankAngle) / 270
 	local lift_Force = Utils.Clamp((Env.TrueSpeed - Env.StallSpeed) / (60 + 40 * (1 - Env.StabilityCoeff)), 0, Utils.Max(Env.StabilityCoeff, 0.001)) / 10 * liftLoss
@@ -27,8 +27,11 @@ function Aerodynamics.Update(dt, state)
 	local VTOL = VTOLlevel * System.Throttle * (if Env.TrueSpeed < Env.StallSpeed then 1 else 0)
 	local aeroHover = Utils.V3New(0, Env.Weight * -Env.Velocity.Y / (200 * (1 + Utils.Abs(Env.WorldVelocity.Y) / 20)) * VTOL, 0)
 
-	local windFactor = 1 - Utils.Abs(Env.ScaledWorldVelocity.Unit:Dot(globalWind.Unit))
-	windFactor = if windFactor ~= windFactor then 0 else windFactor
+	local windFactor = 0
+	if Env.ScaledWorldVelocity.Magnitude > 0.001 and globalWind.Magnitude > 0.001 then
+		windFactor = 1 - Utils.Abs(Env.ScaledWorldVelocity.Unit:Dot(globalWind.Unit))
+	end
+	
 	local windForce = globalWind * windFactor
 	local windForwardComponent = Env.MainCFrame.LookVector * windForce:Dot(Env.MainCFrame.LookVector)
 	local windLimit = Utils.Min(Env.TrueSpeed / 10, 1)
