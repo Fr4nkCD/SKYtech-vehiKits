@@ -5,7 +5,7 @@ local mainPart = aircraft.Main.Main
 
 local parts = {}
 local scanStart = os.clock()
-for i, part in ipairs(aircraft:GetDescendants()) do
+for _, part in aircraft:GetDescendants() do
 	if os.clock() - scanStart > 0.005 then
 		task.wait()
 		scanStart = os.clock()
@@ -19,7 +19,7 @@ end
 local function calculateMass()
 	local totalMass = 0
 	local calcStart = os.clock()
-	for i, part in pairs(parts) do
+	for _, part in parts do
 		if os.clock() - calcStart > 0.005 then
 			task.wait()
 			calcStart = os.clock()
@@ -29,9 +29,10 @@ local function calculateMass()
 		part:SetAttribute("CurrentMass", part:GetMass())
 	end
 	script:SetAttribute("Mass", totalMass)
-end calculateMass()
+end
+calculateMass()
 
-for _, part in (parts) do
+for _, part in parts do
 	local physicsChanged, masslessChanged, destroyed
 
 	physicsChanged = part:GetPropertyChangedSignal("CustomPhysicalProperties"):Connect(function()
@@ -85,7 +86,7 @@ local attributeMap = {
 }
 
 -- Initialize fallback values on startup
-for statsName, systemName in pairs(attributeMap) do
+for statsName, systemName in attributeMap do
 	local statsValue = Stats_:GetAttribute(statsName)
 	local systemValue = script:GetAttribute(systemName)
 	
@@ -110,7 +111,7 @@ end)
 -- Sync System (Legacy Names) -> Stats (New Names)
 script.AttributeChanged:Connect(function(systemAttr)
 	local statsAttr = nil
-	for newName, legacyName in pairs(attributeMap) do
+	for newName, legacyName in attributeMap do
 		if legacyName == systemAttr then
 			statsAttr = newName
 			break
