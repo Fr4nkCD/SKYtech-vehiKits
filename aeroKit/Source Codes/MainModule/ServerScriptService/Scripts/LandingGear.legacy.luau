@@ -1,10 +1,10 @@
 -- Default landing gear script for all aircraft kits.
+-- Handles gear toggling via RemoteEvents and checks for ground contact to prevent retraction.
 
 local tagName = "SKYtech_LandingGear"
 local CollectionService = game:GetService("CollectionService")
 
--- Pre-build a Lua-side part data table so updateGear reads from fast local tables
--- instead of calling :GetAttribute() per part per toggle.
+-- Build a fast-lookup table of parts/decals to toggle visual states without reading Attributes at runtime.
 local function buildPartData(group, dataTable)
 	for _, v in group:GetDescendants() do
 		if v:IsA("BasePart") then
@@ -22,8 +22,7 @@ local function buildPartData(group, dataTable)
 	end
 end
 
--- toggle: true = extended (gear down), false = retracted (gear up).
--- Reads from pre-built Lua tables — zero attribute queries per call.
+-- Toggles visibility and collision states of gear groups (true = extended, false = retracted).
 local function updateGear(extendedGroup, retractedGroup, toggle)
 	for _, data in extendedGroup do
 		data.part.Transparency = if toggle then data.transparency else 1
@@ -39,23 +38,20 @@ local function updateGear(extendedGroup, retractedGroup, toggle)
 	end
 end
 
+-- Checks if the landing gear is currently in contact with the ground using a raycast.
 local function checkGround(mainPart, boundCFrame, lowestPoint, filter)
 	local raycastResult = workspace:Raycast(boundCFrame.Position, mainPart.CFrame.UpVector * lowestPoint, filter)
 	if not raycastResult then return false end
 
 	local instance = raycastResult.Instance
 	local model = instance:FindFirstAncestorOfClass("Model")
-	if model == nil then
-		return instance.CanCollide
-	else
-		-- Only count as ground if there is no humanoid (excludes players/NPCs).
-		return model:FindFirstChildOfClass("Humanoid") == nil and instance.CanCollide
-	end
+	local isGround = if model then model:FindFirstChildOfClass("Humanoid") == nil else true
+	return isGround and instance.CanCollide
 end
 
 local function setupLandingGear(landingGear)
-	local connections = {}    -- Wake/sleep-managed connections.
-	local permanentConns = {} -- Connections that persist across wake/sleep cycles.
+	local connections = {}    -- Sleep/wake connection list.
+	local permanentConns = {} -- Connections that persist across workspace transitions.
 	local initialized = false
 	local available = false
 	local isAwake = false
@@ -71,16 +67,15 @@ local function setupLandingGear(landingGear)
 	local extendedGroup = {}
 	local retractedGroup = {}
 
-	local toggle = true         -- Local mirror of the "Toggle" attribute.
-	local lowestPoint = 0       -- Cached from settings; rarely changes at runtime.
-	local boundSize = Vector3.zero  -- Cached bounding size; geometry is fixed.
-	local boundCFrame               -- Updated per toggle request (aircraft moves).
-	local onGround = true
+	local toggle = true   -- Local mirror of Toggle attribute.
+	local lowestPoint = 0 -- Cached ground-detection offset distance.
+	local boundSize = Vector3.zero
 
 	local filter = RaycastParams.new()
 	filter.FilterType = Enum.RaycastFilterType.Exclude
-	local filterInstances = { aircraft } -- Cached to avoid per-toggle table allocation.
+	local filterInstances = { aircraft } -- Cache instance list to avoid garbage.
 
+	-- Prepare physics settings, part lists, and state objects.
 	local function physicalInitialize()
 		Settings = aircraft:WaitForChild("Settings")
 		gearStats = mods:FindFirstChild("Landing_Gear") or mods:FindFirstChild("LandingGear")
@@ -106,23 +101,22 @@ local function setupLandingGear(landingGear)
 		available = #extendedGroup > 0 or #retractedGroup > 0
 		gearStats:SetAttribute("Available", available)
 
-		-- Cache bounding size once — aircraft geometry is fixed at runtime.
 		_, boundSize = aircraft:GetBoundingBox()
 
-		-- Cache lowestPoint and keep it synced if the setting changes.
+		-- Keep lowestPoint synced with Advanced settings attribute.
 		local function updateLowestPoint()
 			local lp = Settings:GetAttribute("Advanced/LowestPoint")
 			lowestPoint = if lp == "Auto" or lp == nil then boundSize.Y * 0.55 else math.abs(lp)
 		end
 		updateLowestPoint()
 
-		-- Permanent: this listener must survive wake/sleep cycles.
 		table.insert(permanentConns,
 			Settings:GetAttributeChangedSignal("Advanced/LowestPoint"):Connect(updateLowestPoint))
 
 		initialized = true
 	end
 
+	-- Connect listeners and apply current gear visual states when active in workspace.
 	local function wake()
 		if isAwake then return end
 		if not initialized then physicalInitialize() end
@@ -130,20 +124,20 @@ local function setupLandingGear(landingGear)
 
 		isAwake = true
 
+		-- Remote event toggles state if the aircraft is airborne.
 		table.insert(connections, remoteEvent.OnServerEvent:Connect(function()
-			-- Only refresh CFrame per toggle — boundSize is already cached.
-			boundCFrame = aircraft:GetBoundingBox()
+			local boundCFrame = aircraft:GetBoundingBox()
 			filter.FilterDescendantsInstances = filterInstances
-			onGround = checkGround(mainPart, boundCFrame, -lowestPoint, filter)
-
+			
+			local onGround = checkGround(mainPart, boundCFrame, -lowestPoint, filter)
 			if onGround then return end
-			-- Flip the local mirror first, then write to the attribute once.
+			
 			toggle = not toggle
 			gearStats:SetAttribute("Toggle", toggle)
 		end))
 
+		-- Synchronize visual state with the "Toggle" attribute.
 		table.insert(connections, gearStats:GetAttributeChangedSignal("Toggle"):Connect(function()
-			-- Sync local mirror in case of external attribute changes.
 			toggle = gearStats:GetAttribute("Toggle") == true
 			updateGear(extendedGroup, retractedGroup, toggle)
 		end))
@@ -151,6 +145,7 @@ local function setupLandingGear(landingGear)
 		updateGear(extendedGroup, retractedGroup, toggle)
 	end
 
+	-- Temporarily suspend listeners when removed from the workspace.
 	local function sleep()
 		isAwake = false
 		for _, conn in connections do
@@ -161,6 +156,7 @@ local function setupLandingGear(landingGear)
 
 	local cleanup
 
+	-- Clean up all listeners and references when destroyed.
 	local function terminate()
 		sleep()
 		for _, conn in permanentConns do
@@ -194,7 +190,7 @@ local function setupLandingGear(landingGear)
 	end
 end
 
-for _, landingGear in (CollectionService:GetTagged(tagName)) do
+for _, landingGear in CollectionService:GetTagged(tagName) do
 	setupLandingGear(landingGear)
 end
 
