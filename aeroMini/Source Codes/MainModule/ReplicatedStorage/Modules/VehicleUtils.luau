@@ -24,6 +24,9 @@ local Vector2_new = Vector2.new
 local Vector3_zero = Vector3.zero
 local Vector3_new = Vector3.new
 
+local PI_HALF = math_pi / 2
+local PI_DOUBLE = math_pi * 2
+
 local VehicleUtils = {
 	-- Global Variables
 	CFNew = CFrame_new,
@@ -54,10 +57,10 @@ function VehicleUtils.IsClient()
 end
 
 function VehicleUtils.GetRoll(CF)
-	local CFRight = CF * CFrame_Angles(0, math_pi / 2, 0)
-	local noRollRight = CFrame_new(CF.Position, CF.Position + CF.LookVector) * CFrame_Angles(0, math_pi / 2, 0)
+	local CFRight = CF * CFrame_Angles(0, PI_HALF, 0)
+	local noRollRight = CFrame_new(CF.Position, CF.Position + CF.LookVector) * CFrame_Angles(0, PI_HALF, 0)
 	local CFDiff = CFRight:ToObjectSpace(noRollRight)
-	return math_atan2(CFDiff.LookVector.Y, CFDiff.LookVector.Z) % (math_pi * 2) + math_pi
+	return math_atan2(CFDiff.LookVector.Y, CFDiff.LookVector.Z) % PI_DOUBLE + math_pi
 end
 
 function VehicleUtils.GetPitch(CF)
@@ -80,7 +83,6 @@ end
 
 function VehicleUtils.GetSurfaceBankAngle(part, hitNormal)
 	local mainCF = part.CFrame
-
 	local flatRight = Vector3_new(mainCF.RightVector.X, 0, mainCF.RightVector.Z).Unit
 
 	if flatRight.Magnitude == 0 then
@@ -88,7 +90,7 @@ function VehicleUtils.GetSurfaceBankAngle(part, hitNormal)
 	end
 
 	local angleFromNormal = math_acos(math_clamp(flatRight:Dot(hitNormal), -1, 1))
-	local surfaceBankRad = (math_pi / 2) - angleFromNormal
+	local surfaceBankRad = PI_HALF - angleFromNormal
 
 	return -surfaceBankRad
 end
@@ -116,10 +118,10 @@ function VehicleUtils.UpdateSetting(attrName, attrValue, target)
 end
 
 function VehicleUtils.SyncLegacyValues(Settings, ConnectionsTable)
-	for _, category in pairs(Settings:GetChildren()) do
+	for _, category in Settings:GetChildren() do
 		local categoryName = category.Name:gsub("_", "")
 
-		for _, valueObject in pairs(category:GetChildren()) do
+		for _, valueObject in category:GetChildren() do
 			if valueObject:IsA("ValueBase") then
 				table.insert(ConnectionsTable, valueObject:GetPropertyChangedSignal("Value"):Connect(function()
 					local newValue = valueObject.Value
