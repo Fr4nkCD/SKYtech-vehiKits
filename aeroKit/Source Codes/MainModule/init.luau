@@ -10,46 +10,32 @@ do -- Load core scripts for the kit and other systems
 	local FOLDER_NAME = "SKYtech Systems"
 
 	local function installPackages(Service)
-		local packages = script:FindFirstChild(Service.Name):GetChildren()
+		local sourceFolder = script:FindFirstChild(Service.Name)
+		if not sourceFolder then return end
 
 		local systemsFolder = Service:FindFirstChild(FOLDER_NAME)
-		if systemsFolder then
-			-- If the systems folder is found, only load the packages that don't exist.
-			for _, subFolder in (packages) do
-				local hasSubFolder = systemsFolder:FindFirstChild(subFolder.Name)
-				if hasSubFolder then
-					-- If the sub folder is found, search for the missing scripts and modules.
-					for __, asset in (subFolder:GetChildren()) do
-						local hasAsset = hasSubFolder:FindFirstChild(asset.Name)
-						if not hasAsset then
-							asset.Parent = hasSubFolder
-							if asset:IsA("BaseScript") then
-								asset.Enabled = true
-							end
-						end
-					end
-				else
-					-- If the sub folder is not found, load it entirely.
-					subFolder.Parent = systemsFolder
-					for __, baseScript in (subFolder:GetChildren()) do
-						if baseScript:IsA("BaseScript") then
-							baseScript.Enabled = true
-						end
-					end
-				end
-			end
-		else
-			-- If the folder is not found, load everything.	
+		if not systemsFolder then
 			systemsFolder = Instance.new("Folder")
 			systemsFolder.Name = FOLDER_NAME
 			systemsFolder.Parent = Service
+		end
 
-			for _, subFolder in (packages) do
+		for _, subFolder in sourceFolder:GetChildren() do
+			local targetSubFolder = systemsFolder:FindFirstChild(subFolder.Name)
+			if not targetSubFolder then
 				subFolder.Parent = systemsFolder
-
-				for __, baseScript in (subFolder:GetChildren()) do
-					if baseScript:IsA("BaseScript") then
-						baseScript.Enabled = true
+				for _, child in subFolder:GetChildren() do
+					if child:IsA("BaseScript") then
+						child.Enabled = true
+					end
+				end
+			else
+				for _, asset in subFolder:GetChildren() do
+					if not targetSubFolder:FindFirstChild(asset.Name) then
+						asset.Parent = targetSubFolder
+						if asset:IsA("BaseScript") then
+							asset.Enabled = true
+						end
 					end
 				end
 			end
