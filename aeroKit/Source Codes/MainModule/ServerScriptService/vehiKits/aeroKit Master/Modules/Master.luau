@@ -138,13 +138,12 @@ function Master.Initialize(
 	local loader = aircraft:FindFirstChild("Settings/Loader")
 	if loader then
 		local hasCustomControls = loader:GetChildren()
-		if hasCustomControls and controller then
+		if controller then
 			for _, module in hasCustomControls do
 				if module.Name ~= kitName.." Source" then
 					module.Parent = controller
 				end
 			end
-			hasCustomControls = nil
 		end
 		loader:Destroy()
 	end
@@ -237,7 +236,8 @@ function Master.UpdateStats(
 		-- Read validation status from local Lua cache instead of calling FindFirstChild per-packet
 		if not playerLicenseCache[player] then return end
 
-		local hasFuel = Stats_:GetAttribute("Fuel") > 0
+		local fuel = Stats_:GetAttribute("Fuel")
+		local hasFuel = fuel == nil or fuel > 0
 
 		if event == "Active" then
 			Stats_:SetAttribute("Active", Stats_:GetAttribute("Active") ~= true and hasFuel)

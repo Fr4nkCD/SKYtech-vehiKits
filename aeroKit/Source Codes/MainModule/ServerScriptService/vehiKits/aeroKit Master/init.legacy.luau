@@ -134,8 +134,9 @@ local function setupAircraft(aircraft)
 				end
 				
 				local isActive = Stats_:GetAttribute("Active") == true
+				local fuel = Stats_:GetAttribute("Fuel")
 				-- Force shutdown if the fuel is empty.
-				if Stats_:GetAttribute("Fuel") <= 0 and isActive then
+				if fuel and fuel <= 0 and isActive then
 					Stats_:SetAttribute("Active", false)
 					Stats_:SetAttribute("Throttle", 0)
 				end
@@ -150,7 +151,7 @@ local function setupAircraft(aircraft)
 		end))
 		
 		-- Legacy values syncing
-		for name, value :ObjectValue in (legacyValues) do
+		for name, value :ObjectValue in legacyValues do
 			if value then
 				LegacySyncing.SyncValue(name, value, Stats_, connections)
 			end
@@ -158,7 +159,7 @@ local function setupAircraft(aircraft)
 	end
 
 	local function sleep()
-		for _, connection in (connections) do
+		for _, connection in connections do
 			connection:Disconnect()
 		end
 		connections = {}
@@ -187,7 +188,7 @@ local function setupAircraft(aircraft)
 	end
 end
 
-for _, aircraft in (CollectionService:GetTagged("SKYtech "..kitName)) do
+for _, aircraft in CollectionService:GetTagged("SKYtech "..kitName) do
 	setupAircraft(aircraft)
 end
 
