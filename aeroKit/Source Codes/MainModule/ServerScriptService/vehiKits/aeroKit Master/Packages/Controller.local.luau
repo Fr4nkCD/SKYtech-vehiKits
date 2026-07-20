@@ -204,61 +204,54 @@ connection = game:GetService("RunService").Heartbeat:Connect(function(dt)
 	local trim_Sensitivity = 1 - math.exp(-script:GetAttribute("TrimSensitivity") * dt)
 	local yaw_Sensitivity = 1 - math.exp(-Sensitivity.Yaw * dt)
 
-	Controls.Inputs.Throttle = script:GetAttribute("Throttle")
-	Controls.Inputs.Roll = script:GetAttribute("Roll")
-	Controls.Inputs.Pitch = script:GetAttribute("Pitch")
-	Controls.Inputs.Trim = script:GetAttribute("Trim")
-	Controls.Inputs.Yaw = script:GetAttribute("Yaw")
-	-----------------------------------------------------------------------------------------------
-	local throttle_Input	= Controls.Inputs.Throttle
-	local roll_Input		= Controls.Inputs.Roll
-	local pitch_Input 		= Controls.Inputs.Pitch
-	local trim_Input 		= Controls.Inputs.Trim
-	local yaw_Input 		= Controls.Inputs.Yaw
-	------------------------------------------------------------------------------------------------
+	local throttle_Input = script:GetAttribute("Throttle") or 0
+	local roll_Input = script:GetAttribute("Roll") or 0
+	local pitch_Input = script:GetAttribute("Pitch") or 0
+	local trim_Input = script:GetAttribute("Trim") or 0
+	local yaw_Input = script:GetAttribute("Yaw") or 0
+
 	local deadzone = if isMobile then 0.1 else 0.005
 	local effectiveRoll = getEffectiveInput(roll_Input, deadzone)
 	local effectivePitch = getEffectiveInput(pitch_Input, deadzone)
 	local effectiveYaw = getEffectiveInput(yaw_Input, deadzone)
 
-	local roll_Curve		= 0.8 + (math.abs(effectiveRoll) * 0.2)
-	local pitch_Curve		= 0.8 + (math.abs(effectivePitch) * 0.2)
-	local yaw_Curve			= 0.8 + (math.abs(effectiveYaw) * 0.2)
-	------------------------------------------------------------------------------------------------
-	Controls.Outputs.Throttle 		= math.lerp(Controls.Outputs.Throttle, throttle_Input, throttle_Sensitivity)
-	Controls.Outputs.Roll 			= math.lerp(Controls.Outputs.Roll, effectiveRoll * roll_Curve, roll_Sensitivity)
-	Controls.Outputs.Pitch 			= math.lerp(Controls.Outputs.Pitch, effectivePitch * pitch_Curve, pitch_Sensitivity)
-	Controls.Outputs.Trim 			= math.lerp(Controls.Outputs.Trim, trim_Input, trim_Sensitivity)
-	Controls.Outputs.Yaw 			= math.lerp(Controls.Outputs.Yaw, effectiveYaw * yaw_Curve, yaw_Sensitivity)
-	------------------------------------------------------------------------------------------------
-	handlerFrames.Inputs.Throttle.Size	= UDim2.new(0, 20, throttle_Input, 0)
-	handlerFrames.Inputs.Roll.Size			= UDim2.new(0, 20, roll_Input, 0)
-	handlerFrames.Inputs.Pitch.Size			= UDim2.new(0, 20, pitch_Input, 0)
-	handlerFrames.Inputs.Trim.Size			= UDim2.new(0, 20, trim_Input, 0)
-	handlerFrames.Inputs.Yaw.Size			= UDim2.new(0, 20, yaw_Input, 0)
-	-----------------------------------------------------------------------------------------------
-	handlerFrames.Outputs.Throttle.Size	= UDim2.new(0, 20, Controls.Outputs.Throttle, 0)
-	handlerFrames.Outputs.Roll.Size			= UDim2.new(0, 20, Controls.Outputs.Roll, 0)
-	handlerFrames.Outputs.Pitch.Size		= UDim2.new(0, 20, Controls.Outputs.Pitch, 0)
-	handlerFrames.Outputs.Trim.Size			= UDim2.new(0, 20, Controls.Outputs.Trim, 0)
-	handlerFrames.Outputs.Yaw.Size			= UDim2.new(0, 20, Controls.Outputs.Yaw, 0)
-	-----------------------------------------------------------------------------------------------
-	local states = aircraftState.System
-	states.Throttle			= Controls.Outputs.Throttle
-	states.Roll				= Controls.Outputs.Roll
-	states.Pitch			= Controls.Outputs.Pitch + Controls.Outputs.Trim
-	states.Yaw				= Controls.Outputs.Yaw
+	local roll_Curve = 0.8 + (math.abs(effectiveRoll) * 0.2)
+	local pitch_Curve = 0.8 + (math.abs(effectivePitch) * 0.2)
+	local yaw_Curve = 0.8 + (math.abs(effectiveYaw) * 0.2)
 
-	-- Update the stats slowly if the control is client sided, 10 Hz otherwise.
-	local rate = if isClientControlled then 0.5 else 1/10
+	Controls.Outputs.Throttle = math.lerp(Controls.Outputs.Throttle, throttle_Input, throttle_Sensitivity)
+	Controls.Outputs.Roll = math.lerp(Controls.Outputs.Roll, effectiveRoll * roll_Curve, roll_Sensitivity)
+	Controls.Outputs.Pitch = math.lerp(Controls.Outputs.Pitch, effectivePitch * pitch_Curve, pitch_Sensitivity)
+	Controls.Outputs.Trim = math.lerp(Controls.Outputs.Trim, trim_Input, trim_Sensitivity)
+	Controls.Outputs.Yaw = math.lerp(Controls.Outputs.Yaw, effectiveYaw * yaw_Curve, yaw_Sensitivity)
+
+	handlerFrames.Inputs.Throttle.Size = UDim2.new(0, 20, throttle_Input, 0)
+	handlerFrames.Inputs.Roll.Size = UDim2.new(0, 20, roll_Input, 0)
+	handlerFrames.Inputs.Pitch.Size = UDim2.new(0, 20, pitch_Input, 0)
+	handlerFrames.Inputs.Trim.Size = UDim2.new(0, 20, trim_Input, 0)
+	handlerFrames.Inputs.Yaw.Size = UDim2.new(0, 20, yaw_Input, 0)
+
+	handlerFrames.Outputs.Throttle.Size = UDim2.new(0, 20, Controls.Outputs.Throttle, 0)
+	handlerFrames.Outputs.Roll.Size = UDim2.new(0, 20, Controls.Outputs.Roll, 0)
+	handlerFrames.Outputs.Pitch.Size = UDim2.new(0, 20, Controls.Outputs.Pitch, 0)
+	handlerFrames.Outputs.Trim.Size = UDim2.new(0, 20, Controls.Outputs.Trim, 0)
+	handlerFrames.Outputs.Yaw.Size = UDim2.new(0, 20, Controls.Outputs.Yaw, 0)
+
+	local states = aircraftState.System
+	states.Throttle = Controls.Outputs.Throttle
+	states.Roll = Controls.Outputs.Roll
+	states.Pitch = Controls.Outputs.Pitch + Controls.Outputs.Trim
+	states.Yaw = Controls.Outputs.Yaw
+
+	local rate = if isClientControlled then 0.5 else 0.1
 	if accumulated >= rate then
-		local packet = {}
-		packet.Throttle = Controls.Outputs.Throttle
-		packet.Roll = Controls.Outputs.Roll
-		packet.Pitch = Controls.Outputs.Pitch
-		packet.Trim = Controls.Outputs.Trim
-		packet.Yaw = Controls.Outputs.Yaw
-		updateEvent:FireServer("Stats", packet)
+		updateEvent:FireServer("Stats", {
+			Throttle = Controls.Outputs.Throttle,
+			Roll = Controls.Outputs.Roll,
+			Pitch = Controls.Outputs.Pitch,
+			Trim = Controls.Outputs.Trim,
+			Yaw = Controls.Outputs.Yaw,
+		})
 		accumulated -= rate
 	end
 end)
