@@ -116,6 +116,8 @@ function changeControl()
 	controllerEvent:Fire("Stop")
 	controllerEvent:Fire("ChangeControl")
 
+	script.Module.Value = nil
+
 	local controlVal = script.Module.Value
 	if not controlVal then
 		local thread = coroutine.running()
