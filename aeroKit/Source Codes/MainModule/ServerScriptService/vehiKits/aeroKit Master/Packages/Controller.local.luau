@@ -60,11 +60,19 @@ local handlerFrames = {
 }
 
 local Control = nil
+local isNewSens = false
 local Sensitivity = {
 	Throttle = 0,
 	Roll = 0,
 	Pitch = 0,
 	Yaw = 0,
+}
+
+local channels = {
+	Throttle = { current = 0, duration = 1 },
+	Roll = { current = 0, duration = 1 },
+	Pitch = { current = 0, duration = 1 },
+	Yaw = { current = 0, duration = 1 },
 }
 
 local Controls = {
@@ -134,7 +142,7 @@ function changeControl()
 	if not controlVal then return end
 	Control = controlVal
 
-	local isNewSens = Control:GetAttribute("NewSensitivity") == true
+	isNewSens = Control:GetAttribute("NewSensitivity") == true
 	local throttleRaw = Control:GetAttribute("Throttle") or 1
 	local rollRaw = Control:GetAttribute("Roll") or 1
 	local pitchRaw = Control:GetAttribute("Pitch") or 1
@@ -146,12 +154,17 @@ function changeControl()
 		Sensitivity.Pitch = pitchRaw
 		Sensitivity.Yaw = yawRaw
 	else
-		-- Convert legacy duration (seconds) to responsiveness multiplier
-		Sensitivity.Throttle = 4.6 / math.max(throttleRaw, 0.01)
-		Sensitivity.Roll = 4.6 / math.max(rollRaw, 0.01)
-		Sensitivity.Pitch = 4.6 / math.max(pitchRaw, 0.01)
-		Sensitivity.Yaw = 4.6 / math.max(yawRaw, 0.01)
+		channels.Throttle.duration = math.max(throttleRaw, 0.01)
+		channels.Roll.duration = math.max(rollRaw, 0.01)
+		channels.Pitch.duration = math.max(pitchRaw, 0.01)
+		channels.Yaw.duration = math.max(yawRaw, 0.01)
 	end
+
+	-- Initialize channels to current output to prevent jumps on control change
+	channels.Throttle.current = script:GetAttribute("Throttle") or 0
+	channels.Roll.current = Controls.Outputs.Roll
+	channels.Pitch.current = Controls.Outputs.Pitch
+	channels.Yaw.current = Controls.Outputs.Yaw
 
 	controllerEvent:Fire("Start")
 end
@@ -163,14 +176,6 @@ script:GetAttributeChangedSignal("ControlMode"):Connect(function()
 		changeControl_function = nil
 	end
 	changeControl_function = task.spawn(changeControl)
-end)
-
-controllerEvent.Event:Connect(function(event)
-	if event == "Hover" then
-		if Settings:GetAttribute("AttitudeControls/Hover") == false or mainPart.AssemblyLinearVelocity.Magnitude/physicsScale > 100 then return end
-		Controls.Inputs.Hover = not Controls.Inputs.Hover
-		script:SetAttribute("Hover", Controls.Inputs.Hover)
-	end
 end)
 
 -- For copilot system
@@ -200,11 +205,7 @@ local connection
 connection = game:GetService("RunService").Heartbeat:Connect(function(dt)
 	accumulated += dt
 	
-	local throttle_Sensitivity = 1 - math.exp(-Sensitivity.Throttle * dt)
-	local roll_Sensitivity = 1 - math.exp(-Sensitivity.Roll * dt)
-	local pitch_Sensitivity = 1 - math.exp(-Sensitivity.Pitch * dt)
 	local trim_Sensitivity = 1 - math.exp(-script:GetAttribute("TrimSensitivity") * dt)
-	local yaw_Sensitivity = 1 - math.exp(-Sensitivity.Yaw * dt)
 
 	local throttle_Input = script:GetAttribute("Throttle") or 0
 	local roll_Input = script:GetAttribute("Roll") or 0
@@ -221,11 +222,36 @@ connection = game:GetService("RunService").Heartbeat:Connect(function(dt)
 	local pitch_Curve = 0.8 + (math.abs(effectivePitch) * 0.2)
 	local yaw_Curve = 0.8 + (math.abs(effectiveYaw) * 0.2)
 
-	Controls.Outputs.Throttle = math.lerp(Controls.Outputs.Throttle, throttle_Input, throttle_Sensitivity)
-	Controls.Outputs.Roll = math.lerp(Controls.Outputs.Roll, effectiveRoll * roll_Curve, roll_Sensitivity)
-	Controls.Outputs.Pitch = math.lerp(Controls.Outputs.Pitch, effectivePitch * pitch_Curve, pitch_Sensitivity)
+	local targetRoll = effectiveRoll * roll_Curve
+	local targetPitch = effectivePitch * pitch_Curve
+	local targetYaw = effectiveYaw * yaw_Curve
+
+	if isNewSens then
+		local throttle_Sensitivity = 1 - math.exp(-Sensitivity.Throttle * dt)
+		local roll_Sensitivity = 1 - math.exp(-Sensitivity.Roll * dt)
+		local pitch_Sensitivity = 1 - math.exp(-Sensitivity.Pitch * dt)
+		local yaw_Sensitivity = 1 - math.exp(-Sensitivity.Yaw * dt)
+
+		Controls.Outputs.Throttle = math.lerp(Controls.Outputs.Throttle, throttle_Input, throttle_Sensitivity)
+		Controls.Outputs.Roll = math.lerp(Controls.Outputs.Roll, targetRoll, roll_Sensitivity)
+		Controls.Outputs.Pitch = math.lerp(Controls.Outputs.Pitch, targetPitch, pitch_Sensitivity)
+		Controls.Outputs.Yaw = math.lerp(Controls.Outputs.Yaw, targetYaw, yaw_Sensitivity)
+	else
+		local function updateChannel(name, targetVal)
+			local ch = channels[name]
+			local alpha = math.min(dt / ch.duration, 1)
+			local quadAlpha = alpha * (2 - alpha)
+			ch.current = math.lerp(ch.current, targetVal, quadAlpha)
+			return ch.current
+		end
+
+		Controls.Outputs.Throttle = updateChannel("Throttle", throttle_Input)
+		Controls.Outputs.Roll = updateChannel("Roll", targetRoll)
+		Controls.Outputs.Pitch = updateChannel("Pitch", targetPitch)
+		Controls.Outputs.Yaw = updateChannel("Yaw", targetYaw)
+	end
+
 	Controls.Outputs.Trim = math.lerp(Controls.Outputs.Trim, trim_Input, trim_Sensitivity)
-	Controls.Outputs.Yaw = math.lerp(Controls.Outputs.Yaw, effectiveYaw * yaw_Curve, yaw_Sensitivity)
 
 	handlerFrames.Inputs.Throttle.Size = UDim2.new(0, 20, throttle_Input, 0)
 	handlerFrames.Inputs.Roll.Size = UDim2.new(0, 20, roll_Input, 0)

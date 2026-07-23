@@ -58,11 +58,19 @@ local handlerFrames = {
 }
 
 local Control = nil
+local isNewSens = false
 local Sensitivity = {
 	Collective = 0,
 	Roll = 0,
 	Pitch = 0,
 	Yaw = 0,
+}
+
+local channels = {
+	Collective = { current = 0, duration = 1 },
+	Roll = { current = 0, duration = 1 },
+	Pitch = { current = 0, duration = 1 },
+	Yaw = { current = 0, duration = 1 },
 }
 
 local Controls = {
@@ -132,7 +140,7 @@ function changeControl()
 	if not controlVal then return end
 	Control = controlVal
 
-	local isNewSens = Control:GetAttribute("NewSensitivity") == true
+	isNewSens = Control:GetAttribute("NewSensitivity") == true
 	local collectiveRaw = Control:GetAttribute("Collective") or 1
 	local rollRaw = Control:GetAttribute("Roll") or 1
 	local pitchRaw = Control:GetAttribute("Pitch") or 1
@@ -144,12 +152,17 @@ function changeControl()
 		Sensitivity.Pitch = pitchRaw
 		Sensitivity.Yaw = yawRaw
 	else
-		-- Convert legacy duration (seconds) to responsiveness multiplier
-		Sensitivity.Collective = 4.6 / math.max(collectiveRaw, 0.01)
-		Sensitivity.Roll = 4.6 / math.max(rollRaw, 0.01)
-		Sensitivity.Pitch = 4.6 / math.max(pitchRaw, 0.01)
-		Sensitivity.Yaw = 4.6 / math.max(yawRaw, 0.01)
+		channels.Collective.duration = math.max(collectiveRaw, 0.01)
+		channels.Roll.duration = math.max(rollRaw, 0.01)
+		channels.Pitch.duration = math.max(pitchRaw, 0.01)
+		channels.Yaw.duration = math.max(yawRaw, 0.01)
 	end
+
+	-- Initialize channels to current output to prevent jumps on control change
+	channels.Collective.current = Controls.Outputs.Collective
+	channels.Roll.current = Controls.Outputs.Roll
+	channels.Pitch.current = Controls.Outputs.Pitch
+	channels.Yaw.current = Controls.Outputs.Yaw
 
 	controllerEvent:Fire("Start")
 end
@@ -199,10 +212,6 @@ connection = game:GetService("RunService").Heartbeat:Connect(function(dt)
 	accumulated += dt
 	
 	local hoverFactor = if Controls.Inputs.Hover == true then 0.75 else 1
-	local collective_Sensitivity = 1 - math.exp(-Sensitivity.Collective * hoverFactor * dt)
-	local roll_Sensitivity = 1 - math.exp(-Sensitivity.Roll * hoverFactor * dt)
-	local pitch_Sensitivity = 1 - math.exp(-Sensitivity.Pitch * hoverFactor * dt)
-	local yaw_Sensitivity = 1 - math.exp(-Sensitivity.Yaw * hoverFactor * dt)
 
 	Controls.Inputs.Collective = script:GetAttribute("Collective")
 	Controls.Inputs.Roll = script:GetAttribute("Roll")
@@ -213,21 +222,44 @@ connection = game:GetService("RunService").Heartbeat:Connect(function(dt)
 	local roll_Input		= Controls.Inputs.Roll
 	local pitch_Input 		= Controls.Inputs.Pitch
 	local yaw_Input 		= Controls.Inputs.Yaw
-	local hover_Input		= Controls.Inputs.Hover
 	------------------------------------------------------------------------------------------------
 	local deadzone = if isMobile then 0.1 else 0.005
 	local effectiveRoll = getEffectiveInput(roll_Input, deadzone)
 	local effectivePitch = getEffectiveInput(pitch_Input, deadzone)
 	local effectiveYaw = getEffectiveInput(yaw_Input, deadzone)
 
-	local roll_Curve		= 0.8 + (math.abs(effectiveRoll) * 0.2)
-	local pitch_Curve		= 0.8 + (math.abs(effectivePitch) * 0.2)
-	local yaw_Curve			= 0.8 + (math.abs(effectiveYaw) * 0.2)
-	------------------------------------------------------------------------------------------------
-	Controls.Outputs.Collective 	= math.lerp(Controls.Outputs.Collective, collective_Input, collective_Sensitivity)
-	Controls.Outputs.Roll 			= math.lerp(Controls.Outputs.Roll, effectiveRoll * roll_Curve, roll_Sensitivity)
-	Controls.Outputs.Pitch 			= math.lerp(Controls.Outputs.Pitch, effectivePitch * pitch_Curve, pitch_Sensitivity)
-	Controls.Outputs.Yaw 			= math.lerp(Controls.Outputs.Yaw, effectiveYaw * yaw_Curve, yaw_Sensitivity)
+	local roll_Curve	= 0.8 + (math.abs(effectiveRoll) * 0.2)
+	local pitch_Curve	= 0.8 + (math.abs(effectivePitch) * 0.2)
+	local yaw_Curve		= 0.8 + (math.abs(effectiveYaw) * 0.2)
+
+	local targetRoll = effectiveRoll * roll_Curve
+	local targetPitch = effectivePitch * pitch_Curve
+	local targetYaw = effectiveYaw * yaw_Curve
+
+	if isNewSens then
+		local collective_Sensitivity = 1 - math.exp(-Sensitivity.Collective * hoverFactor * dt)
+		local roll_Sensitivity = 1 - math.exp(-Sensitivity.Roll * hoverFactor * dt)
+		local pitch_Sensitivity = 1 - math.exp(-Sensitivity.Pitch * hoverFactor * dt)
+		local yaw_Sensitivity = 1 - math.exp(-Sensitivity.Yaw * hoverFactor * dt)
+
+		Controls.Outputs.Collective 	= math.lerp(Controls.Outputs.Collective, collective_Input, collective_Sensitivity)
+		Controls.Outputs.Roll 			= math.lerp(Controls.Outputs.Roll, targetRoll, roll_Sensitivity)
+		Controls.Outputs.Pitch 			= math.lerp(Controls.Outputs.Pitch, targetPitch, pitch_Sensitivity)
+		Controls.Outputs.Yaw 			= math.lerp(Controls.Outputs.Yaw, targetYaw, yaw_Sensitivity)
+	else
+		local function updateChannel(name, targetVal)
+			local ch = channels[name]
+			local alpha = math.min(dt / ch.duration, 1)
+			local quadAlpha = alpha * (2 - alpha)
+			ch.current = math.lerp(ch.current, targetVal, quadAlpha)
+			return ch.current
+		end
+
+		Controls.Outputs.Collective = updateChannel("Collective", collective_Input)
+		Controls.Outputs.Roll = updateChannel("Roll", targetRoll)
+		Controls.Outputs.Pitch = updateChannel("Pitch", targetPitch)
+		Controls.Outputs.Yaw = updateChannel("Yaw", targetYaw)
+	end
 	------------------------------------------------------------------------------------------------
 	handlerFrames.Inputs.Collective.Size	= UDim2.new(0, 20, collective_Input, 0)
 	handlerFrames.Inputs.Roll.Size			= UDim2.new(0, 20, roll_Input, 0)
