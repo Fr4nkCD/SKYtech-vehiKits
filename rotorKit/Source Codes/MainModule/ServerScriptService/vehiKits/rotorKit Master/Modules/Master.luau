@@ -6,8 +6,7 @@ local KitMaster = script.Parent.Parent
 local Packages = KitMaster.Packages
 local Constraints = Packages.Constraints
 
--- Cache license validation status per player to avoid per-packet C++ FindFirstChild queries
-local playerLicenseCache = {}
+
 
 function Master.Initialize(
 	kitName,
@@ -223,8 +222,7 @@ function Master.HandlePilotSeat(
 			license.Value = if license.Value then license.Value else kitLicense:Clone()
 			license.Value.Parent = player.PlayerGui
 
-			-- Cache license verification status
-			playerLicenseCache[player] = true
+
 		else
 			-- Pilot leave (localize values first to prevent race condition during wait)
 			local targetPilot = pilotValue.Value
@@ -233,7 +231,6 @@ function Master.HandlePilotSeat(
 
 			if targetPilot then 
 				pilotValue.Value = nil 
-				playerLicenseCache[targetPilot] = nil
 			end
 			
 			task.wait(0.1)
@@ -262,8 +259,7 @@ function Master.UpdateStats(
 	local updateEvent = kitSystem.Update
 
 	table.insert(connections, updateEvent.OnServerEvent:Connect(function(player, event, packet)
-		-- Read validation status from local Lua cache instead of calling FindFirstChild per-packet
-		if not playerLicenseCache[player] then return end
+		if not player.PlayerGui:FindFirstChild(licenseName) then return end
 
 		local hasFuel = Stats_:GetAttribute("Fuel") > 0
 
