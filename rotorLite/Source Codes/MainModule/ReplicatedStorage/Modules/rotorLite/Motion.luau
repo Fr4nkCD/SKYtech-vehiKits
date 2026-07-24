@@ -41,10 +41,13 @@ function Motion.Update(dt, state)
 		
 		System.Direction = System.Direction:Lerp(targetDir, alpha).Unit
 
-		local targetPosition = position + (System.Direction * 1e6)
+		targetPosition = position + (System.Direction * 1e6)
+		local rollTargetAlpha = 1 - Utils.Exp(-Env.Sensitivity / 0.2 * dt)
+		local targetDirSmoothed = System.Direction:Lerp(targetDir, rollTargetAlpha).Unit
+		local mouseTargetPos = position + (targetDirSmoothed * 1e6)
 		local flatMask = Utils.V3New(1, 0, 1)
 		local start2D = nosePosition * flatMask
-		local target2D = targetPosition * flatMask
+		local target2D = mouseTargetPos * flatMask
 
 		local maxAngle = Utils.Pi / 4 + Utils.Pi / 8 * Env.Sensitivity
 

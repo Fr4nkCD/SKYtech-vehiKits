@@ -151,12 +151,15 @@ function Motion.Update(dt, state)
 
 		System.Direction = System.Direction:Lerp((mouseDir * yTorque) + yRest, alpha).Unit
 
-		local targetPosition = position + (System.Direction * 1e6)
+		targetPosition = position + (System.Direction * 1e6)
 		local direction = Utils.CFLookAt(position, targetPosition)
 
 		local flatMask = Utils.V3New(1, 0, 1)
 		local start2D = nosePosition * flatMask
-		local target2D = targetPosition * flatMask
+		local rollTargetAlpha = 1 - Utils.Exp(-turnSensitivity * 2.5 * dt)
+		local mouseDirSmoothed = System.Direction:Lerp(mouseDir, rollTargetAlpha).Unit
+		local mouseTargetPos = position + (mouseDirSmoothed * 1e6)
+		local target2D = mouseTargetPos * flatMask
 
 		if start2D.Magnitude > 0.001 and target2D.Magnitude > 0.001 then
 			local angle = math_acos(Utils.Clamp(start2D.Unit:Dot(target2D.Unit), -1, 1))
