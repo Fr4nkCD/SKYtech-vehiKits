@@ -240,7 +240,7 @@ connection = game:GetService("RunService").Heartbeat:Connect(function(dt)
 		local function updateChannel(name, targetVal)
 			local ch = channels[name]
 			local alpha = math.min(dt / ch.duration, 1)
-			local quadAlpha = alpha * (2 - alpha)
+			local quadAlpha = alpha * (2 - alpha) * 0.5
 			ch.current = math.lerp(ch.current, targetVal, quadAlpha)
 			return ch.current
 		end
