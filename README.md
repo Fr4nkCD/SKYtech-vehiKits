@@ -8,18 +8,30 @@ By tracking our production-ready assets here in structured plain-text Luau files
 
 ## 🚀 Active Kits
 
-This repository actively manages the source files for our core flight packages:
-*   🛩️ **aeroMini** – Ultra-compact flight mechanics variant optimized for smaller frames.
-*   🛸 **aeroLite** – Standard lightweight aerodynamic flight package.
+This repository actively manages the source files and model packages for our core vehicle systems:
+
+*   🛩️ **aeroKit** – Advanced, full-scale fixed-wing aerodynamic flight physics framework.
+*   🚁 **rotorKit** – Standard helicopter/rotary-wing flight physics engine framework with VTOL capabilities.
+*   🛩️ **aeroLite** – Standard lightweight aerodynamic flight package.
 *   🚁 **rotorLite** – Lightweight variant optimized for agile rotary-wing performance.
+*   🛩️ **aeroMini** – Ultra-compact flight mechanics variant optimized for smaller frames.
+
+---
+
+## ⚡ Framework Highlights
+
+All kits are built upon our modern, optimized Luau vehicle architecture:
+
+*   **⚡ High-Performance Architecture:** Event-driven state handling, pre-resolved instance caching, and zero-GC memory optimization for maximum client and server stability.
+*   **🎮 Multi-Platform Controls:** Full cross-platform support for **Keyboard**, **Mouse**, **Mobile**, and **Gamepad** inputs with dynamic UI guide diagrams and hotkey control switching.
+*   **🔊 Dynamic Audio & Visual Systems:** Smooth, framerate-independent engine sound spooling, visual effects, and animated rotor motion blur mechanics.
+*   **🛸 Modular Extensions:** Integrated support for VTOL vectoring, parking brakes, custom flight instruments, attitude controls, and copilot systems.
 
 ---
 
 ## 🛠️ WIP Kits
 
-These kits are currently under active development and testing. They are yet to be released and may receive frequent physics tuning and structural changes:
-*   🛩️ **aeroKit** – Advanced, full-scale aerodynamic flight physics framework.
-*   🚁 **rotorKit** – Standard helicopter/rotary-wing physics engine framework.
+These kits are currently under active development:
 *   🚗 **autoKit** – Advanced ground vehicle physics and custom chassis framework.
 
 ---
