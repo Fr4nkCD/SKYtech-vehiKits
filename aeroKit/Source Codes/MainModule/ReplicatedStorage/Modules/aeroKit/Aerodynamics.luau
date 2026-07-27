@@ -12,24 +12,13 @@ function Aerodynamics.Update(dt, state)
 	local forwardDrag = Env.TrueSpeed / Env.MaxSpeed / (3000 + (1000 * Env.Velocity.Magnitude / Env.MaxSpeed)) * Utils.Max(1 - Env.Altitude / state.Settings.AircraftStatistics.MaxAltitude, 0.25) * Env.DragCoeff
 	local maxSpeedDrag = Utils.Max((Env.Velocity.Magnitude - Env.MaxSpeed) / (5000 + 5000 * (1 - Env.StabilityCoeff)), 0)
 
-	-- Calculate desired speed based on exponential throttle curve
-	local throttleExponential = Utils.Max(System.Throttle, 0.25)
-	local desiredSpeed = Env.MaxSpeed * System.Throttle * throttleExponential
-	
-	-- Calculate speed-limiting drag (active only when overspeeding relative to throttle)
-	local speedError = Env.TrueSpeed - desiredSpeed
-	local targetSpeedDrag = 0
-	if speedError > 0 then
-		targetSpeedDrag = (speedError / Env.MaxSpeed) * Env.DragCoeff * 0.001
-	end
-
 	local liftLoss = if Env.SymmetricalAirfoil then 1 - Utils.Abs(Env.EffectiveBankAngle) / 270 else 1 - Utils.Abs(Env.BankAngle) / 270
 	local lift_Force = Utils.Clamp((Env.TrueSpeed - Env.StallSpeed) / (60 + 40 * (1 - Env.StabilityCoeff)), 0, Utils.Max(Env.StabilityCoeff, 0.001)) / 10 * liftLoss
 	local stall_Force = Env.TrueSpeed / Env.StallSpeed * Env.Velocity.Magnitude / Env.StallSpeed / 400
 
 	local aeroX = Env.MainCFrame.RightVector * Env.Weight * (lift_Force + maxSpeedDrag + stall_Force) * -Env.Velocity.X * (1 - Utils.Abs(Env.LocalWindDirection.X) / (1.5 - Env.StabilityCoeff / 2.5))
 	local aeroY = Env.MainCFrame.UpVector * Env.Weight * (lift_Force + maxSpeedDrag + stall_Force) * -Env.Velocity.Y * (1 - Utils.Abs(Env.LocalWindDirection.Y) / (1.5 - Env.StabilityCoeff / 2.5))
-	local aeroZ = Env.MainCFrame.LookVector * Env.Weight * (forwardDrag + maxSpeedDrag + targetSpeedDrag) * Env.Velocity.Z
+	local aeroZ = Env.MainCFrame.LookVector * Env.Weight * (forwardDrag + maxSpeedDrag) * Env.Velocity.Z
 
 	local stats = Components.Stats_
 	local stabilityVal = (stats and stats:GetAttribute("MotionStability")) or Components.StateWrapper:GetAttribute("Stability") or 0
