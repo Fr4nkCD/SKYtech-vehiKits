@@ -152,7 +152,8 @@ function Master.Initialize(
 	end
 
 	local defaultLandingGear = main:FindFirstChild("LandingGear")
-	local oldGearScript = main.Mods:FindFirstChild("Landing_Gear")
+	local modsFolder = main:FindFirstChild("Mods")
+	local oldGearScript = if modsFolder then modsFolder:FindFirstChild("Landing_Gear") else nil
 	if (defaultLandingGear and defaultLandingGear:FindFirstChild("Extended") and defaultLandingGear:FindFirstChild("Retracted"))
 		and (not oldGearScript or (oldGearScript and not oldGearScript:IsA("Script"))) then
 		defaultLandingGear:AddTag("SKYtech_LandingGear")

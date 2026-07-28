@@ -29,9 +29,9 @@ local mainPart = main.Main
 
 local Settings = aircraft.Settings
 local Stats_ = main.Stats
-local Mods = main.Mods
+local Mods = main:FindFirstChild("Mods")
 
-local landingGear = Mods:FindFirstChild("LandingGear")
+local landingGear = if Mods then Mods:FindFirstChild("LandingGear") else nil
 local gearRemote = if landingGear then landingGear:FindFirstChild("Remote") else nil
 
 kitCore:Initialize(aircraft)
