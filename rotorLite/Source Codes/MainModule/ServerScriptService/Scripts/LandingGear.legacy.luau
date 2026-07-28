@@ -59,7 +59,7 @@ local function setupLandingGear(landingGear)
 	local aircraft = landingGear.Parent.Parent
 	local Settings
 	local mainPart = landingGear.Parent.Main
-	local mods = landingGear.Parent.Mods
+	local mods = landingGear.Parent:FindFirstChild("Mods")
 
 	local gearStats
 	local remoteEvent
@@ -78,6 +78,13 @@ local function setupLandingGear(landingGear)
 	-- Prepare physics settings, part lists, and state objects.
 	local function physicalInitialize()
 		Settings = aircraft:WaitForChild("Settings")
+
+		if not mods then
+			mods = Instance.new("Folder")
+			mods.Name = "Mods"
+			mods.Parent = landingGear.Parent
+		end
+
 		gearStats = mods:FindFirstChild("Landing_Gear") or mods:FindFirstChild("LandingGear")
 
 		if gearStats then
