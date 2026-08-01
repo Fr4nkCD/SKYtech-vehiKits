@@ -128,14 +128,11 @@ function changeControl()
 
 	local controlVal = script.Module.Value
 	if not controlVal then
-		local thread = coroutine.running()
-		local delayTask = task.delay(1, task.spawn, thread)
-		local conn = script.Module:GetPropertyChangedSignal("Value"):Connect(function()
-			task.cancel(delayTask)
-			task.spawn(thread)
-		end)
-		coroutine.yield()
-		conn:Disconnect()
+		local start = os.clock()
+		while not script.Module.Value and (os.clock() - start) < 10 do
+			controllerEvent:Fire("ChangeControl")
+			task.wait(0.2)
+		end
 		controlVal = script.Module.Value
 	end
 
